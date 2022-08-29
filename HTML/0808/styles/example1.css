@@ -1,0 +1,40 @@
+* {
+  color: gray;
+}
+
+html {
+  background: rgb(255, 247, 236);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: rgb(255, 247, 236);
+  border: 4px solid rgb(255, 225, 154);
+  margin: 30px auto;
+  padding: 50px;
+  width: 800px;
+}
+body h1 {
+  text-align: center;
+  font-size: 3rem;
+}
+body .line {
+  height: 4px;
+  width: 80%;
+  background: rgb(255, 225, 154);
+}
+body table {
+  border-collapse: collapse;
+  border: 1px solid rgb(255, 225, 154);
+  background: #fff;
+}
+body td, body th {
+  border: 1px solid rgb(255, 225, 154);
+  padding: 10px 20px;
+}
+body th {
+  background: rgb(255, 241, 209);
+}/*# sourceMappingURL=example1.css.map */

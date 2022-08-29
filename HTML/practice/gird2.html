@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animated Grid</title>
+    <style>
+        :root{
+            --animation: 700ms;
+            --delay: calc(var(--animation)/10);
+        }
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        .container{
+            display: grid;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            grid-template-rows: repeat(4, 23%);
+            grid-template-columns: 240px auto auto 240px;
+            grid-gap: 10px;
+            grid-template-areas: 
+                'a b c d '
+                'l main main e'
+                'k main main f'
+                'j i h g'
+                ;
+        }
+        .item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background:rgb(92, 161, 75);
+            font-family: ubuntu,sans-serif;
+            color: #fff;
+            font-size: 2rem;
+            animation: animation1 var(--animation) ;   
+            animation-fill-mode: backwards;
+            transition: 0.3s;
+            transition-delay: -0.22s;
+        }
+        .item:hover{
+            background: rgb(255, 161, 161);
+            transform: rotate(360deg);
+        }
+
+        .item:nth-child(1){
+            grid-area: a;
+            animation-delay: calc(var(--delay)*1);
+        }
+
+        .item:nth-child(2){
+            grid-area: b;
+            animation-delay: calc(var(--delay)*2);
+        }
+
+        .item:nth-child(3){
+            grid-area: c;
+            animation-delay: calc(var(--delay)*3);
+        }
+
+        .item:nth-child(4){
+            grid-area: d;
+            animation-delay: calc(var(--delay)*4);
+        }
+
+        .item:nth-child(5){
+            grid-area: e;
+            animation-delay: calc(var(--delay)*5);
+        }
+
+        .item:nth-child(6){
+            grid-area: f;
+            animation-delay: calc(var(--delay)*6);
+    }
+
+        .item:nth-child(7){
+            grid-area: g;
+            animation-delay: calc(var(--delay)*7);
+    }
+
+        .item:nth-child(8){
+            grid-area: h;
+            animation-delay: calc(var(--delay)*8);
+        }
+
+        .item:nth-child(9){
+            grid-area: i;
+            animation-delay: calc(var(--delay)*9);
+        }
+
+
+        .item:nth-child(10){
+            grid-area: j;
+            animation-delay: calc(var(--delay)*10);
+        }
+
+
+        .item:nth-child(11){
+            grid-area: k;
+            animation-delay: calc(var(--delay)*11);
+        }
+
+
+        .item:nth-child(12){
+            grid-area: l;
+            animation-delay: calc(var(--delay)*12);
+        }
+
+
+        .item:last-child{
+            animation-delay: calc(var(--delay)*13);
+            grid-area: main;
+        }
+
+        @keyframes animation1 {
+            0%{
+                opacity: 0;
+                transform: scale(0.3);
+                filter: hue-rotate(180deg);
+            }
+            100%{
+                opacity: 1;
+                transform: scale(1);
+                filter: hue-rotate(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <div class="item">1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="item">11</div>
+        <div class="item">12</div>
+        <div class="item">13</div>
+    </section>
+</body>
+</html>

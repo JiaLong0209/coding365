@@ -1,0 +1,47 @@
+$HTMLColor : rgb(255,247,236);
+$BodyColor : rgb(255,225,154);
+$THColor: rgb(255,241,209);
+*{
+    color:gray;
+}
+html{
+    background: $HTMLColor;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: $HTMLColor;
+    border: 4px solid $BodyColor;
+    margin: 30px auto;
+    padding: 50px;
+    width: 800px;
+    
+    h1{
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    .line{
+        height: 4px;
+        width: 80%;
+        background: $BodyColor;
+    }
+
+    table{
+        border-collapse: collapse;
+        border:1px solid $BodyColor;
+        background: #fff;
+    }
+    td,th{
+        border:1px solid $BodyColor;
+        padding: 10px 20px;
+
+    }
+
+    th{
+        background:$THColor;
+    }
+}

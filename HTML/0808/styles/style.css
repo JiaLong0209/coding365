@@ -1,0 +1,30 @@
+
+*{
+    margin: 0;
+    
+}
+
+table{
+    border-collapse: collapse;
+    border: 2px solid #ccc;
+    letter-spacing: 1px;    
+    font-style: 0.9rem;
+    margin: auto;
+
+}
+
+caption{
+    padding:10px;
+}
+
+td, th{
+    border: 1px solid #bbb;
+    padding: 10px 20px;
+}
+
+th,tr:nth-child(1){
+    background-color: #ddd;
+}
+td{
+    text-align: center;
+}

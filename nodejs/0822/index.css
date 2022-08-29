@@ -1,0 +1,109 @@
+*{
+    transition: 0.25s;
+    
+}
+
+body{
+    font-family: 'Nunito';
+    background: rgb(32, 35, 53);
+}
+
+h2{
+    text-align: center;
+    font-size: 25px;
+    padding: 5px 10px;
+    color: #c2c2c2;
+}
+h2:hover{
+    /* font-size: 1.3rem; */
+    color: #473;
+}
+
+#msonline-chat{
+    max-width: 600px;
+    margin: 30px auto;
+    border: 1px solid rgb(110, 110, 110);
+    box-shadow: 5px 8px 10px rgba(0,0,0,0.5);
+                /* 0 0 100px rgba(212, 237, 245, 0.467),
+                0 0 200px #fff5; */
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background: rgb(29, 29, 29);
+    /* background: linear-gradient(15deg,rgb(238, 238, 238),rgb(214, 214, 214)); */
+    /* align-items: center; */
+}
+
+#chat-window{
+    height: 400px;
+    overflow: auto;
+    background: rgb(58, 58, 58);
+    display: flex;
+    flex-direction: column;
+    
+}
+
+#output p{
+    padding: 14px 0px;
+    margin: 0 20px;
+    border-bottom: 1px solid #e9e9e9;
+    color: #555;
+}
+
+#feedback p{
+    color: #aaa;
+    padding: 14px 0px;
+    margin: 0 20px;
+}
+
+#output strong{
+    color: #bdb3b3;
+}
+
+label{
+    box-sizing: border-box;
+    display: block;
+    padding: 10px 20px;
+}
+
+input{
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background: #eee;
+    border: 0;
+    display: block;
+    width: 100%;
+    background: rgb(83, 83, 83);
+    border-bottom: 1px solid rgb(136, 136, 136);
+    font-family: Nunito;
+    font-size: 16px;
+    color: #eee;
+}
+input:focus{
+    background: rgb(27, 27, 25);
+    outline: none;
+    color: rgb(224, 224, 224);
+}
+
+input::placeholder{
+    color: rgb(170, 170, 170);
+}
+button{
+    background: #6e3838;
+    color: #fff;
+    font-size: 18px;
+    border: 0;
+    padding: 12px 0;
+    width: 80%;
+    margin: 30px auto;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button:hover{
+    background: rgb(63, 65, 85);
+    color: #fff;
+}
+button:active{
+    transform: scale(1.15);
+}

@@ -1,0 +1,151 @@
+// $gutter: 16px;
+
+// .box {
+//     margin: $gutter * 2;
+// }
+
+// .header {
+//     width: 100%;
+//     display: flex;
+//     &__logo {
+//         width: 200px;
+//     }
+//     &__menu {
+//         color: #000;
+//     }
+// }
+
+// @mixin mobile {
+//     @media (max-width:576px) {
+//         @content;
+//     }
+// }
+// .banner {
+//     width: 100%;
+//     @include mobile {
+//         width: 50%;
+//     }
+// }
+
+// $max : 6;
+// @for $i from 1 to $max{
+//     .h-#{$i}{
+//         font-size : ($max - $i + 1) * 10px;
+//     }
+// }
+
+
+$button--width: 120px;
+$button--height: 50px;
+$button--bgcolor: rgb(214, 214, 214);
+$background-color: rgb(255, 255, 255);
+$button_effect--width: 10px;
+$button_effect--height: 10px;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .button {
+        position: relative;
+        font-size: 1.2rem;
+        background: $button--bgcolor;
+        color: #777;
+        padding: 1rem 1rem;
+        &::before {
+            content: "";
+            top: 0;
+            left: 0;
+            width: $button_effect--width;
+            height: $button_effect--height;
+            position: absolute;
+            box-shadow: 0.5px 0.5px 0 #888;
+            background: linear-gradient(135deg, $background-color 48%, #aaa 50%, #ddd 70%, #fff);
+            transform-origin: 1% 1%;
+            transition: 0.3s;
+            transform: scale(0);
+        }
+        &:hover {
+            // transition: 0.3s;
+            cursor: pointer;
+            &::before {
+                transform: scale(2.5);
+            }
+        }
+    }
+}
+
+
+
+// .container {
+//     width: 100vw;
+//     height: 100vh;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     background: $background-color;
+//     .button {
+//         width: $button--width;
+//         height: $button--height;
+//         background: $button--bgcolor;
+//         color: #777;
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         &::before {
+//             content: "";
+//             width: $button_effect--width;
+//             height: $button_effect--height;
+//             position: absolute;
+//             box-shadow: 0.5px 0.5px 0.5px #888;
+//             background: linear-gradient(135deg, $background-color 48%, #aaa 50%, #ddd 70%, #fff);
+//             transition: 0.3s;
+//             transform-origin: 0% 0%;
+//             transform:
+//                 translate(
+//                     -$button--width / 2 + $button_effect--width / 2,
+//                     -$button--height / 2 + $button_effect--height / 2)
+//                     scale(0);
+//         }
+//         &:hover {
+//             cursor: pointer;
+//             &::before {
+//                 transform:
+//                     translate(
+//                         -$button--width / 2 + $button_effect--width / 2,
+//                         -$button--height / 2 + $button_effect--height / 2) 
+//                         scale(2.5);
+//             }
+//         }
+//     }
+
+    // .button::before{
+    //     content: "";
+    //     width: $button_effect--width;
+    //     height: $button_effect--height;
+    //     position: absolute;
+    //     border-bottom: 0.1px solid #888;
+    //     border-right: 0.1px solid #888;
+    //     background: linear-gradient(135deg,$background-color 50%,#aaa 50%,#ddd 70%,#fff);
+    //     transition: 0.3s;
+    //     transform-origin: 0% 0%;
+    //     transform: 
+    //         translate(
+    //              (-$button--width / 2 + $button_effect--width / 2),
+    //              -$button--height / 2 + $button_effect--height / 2)
+    //         scale(0);
+
+    // }
+    // .button:hover::before{
+    //     transform:
+    //         translate(
+    //         (-$button--width / 2 + $button_effect--width / 2),
+    //         -$button--height / 2 + $button_effect--height / 2)
+    //         scale(2.5);
+    // }

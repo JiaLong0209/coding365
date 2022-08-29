@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計算陣列 < 10 數字的總和</title>
+</head>
+<body>
+    <script>
+        let arr= [1,2,9,3,4,5,123];
+        let n = 10;
+        let count = 0;
+        // method 1
+        for(let i = 0; i < arr.length; i++){
+            if(arr[i] < n){
+                count += arr[i]
+            }
+        }
+        // method 2
+        arr.forEach((item,index)=>{
+            if(item < 10){
+                count += arr[index];
+            }
+        })
+        // method 3
+        arr.filter(x => x < 10).forEach(x => count += x)
+        // method 4
+        for(i of arr){
+            i<10 ? count += i : null;
+        }
+        // method 5
+        for(i in arr){
+            arr[i] < 10 ? count += arr[i] : null;
+        }
+        // method 6
+        arr.every(x=>{
+            x<10 ? count+= x : null;
+            return x < 10;
+        })
+        // method 7
+        arr.some(x=>{
+            x<10 ? count+= x : null;
+            return x > 10;
+        })
+
+        // console.log(arr)
+        console.log(count);
+    </script>
+</body>
+</html>

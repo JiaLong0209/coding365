@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找是否是質數</title>
+</head>
+<body>
+    <script>
+        function Prime(num){
+            // alert(`number is ${num}`);
+            for(let i = 2; i < num; i++){
+                if(num % i == 0 ){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        while(1){
+            let n = prompt("Please key in a number");
+            Prime(n)? alert(`${n} is a prime number`) : alert(`${n} is not a prime number`);
+        }
+    </script>
+    
+</body>
+</html>
