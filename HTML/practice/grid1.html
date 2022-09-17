@@ -17,7 +17,7 @@
         .container{
             width: 100vw;
             height: 100vh;
-            grid-gap: 10px;
+            /* grid-gap: 10px; */
             display: grid;
             grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
             grid-auto-rows: 38px;
@@ -29,11 +29,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            /* height: 50px; */
             font-family:  Ubuntu,sans-serif;
             color: rgb(228, 228, 228);
             background: rgb(128, 124, 124);
             font-size: 1.5rem;
+            /* height: 50px; */
             /* text-shadow: 1px 1px 2px #333; */
 
             transition: 0.25s;
@@ -49,19 +49,19 @@
             background: rgb(167, 167, 167);
         }   
 
-        /* .item:nth-child(2n){
+        .item:nth-child(2n){
             background: linear-gradient(90deg,rgb(196, 71, 71),rgb(142, 170, 38));
         }
         .item:nth-child(2n+1){
             background: linear-gradient(90deg,rgb(90, 219, 213),rgb(194, 49, 187));
-        } */
+        }
 
         @keyframes animation {
             0%,100%{
                 filter: hue-rotate(0deg) contrast(100%);
             }
             50%{
-                filter: hue-rotate(360deg) contrast(150%);
+                filter: hue-rotate(360deg) contrast(100%);
 
             }
         }
