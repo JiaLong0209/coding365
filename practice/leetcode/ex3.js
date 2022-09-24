@@ -35,7 +35,9 @@
     for(let i = 0; i < s.length; i++){
         if(s[i] != s[i+1] && s[i+1] != null){
             count += 1;     
-            long = count > long ? count : long;
+            if(count > long){
+                long = count;
+            }
         }else {
             count = 0;
         }
@@ -45,8 +47,8 @@
 }
     
 
-s1 = "abcabcbb";
-s2 = "aabbcc"
-// console.log(lengthOfLongestSubstring(s1));
+s1 = "aabcabcbb";
+s2 = "aaabbacac"
+console.log(lengthOfLongestSubstring(s1));
 console.log(lengthOfLongestSubstring(s2));
     

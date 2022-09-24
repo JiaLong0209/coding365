@@ -20,4 +20,4 @@ function inversePyramid(num){
 // *****
 //  ***
 //   *
-inversePyramid(5);
+inversePyramid(10);
