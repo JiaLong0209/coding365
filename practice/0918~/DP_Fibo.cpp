@@ -24,6 +24,26 @@ void exec_time(int (funPtr)(int a),int a){
 
 }
 
+void exec_time_arr(int (funPtr)(int a,int* arr),int a,int* arr){
+    // omp_set_num_threads(8);
+    // #pragma omp parallel for 
+
+
+    struct timeval begin, end;
+    gettimeofday(&begin, 0);
+    
+    std::cout << (funPtr)(a,arr) << "\n";
+
+    gettimeofday(&end, 0);
+    long s = end.tv_sec - begin.tv_sec;
+    long ms = end.tv_usec - begin.tv_usec;
+    double elapsed = s + ms*1e-6;
+
+    printf("total execution time : %fs\n\n", elapsed ); // time_spent);
+
+}
+
+
 
 int recursionFibo(int a){
     if( a <= 2) return 1;
@@ -31,14 +51,14 @@ int recursionFibo(int a){
 }
 
 
-int DP_Fibo(int a){
-    int F[a];
-    F[0] = 1;
-    F[1] = 1;
-    for(int i = 2; i < a; i++){
-        F[i] = F[i-1] + F[i-2];
-    }
-    return F[a-1];
+int DP_Fibo(int a,int*arr){
+    // int F[a];
+    // F[0] = 1;
+    // F[1] = 1;
+    // for(int i = 2; i < a; i++){
+    //     F[i] = F[i-1] + F[i-2];
+    // }
+    return arr[a-1];
 }
 
 int for_Fibo(int a){
@@ -56,10 +76,17 @@ int for_Fibo(int a){
 
 // 1 1 2 3 5 8 13 21
 int main(){
-    int a = 41;
+    int a = 44;
+
+    int F[a];
+    F[0] = 1;
+    F[1] = 1;
+    for(int i = 2; i < a; i++){
+        F[i] = F[i-1] + F[i-2];
+    }
     // std::cout << recursionFibo(a) << "\n"; 
     std::cout << " Dynamic Programming :\n";
-    exec_time(DP_Fibo,a);
+    exec_time_arr(DP_Fibo,a,F);
 
     std::cout << "\n Recursion :\n";
     exec_time(recursionFibo,a);
