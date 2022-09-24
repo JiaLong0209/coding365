@@ -1,2 +1,1 @@
 
-        console.log(strArr[i]);

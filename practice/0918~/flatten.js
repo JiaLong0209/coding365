@@ -2,6 +2,9 @@
 function Flatten(arr,num){
     let result = [];
 
+
+
+
     function flatten(arr){
         for(let i = 0; i < arr.length; i++){
             arr[i].length == undefined ? result.push(arr[i]) : flatten(arr[i]);
@@ -9,11 +12,21 @@ function Flatten(arr,num){
     }
 
 
+
+
     function flatten_forEach(arr){
         arr.forEach(i=>{
             i.length == undefined ? result.push(i) : flatten_forEach(i);
         })
     }
+
+
+    // function flatten_for(arr){
+    //     for(let i = 0; i < arr.length; i++){
+
+    //     }
+    // }
+
 
     switch(num){
         case 0:
@@ -24,7 +37,6 @@ function Flatten(arr,num){
             break;
     }
 
-    flatten(arr);
 
     return result;
 }
@@ -32,8 +44,8 @@ function Flatten(arr,num){
 
 
 // let result = [];
-let a = Flatten([1, [[], 2, [0, [1]], [3]], [1, 3, [3], [4, [1]], [2]]],0);  // returns [1, 2, 0, 1, 3, 1, 3, 3, 4, 1, 2]
-let b = Flatten([1, [[], 2, [0, [1]], [3]], [1, 3, [3], [4, [1]], [2]]],1);  // returns [1, 2, 0, 1, 3, 1, 3, 3, 4, 1, 2]
+let a = Flatten([1, [[], 2, [0, [1]], [3]], [1, 3, [3], [4, [1]], [2]]], 0);  // returns [1, 2, 0, 1, 3, 1, 3, 3, 4, 1, 2]
+let b = Flatten([1, [[], 2, [0, [1]], [3]], [1, 3, [3], [4, [1]], [2]]], 1);  // returns [1, 2, 0, 1, 3, 1, 3, 3, 4, 1, 2]
 console.log("\nFlatten = \n"+a);
 
 console.log("\nFlatten_forEach = \n"+b);
