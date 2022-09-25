@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS training</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            color: #333;
+        }
+        .container{
+            width: 100%;
+            height: 100vh;
+            background: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        .trainingContainer{
+            display: flex;
+            justify-content: space-around;
+            background: rgb(255, 238, 238);
+            padding: 10px;
+        }
+        .topicBox{
+            width: 48vw;
+            height: 100%;
+        }
+        .topicBox pre{
+            color: rgb(3, 72, 141);
+        }
+        .topicBox pre:nth-child(2){
+            color: rgb(227, 102, 7);
+        }
+        .topicBox span{
+            color: rgb(148, 148, 148);
+        }
+        .outputBox{
+            width: 48vw;
+            height: 100%;
+            background: rgb(255, 206, 206);
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Java Script 魔王題</h1>
+        <div class="trainingContainer">
+            <div class="topicBox">
+                <pre>
+<span>//input 輸入</span>
+changeCapital(35000)
+changeCapital(9876543210)
+changeCapital(-33)
+changeCapital("<span>安安</span>")
+changeCapital(033)
+                </pre>
+                <pre>
+<span>//output 輸出</span>
+"參萬伍仟元整"
+"玖拾捌億柒仟陸佰伍拾肆萬參仟貳佰壹拾元整"
+"格式錯誤"
+"格式錯誤"
+"參拾參元整"
+                </pre>
+            </div>
+            <div class="outputBox">
+                <span>output:</span>
+                <div class="output"></div>
+                <div class="output2"></div>
+                <div class="output3"></div>
+                <div class="output4"></div>
+                <div class="output5"></div>
+            </div>
+
+        </div>
+    </div>
+    <script>
+
+    const output = document.querySelector(".output");
+    const output2 = document.querySelector(".output2");
+    const output3 = document.querySelector(".output3");
+    const output4 = document.querySelector(".output4");
+    const output5 = document.querySelector(".output5");
+    function changeCapital(OriginalInput){
+        
+        if(checkNumber(OriginalInput)) return "格式錯誤";
+        
+        input = parseInt(OriginalInput,10);
+        let str = " ", n = 1,t ,p = 0;
+        str += "整元";
+        if(input < 10 ){
+            str += CapitalizeNumber(input);
+            return str.split("").reverse().join("");
+        }
+        if(input == 10) return "拾元整";
+        while(input >= 10){
+            n++;
+            t = input % 10;
+            if(t != 0){
+                str += CapitalizeNumber(t,n);
+            }
+                
+            p = fourDigitalIdentification(n);
+            if(p>12) return "數字太大了";
+            if(t != 0 || Math.floor(input/10)%10 != 0 || n%4 == 1){
+                if  (Math.floor(input/10)%10 == 0 && n%4 != 1) str +="零";
+                else{
+                    str += digitalIdentification(n%4,p);
+                    
+                }
+            }
+            input = Math.floor(input / 10);
+            if(input < 10 && input != 0){
+                str += CapitalizeNumber(input,n);
+            }
+        }
+        return reverseStr(str);
+        // return str;
+        
+    }
+    function checkNumber(number){
+        if(number < 0 || isNaN(number)){
+            return true;
+        }
+    }
+    function reverseStr(str){
+        return str.split("").reverse().join("");
+    }
+    function fourDigitalIdentification(n){
+        let p = 0;
+        while(n >= 4){
+            n -= 4;
+            p++;
+        }
+        return p;
+    }
+    function digitalIdentification(n,p){
+        switch (n){
+            case 1:{
+                switch (p){
+                    case 1: 
+                        return "萬"
+                    break;
+                    case 2: 
+                        return "億"
+                    break;
+                    case 3: 
+                        return "兆"
+                    break;
+                    case 4: 
+                        return "京"
+                    break;
+                    case 5: 
+                        return "垓"
+                    break;
+                    case 6: 
+                        return "秭"
+                    break;
+                    case 7: 
+                        return "穰"
+                    break;
+                    case 8: 
+                        return "溝"
+                    break;
+                    case 9: 
+                        return "澗"
+                    break;
+                    case 10: 
+                        return "正"
+                    break;
+                    case 11: 
+                        return "載"
+                    break;
+                    case 12: 
+                        return "極"
+                    break;
+                    
+                }
+            }
+            case 2:
+                return "拾"
+            break;
+            case 3:
+                return "佰"
+            break;
+            case 0:
+                return "仟"
+            break;
+        }
+    }
+    function CapitalizeNumber(number,n){
+        switch (number){
+            case 0:
+                return "零"
+            break;
+            case 1:
+                if(n % 4 == 2){
+                    return ""
+                }else{
+
+                    return "壹"
+                }
+            break;
+            case 2:
+                return "貳"
+            break;
+            case 3:
+                return "參"
+            break;
+            case 4:
+                return "肆"
+            break;
+            case 5:
+                return "伍"
+            break;
+            case 6:
+                return "陸"
+            break;
+            case 7:
+                return "柒"
+            break;
+            case 8:
+                return "捌"
+            break;
+            case 9:
+                return "玖"
+            break;
+        }
+
+    }
+    output.innerHTML = changeCapital(35000);
+    output2.innerHTML = changeCapital(9876543210);
+    output3.innerHTML = changeCapital(-33);
+    output4.innerHTML = changeCapital("安安");
+    output5.innerHTML = changeCapital("033");
+
+
+
+    </script>
+</body>
+</html>
