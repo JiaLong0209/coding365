@@ -59,43 +59,45 @@ class LinkedList{
     getAtIndex(index){
         let current = this.head;
 
-        for(let i = 0; i < this.size; i++){
-            if(i == index){
-                console.log("\n"+current.data);
-                return null;
-            }
-            if(current.next != null){
-                current = current.next;
-            }
+        for(let i = 0; i < index; i++){
+            current = current.next;
         }
+        console.log(current.data)
         return null;
     }
 
     removeAtIndex(index){
+        let current = this.head;
 
         if(index === 0){
-            
+            this.head = current.next;
         }else{
-            for(let i = 0; i < this.size; i++){
-    
+            for(let i = 0; i < index-1; i++){
+                current = current.next;
             }
+            let t = current;
+            current.next = t.next.next;
+            
             
         }
+
+        this.size -= 1;
     }
 
     clearList(){
-
+        this.head = null;
+        this.size = 0;
     }
 
     printListData(){
         let current = this.head;
-
+        let str = "";
         while(current){
-            console.log(current.data);
+            current.next != null?str += `${current.data} -> ` : str += `${current.data}`;
             current = current.next;
         }
+        console.log(str)
     }
-
     forEach(){
 
     }
@@ -108,9 +110,15 @@ let list = new LinkedList();
 list.inserLastNode(100);
 list.inserLastNode(200);
 list.inserLastNode(300);
-
 list.insertAtIndex(400,1);
 
 list.printListData();
 
-list.getAtIndex(0)
+list.getAtIndex(list.size-1)
+
+list.removeAtIndex(2);
+list.printListData();
+
+list.clearList();
+list.inserFirst(800)
+list.printListData();
