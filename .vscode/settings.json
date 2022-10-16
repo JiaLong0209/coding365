@@ -28,7 +28,8 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "array": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cstring": "cpp"
     },
     "livePreview.defaultPreviewPath": "/HTML/practice/gird2.html"
 }
