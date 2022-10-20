@@ -29,7 +29,8 @@
         "typeinfo": "cpp",
         "array": "cpp",
         "utility": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "gtest.h": "c"
     },
     "livePreview.defaultPreviewPath": "/HTML/practice/gird2.html"
 }
