@@ -1,14 +1,14 @@
 #include <iostream>
 #include <cstring>
+#include <iomanip>
+#include <vector>
 using namespace std;
-int main(){
-    int a,b;
+string direction(int a, int b){
     string str = "any";
-    while(cin >> a >> b && a && b){
+    // while(cin >> a >> b && a && b){
         if(a == 1 && b == 1){
             str = "right";
-        }
-        else if(a == 1 && b !=1){
+        }else if(a == 1 && b !=1){
             str = b % 2 == 1? "right" : "down";
         }else if(b == 1 && a != 1){
             str = a % 2 == 1? "right" : "down";
@@ -21,9 +21,28 @@ int main(){
                 str = a % 2 == 1? "up" : "down";
             }
         }
-        cout << str << endl;
+    // }
+
+    return str;
+}
+int main(){
+    int a,b;
+    a = b = 10;
+    vector<string> row (a,"any");
+    vector< vector<string> > col (b,row);
+    for(int i = 0; i < row.size(); i++){
+        for(int j = 0; j < col.size(); j++){
+            col[i][j] = direction(j+1,i+1);
+        }
+    }
+    for(auto i : col){
+        for(auto j : i){
+            cout << setw(6) << j << " ";
+        }
+        cout << endl;
     }
     return 0;
+
 }
 
 
