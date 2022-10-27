@@ -98,15 +98,7 @@ printBmi = (h,w)=>{
 // printBmi(178, 85)>> 印出 console.log 文字為「您的體重過重，健康指數為澄色」
 // showHistoryData() >> 印出 console.log 文字為「您總共計算 3 次 BMI 紀錄，最後一次 BMI 指數為 26.83，體重過重！健康指數為澄色！」
 
-let count = 0;
-let lastBMI = {
-    data:0,
-    state:"",
-    color:""
-};
-function showHistoryData(){
-    console.log(`您總共計算 ${count} 次 BMI 紀錄，最後一次 BMI 指數為 ${lastBMI.data}，體重${lastBMI.state}！健康指數為${lastBMI.color}！`);
-}
+let lastBMI = [];
 printBmi = (h,w)=>{
     let BMI = {
         data:(w /(h/100)**2).toFixed(2),
@@ -118,17 +110,18 @@ printBmi = (h,w)=>{
         console.log("您的數值輸入錯誤，請重新輸入") ;
         return;
     }
-    count+=1;
-    ({"state":BMI.state,"color":BMI.color} = BMI.data<18.5 ? ot:
-    BMI.data<24   ? nm:
-    BMI.data<27   ? ow:
-    BMI.data<30   ? mi:
-    BMI.data<35   ? mf:
-                    sf)
-    result = result.replace(/w/g,BMI.state);
-    result = result.replace(/c/g,BMI.color);
-    lastBMI = BMI;
-    console.log(result);
+    ({"state":BMI.state,"color":BMI.color} = 
+      BMI.data<18.5 ? ot:
+      BMI.data<24   ? nm:
+      BMI.data<27   ? ow:
+      BMI.data<30   ? mi:
+      BMI.data<35   ? mf:sf)
+    result = result.replace(/w/g,BMI.state).replace(/c/g,BMI.color);
+    lastBMI.push(BMI);
+    console.log(result); 
+}
+let showHistoryData = () =>{
+    console.log(`您總共計算 ${lastBMI.length} 次 BMI 紀錄，最後一次 BMI 指數為 ${lastBMI[lastBMI.length-1].data}，體重${lastBMI[lastBMI.length-1].state}！健康指數為${lastBMI[lastBMI.length-1].color}！`);
 }
 printBmi(178,20);
 printBmi(178,70);
