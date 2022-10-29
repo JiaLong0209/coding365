@@ -30,7 +30,8 @@
         "array": "cpp",
         "utility": "cpp",
         "cstring": "cpp",
-        "gtest.h": "c"
+        "gtest.h": "c",
+        "vector": "cpp"
     },
     "livePreview.defaultPreviewPath": "/HTML/practice/gird2.html"
 }
