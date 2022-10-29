@@ -31,7 +31,8 @@
         "utility": "cpp",
         "cstring": "cpp",
         "gtest.h": "c",
-        "vector": "cpp"
+        "vector": "cpp",
+        "bitset": "cpp"
     },
     "livePreview.defaultPreviewPath": "/HTML/practice/gird2.html"
 }
