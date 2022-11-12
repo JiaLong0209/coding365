@@ -32,7 +32,7 @@ int bestPath(int num,int n){
              }
         }
     }
-    cout << dis[n][n] << " ";
+    // cout << dis[n][n] << " ";
     return dis[n][n];
 }
 
@@ -42,12 +42,14 @@ int main(){
     for(int i = 0; i < n; i++) for(int j = 0; j < n; j++) cin >> v[i][j];
     int p = 0;
     for(int i = 1 << 20; i; i >>= 1){
-        if(!bestPath(p+i,n)) p += i;
-        // cout << p << " " ;
+        if(!bestPath(p+i,n)){
+             p += i;
+        }
+        // cout << p+i << " " << endl;
     }
-    cout << endl;
+    // cout << endl;
     bestPath(p+1, n);
-
+    // cout << bestPath(5,n) << endl;
     cout << p+1 << endl << dis[n][n]-1<< endl;
     return 0;
 }
