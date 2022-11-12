@@ -31,3 +31,24 @@ public:
         return left>mid? left : right > mid ? right : mid;
     }
 };
+
+
+class SolutionTwo {
+public:
+    void build(TreeNode* root,int dep,vector<int> &depth){
+        if(root == NULL) return;
+        if(dep <= depth.size()-1) depth[dep] += 1;
+        else depth.push_back(1);
+        build(root->left,dep+1,depth);
+        build(root->right,dep+1,depth);
+        return;
+    }
+    
+    int maxDepth(TreeNode* root){
+        vector<int> depth;
+        if(root == NULL) return 0;
+        depth.push_back(0);
+        build(root,0,depth);
+        return depth.size();
+    }
+};
