@@ -24,4 +24,4 @@ public:
         
         return mode == 0 ?( max <= min ? max : min) :( min >= max ? min : max);
     }
-};
+}; 

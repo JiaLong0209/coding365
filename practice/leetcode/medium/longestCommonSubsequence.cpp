@@ -59,7 +59,7 @@ public:
     // };
 };
 
-int main(){
+int main(){ 
     Solution a;
     string str1 = "assoxcpqrsvwf";
     string str2 = "assshmtulqrypy";

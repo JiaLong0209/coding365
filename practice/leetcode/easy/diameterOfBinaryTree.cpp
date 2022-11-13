@@ -16,7 +16,7 @@ class TreeNode {
 };
 
 class Solution {
-public:
+public: 
     int maxDepth(TreeNode* root){
         if(root == NULL) return 0;
         int left = maxDepth(root->left);

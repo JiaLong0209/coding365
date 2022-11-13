@@ -21,7 +21,7 @@ public:
                 if(j-1 >= 0) leftMin = cache[i][j-1];
                 cache[i][j] = min(upMin,leftMin) + grid[i][j];
             }
-        }
+        } 
         return cache[ySize][xSize];
     }
     

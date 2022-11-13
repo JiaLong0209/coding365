@@ -11,7 +11,7 @@ class TreeNode{
         TreeNode* right;
         TreeNode(){
         }
-        ~TreeNode(){
+        ~TreeNode(){ 
         }
 };
 

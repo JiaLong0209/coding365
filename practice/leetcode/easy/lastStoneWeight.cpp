@@ -31,7 +31,7 @@ int main() {
     if(!depth[1]){
         depth.push_back(123);
     }
-    
+     
     for(int i = 0; i < depth.size(); i++){
         cout << depth[i] << " ";
     }    
