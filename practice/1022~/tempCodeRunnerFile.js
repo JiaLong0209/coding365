@@ -1,2 +1,2 @@
 
-      BMI.data<35   ? mf:sf)
+        for(let k = 0; k < arr.length; k++){

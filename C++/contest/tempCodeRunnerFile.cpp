@@ -1,0 +1,2 @@
+
+    cout << takeW << " " << takeV << endl;
