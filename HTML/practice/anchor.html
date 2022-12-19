@@ -10,10 +10,11 @@
         :root {
             /* --primary: rgb(129, 40, 40); */
             --primary: rgb(119, 18, 18);
-
+            --fontsize: 20px;
         }
 
         * {
+            /* box-sizing: border-box; */
             user-select: none;
             scroll-behavior: smooth;
             margin: 0;
@@ -65,8 +66,9 @@
         .text {
             margin: 10px 102px;
             color: rgb(49, 49, 49);
-            letter-spacing: 1.2px;
-            line-height: 22px;
+            letter-spacing: 0.075rem;
+            line-height: 2rem;
+            font-size: var(--fontsize);
         }
 
         ul>a {
@@ -84,15 +86,21 @@
 
         ul>a:hover {
             background: rgb(26, 26, 26);
-            box-shadow: 0px 4px 1px rgb(199, 62, 62);
+            box-shadow: 0px 20px 1px -15px rgb(199, 62, 62);
             color: rgb(255, 255, 255);
+
+            /* background: rgb(255, 255, 255, 0.1);
+            box-shadow: 0 0 2px 3px var(--primary);
+            border: 0px solid var(--primary);
+            color: var(--primary); */
         }
+        
 
         .title {
             margin: 10px;
             font-size: 30px;
             color: rgb(59, 19, 19);
-            transition: 0.7s;
+            transition: 0.4s;
         }
 
         .title:hover {
@@ -124,6 +132,16 @@
             border: 2px solid var(--primary);
             color: var(--primary);
         }
+
+        footer {
+            width: 100%;
+            background: var(--primary);
+            letter-spacing: 0.13rem;
+            font-size: 1.2rem;
+            text-align: center;
+            color: rgb(252, 204, 204);
+            padding: 10px 0;
+        }
     </style>
 </head>
 
@@ -133,6 +151,7 @@
             <a href="#onw">One</a>
             <a href="#two">Two</a>
             <a href="#three">Three</a>
+            <a href="#four">Four</a>
         </ul>
         <a class="scrollTop" href="#">➤</a>
         <div class="box">
@@ -281,7 +300,63 @@
                 asperiores? Perspiciatis mollitia corporis dignissimos facere perferendis, delectus labore impedit
                 autem, eos aut a et.</p>
         </div>
+        <div class="box">
+            <h1 class="title" id="four">Four</h1>
+            <p class="text">This pie chart shows consideration of students in a high school in Taiwan before they join a
+                club. Based on the chart, we can find that the most important factor is whether the club suits their
+                interest, and the proportion of this factor is occupies nearly half in this chart. By contrast, the
+                other three factors are less important than the former. 21% of the students choose clubs that relieve
+                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
+                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
+                When it comes to joining a club, there are two factors for me to consider. First, like the students
+                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
+                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
+                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
+                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
+                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
+                most important factor is whether the club suits their interest, and the proportion of this factor is
+                occupies nearly half in this chart. By contrast, the other three factors are less important than the
+                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
+                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
+                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
+                me to consider. 21% of the students choose clubs that relieve
+                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
+                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
+                When it comes to joining a club, there are two factors for me to consider. First, like the students
+                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
+                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
+                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
+                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
+                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
+                most important factor is whether the club suits their interest, and the proportion of this factor is
+                occupies nearly half in this chart. By contrast, the other three factors are less important than the
+                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
+                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
+                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
+                me to consider. 21% of the students choose clubs that relieve
+                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
+                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
+                When it comes to joining a club, there are two factors for me to consider. First, like the students
+                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
+                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
+                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
+                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
+                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
+                most important factor is whether the club suits their interest, and the proportion of this factor is
+                occupies nearly half in this chart. By contrast, the other three factors are less important than the
+                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
+                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
+                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
+                me to consider. First, like the students surveyed, I prefer clubs that I have an interest in or passion
+                for, and I hope that the club relates music, dance or information. Secondly, I am a person who always
+                wants to learn new skills, so whether I can learn a new skill from club will be second most important
+                factor to me. To sum up, I want to join a club that can help me develop my interests and learn new
+                skills.</p>
+        </div>
     </div>
+    <footer>
+        <span>copyright &copy; JiaLong 2022</span>
+    </footer>
 </body>
 
 <script>
