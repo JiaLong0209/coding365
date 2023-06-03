@@ -3,7 +3,6 @@ function dogHouse(){
     function countDogs(){
         count += 1;
         console.log(count + ' dogs');
-
     }
     return countDogs;
 
@@ -14,7 +13,6 @@ function catHouse(){
     function countCats(){
         count += 1;
         console.log(count + ' cats');
-
     }
     return countCats;
 }
@@ -28,3 +26,4 @@ countDogs();
 countCats();
 countCats();
 countCats();
+

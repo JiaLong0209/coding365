@@ -1,15 +1,17 @@
-function animalHouse(name,i){
+function animalHouse(name, i) {
     var count = 0;
     let x = i;
-    function countDogs(){
+    function countAnimal() {
         count += x;
-        console.log(count + " " +name)
+        console.log(count + " " + name)
     }
-    return countDogs;
+    return countAnimal;
+    // countAnimal();
 }
-var countDog = animalHouse('dogs',3);
-var countCat = animalHouse('cats',3);
-var countPig = animalHouse('pigs',3);
+var countDog = animalHouse('dogs', 3);
+var countCat = animalHouse('cats', 3);
+var countPig = animalHouse('pigs', 3);
+
 
 countDog();
 countDog();

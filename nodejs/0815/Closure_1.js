@@ -1,5 +1,5 @@
 function dogHouse(){
-    var count = 0;
+    let count = 0;
     function countDogs(){
         count += 1;
         console.log(count + " dogs");
@@ -9,6 +9,7 @@ function dogHouse(){
 }
 
 const countFn = dogHouse();
+
 countFn();
 countFn();
 countFn();
