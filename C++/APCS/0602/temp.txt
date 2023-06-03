@@ -1,0 +1,3 @@
+Student name : Score of class 1 : Score of class 2 : Score of class 3 : Score of class 4 : Score of class 5 : 
+Sum = 323
+Average = 64.60 
