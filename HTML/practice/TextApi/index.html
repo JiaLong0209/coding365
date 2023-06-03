@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文產生器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>文產生器</h1>
+        <div id="control">
+            <input type="text" id="title" placeholder="主題" name="title" value="Jialong">
+            <input type="number" id="size" placeholder="字數" name="size" value="200">
+            <input type="submit" id="submit" value="提交">
+        </div>
+        <div class="text">
+
+        </div>
+        <img srcset="img2.png 50vw, img1.png 100vw" src="./img1.png" alt="">
+    </div>
+</body>
+<script>
+
+    async function submit(url) {
+        console.log(JSON.stringify(param))
+        let response = await fetch(url,{
+            method: "post",
+            headers: header,
+            body: JSON.stringify(param)
+        })
+        let json = await response.text();
+        console.log(json);
+        text.innerHTML = json;
+        
+        // fetch(url, {
+        //     method: 'POST',
+        //     headers:  header,
+        //     body: JSON.stringify(param)
+        // })
+        //     .then(response => response.text())
+        //     .then(text => console.log(text))
+        //     .catch(err=> console.log(err))
+
+    }
+    let text = document.querySelector('.text');
+
+    let topic = document.querySelector('#title')
+    let submitBtn = document.querySelector('#submit');
+    let size = document.querySelector('#size');
+    let url = "https://api.howtobullshit.me/bullshit"
+
+    let header = {
+        "Content-Type": "application/json; charset=utf-8"
+        // "Accept": "*/*",
+    }
+    let param = {
+        "Topic": topic.value,
+        "MinLen": size.value
+    }
+    console.log(JSON.stringify(param))
+
+    submitBtn.addEventListener('click', () => {
+        submit(url);
+    })
+
+    topic.addEventListener('change',(e)=>{
+        param['Topic'] = e.target.value;
+        console.log(param);
+    })
+
+    size.addEventListener('change', (e)=> {
+        param["MinLen"] = e.target.value;
+        console.log(param);
+    })
+
+    window.onload = () => {
+        submit(url);
+    }
+
+</script>
+
+</html>
