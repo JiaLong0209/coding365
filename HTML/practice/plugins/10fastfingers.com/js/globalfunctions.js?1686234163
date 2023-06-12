@@ -1,9 +1,11 @@
-let w, input, origin, url , mode ,active;
+
+let w, input, origin, url , mode ,active, completes;
 
 function keyinWord(e){
 	if(e.which != '32') return;
 	if(active){
-		input.value = origin == 'https://10fastfingers.com' ? words[word_pointer] : w.shift();
+        completes = document.querySelectorAll('.place .complete').length;
+		input.value = origin == 'https://10fastfingers.com' ? words[word_pointer] : w[completes];
 	}else{
 		input.value = input.value;
 	}
@@ -50,6 +52,7 @@ window.onload = () => {
 }
 
 // document.querySelector('#inputfield').addEventListener('keydown', (e)=> e.which == '32' ? document.querySelector('#inputfield').value = words[word_pointer] : null);
+
 
 
 // ----------------------------------------------------

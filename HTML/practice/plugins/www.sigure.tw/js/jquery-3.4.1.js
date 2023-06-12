@@ -81,14 +81,14 @@ function keyListener(e){
             };
             break;
             
-        case "ArrowLeft": case '[': case '-': // move tablePage to left, or go to previous website
-            if(e.altKey || e.ctrlKey) return;
+        case "ArrowLeft": case '[': case '-': case '{': case '_':   // move tablePage to left, or go to previous website
+            if(e.altKey || e.ctrlKey || !e.shiftKey) return;
             e.preventDefault();
             !(prev && next) ? changeTablePage('left') : window.location.href = prev.href;
             break;
         
-        case "ArrowRight": case ']': case '=': // move tablePage to right, or go to next website
-            if(e.altKey || e.ctrlKey) return;
+        case "ArrowRight": case ']': case '=': case '}': case '+':  // move tablePage to right, or go to next website
+            if(e.altKey || e.ctrlKey || !e.shiftKey) return;
             e.preventDefault();
             !(prev && next ) ? changeTablePage('right') : window.location.href = next.href;
             break;
