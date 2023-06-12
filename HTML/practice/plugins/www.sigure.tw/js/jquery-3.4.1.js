@@ -11,9 +11,9 @@ function scrollByDistance(x , y, duration){
     let midCount = (count / 2);
     let sum = 0;
     let scroll = setInterval(() => {
-        let dist = (Math.abs((time > midCount ? (count - time)**power : time**power ) - midCount**power )) ** (1/power);
-        let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;
-        let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;
+        let dist = (Math.abs((time > midCount ? (count - time)**power : time**power ) - midCount**power )) ** (1/power);    // calculate the distance, but it isn't linear
+        let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
+        let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
         window.scrollBy(scrollx , scrolly)
         time += 1;
         sum += scrolly;
@@ -65,7 +65,7 @@ function focusInput(){
 
 function keyListener(e){
     switch (e.key){
-        case "Escape": case "Tab" :
+        case "Escape": case "Tab" : // open search bar
             e.preventDefault();
             active = !active;
             
@@ -81,68 +81,72 @@ function keyListener(e){
             };
             break;
             
-        case "ArrowLeft": case '[': case '-':
+        case "ArrowLeft": case '[': case '-': // move tablePage to left, or go to previous website
             if(e.altKey || e.ctrlKey) return;
             e.preventDefault();
             !(prev && next) ? changeTablePage('left') : window.location.href = prev.href;
             break;
         
-        case "ArrowRight": case ']': case '=':
+        case "ArrowRight": case ']': case '=': // move tablePage to right, or go to next website
             if(e.altKey || e.ctrlKey) return;
             e.preventDefault();
             !(prev && next ) ? changeTablePage('right') : window.location.href = next.href;
             break;
         
-        case 'j': 
-            e.preventDefault();
+        case 'j':   // scroll page to bottom by distance
             scrollByDistance(0, scrollDist, scrollTime);
             break;
 
-        case 'k': 
-            e.preventDefault();
+        case 'J':   // scroll page to bottom by distance, but double the scroll distance
+            scrollByDistance(0, scrollDist*2, scrollTime);
+            break;
+
+        case 'k':   // scroll page to top by distance
             scrollByDistance(0, -scrollDist, scrollTime);
             break;
 
-        case 'h':
-            e.preventDefault();
+        case 'K':   // scroll page to top by distance, but double the scroll distance
+            scrollByDistance(0, -scrollDist*2, scrollTime);
+            break;
+
+        case 'h':   // scroll page to left by distance
             scrollByDistance(-scrollDist, 0, scrollTime);
             break;
 
-        case 'l':
-            e.preventDefault();
+        case 'l':   // scroll page to right by distance
             scrollByDistance(scrollDist, 0, scrollTime);
             break;
 
-        case '`':
+        case '`':   // focus to searchBar
             console.log('focus');
             focusInput();
             break;
 
-        case 'g':
+        case 'g':   // scroll to top
             scrollTop(e);
             break;
 
-        case 'G':
+        case 'G':   // scroll to bottom
             scrollBottom(e);
             break;
         
-        case 'm':
+        case 'm':   // scroll to middle
             scrollMiddle(e);
             break;
 
-        case '!':
+        case '!':   // go to breadcrumb 1st item
             goToBreadcrumbByNumber(1);
             break;
             
-        case '@':
+        case '@':   // go to breadcrumb 2nd item
             goToBreadcrumbByNumber(2);
             break;
 
-        case '#':
+        case '#':   // go to breadcrumb 3th item
             goToBreadcrumbByNumber(3);
             break;
             
-        case '$':
+        case '$':   // go to breadcrumb 4th item
             goToBreadcrumbByNumber(4);
             
             break;
