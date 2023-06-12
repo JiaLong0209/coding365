@@ -1,29 +1,59 @@
-let box, active, table, input, prev, next;
+let box, active, table, input, prev, next, tablePrev, tableNext, list;
 let scrollTime = 250;
 let scrollDist = 200;
-let interval = 10;
+let interval = 1000/120; // 120 FPS
 let minSpeed = 0, maxSpeed = 2;
-let level = 1.5;
-function Scroll(x , y){
-    let time = 0;
-    let count = scrollTime / interval;
-    let midCount = (count / 2);
-    let scroll = setInterval(() => {
-        let dist = (Math.abs((time > midCount ? (count - time)**level : time**level ) - midCount**level )) ** (1/2);
-        // let dist = Math.abs(time - midCount);
-        let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed));
-        let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed));
-        window.scrollBy(scrollx , scrolly)
-        console.log(dist,scrolly);
-        time += 1;
-    }, interval);
+let power = 1.2;
 
+function scrollByDistance(x , y, duration){
+    let time = 0;
+    let count = duration / interval;
+    let midCount = (count / 2);
+    let sum = 0;
+    let scroll = setInterval(() => {
+        let dist = (Math.abs((time > midCount ? (count - time)**power : time**power ) - midCount**power )) ** (1/power);
+        // let dist = Math.abs(time - midCount);
+        let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;
+        let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;
+        window.scrollBy(scrollx , scrolly)
+        time += 1;
+        sum += scrolly;
+        // console.log(sum, scrolly);
+    }, interval);
+    
     setTimeout(() => {
         clearInterval(scroll);
-    }, scrollTime + interval);
+    }, duration);
 }
 
-function Focus(){
+function scrollTop(e){
+    // scrollByDistance(0, -window.scrollY, scrollTime * 2);
+    document.querySelector('#BackTop').click();
+}
+
+function scrollBottom(e){
+    scrollByDistance(0, document.body.scrollHeight, scrollTime * 2);
+}
+
+function scrollMiddle(e){
+    scrollByDistance(0, (document.body.scrollHeight / 2 - window.scrollY - window.screen.height/2), scrollTime * 2);
+    console.log(document.body.scrollHeight / 2 - window.scrollY);
+}
+
+function changeTablePage(direction){
+    tablePrev = document.querySelector('#myTable_previous');
+    tableNext = document.querySelector('#myTable_next');
+    direction == 'left' ? tablePrev.click() : tableNext.click();
+
+    list = document.querySelectorAll('#myTable a');
+}
+
+function goToPageByNumber(number){
+    number = ~~number;
+    if(list[number-1]) window.location.href = list[number-1].href;
+}
+
+function focusInput(){
     setTimeout(() => {
         input.focus();
     }, 200);
@@ -39,7 +69,7 @@ function keyListener(e){
                 box.style.bottom = '50px';
                 box.style.opacity = '0.9';
                 table.style.display = 'block';
-                Focus();
+                focusInput();
             }else{
                 table.style.display = 'none';
                 box.style.bottom = '-50px';
@@ -47,29 +77,57 @@ function keyListener(e){
             };
             break;
             
-        case "ArrowLeft":
+        case "ArrowLeft": case '[': case '-':
+            if(e.altKey) return;
             e.preventDefault();
-            window.location.href = prev.href;
+            !(prev && next) ? changeTablePage('left') : window.location.href = prev.href;
             break;
         
-        case "ArrowRight":
+        case "ArrowRight": case ']': case '=':
+            if(e.altKey) return;
             e.preventDefault();
-            window.location.href = next.href;
+            !(prev && next ) ? changeTablePage('right') : window.location.href = next.href;
             break;
         
         case 'j': case "ArrowDown" :
             e.preventDefault();
-            Scroll(0, scrollDist);
+            scrollByDistance(0, scrollDist, scrollTime);
             break;
 
         case 'k': case "ArrowUp" :
             e.preventDefault();
-            Scroll(0, -scrollDist);
+            scrollByDistance(0, -scrollDist, scrollTime);
+            break;
+
+        case 'h':
+            e.preventDefault();
+            scrollByDistance(-scrollDist, 0, scrollTime);
+            break;
+
+        case 'l':
+            e.preventDefault();
+            scrollByDistance(scrollDist, 0, scrollTime);
             break;
 
         case '`':
             console.log('focus', input);
-            Focus();
+            focusInput();
+            break;
+
+        case 'g':
+            scrollTop(e);
+            break;
+
+        case 'G':
+            scrollBottom(e);
+            break;
+        
+        case 'm':
+            scrollMiddle(e);
+            break;
+
+        default:
+            if(e.key.match(/[0-9]/)) goToPageByNumber(e.key);
             break;
     } 
 }
@@ -81,6 +139,7 @@ window.onload = () => {
     input = document.querySelector('.gsc-input input');
     prev = document.querySelector('.previous a');
     next = document.querySelector('.next a');
+    list = document.querySelectorAll('#myTable a')
     active = false;
 
     console.log("hello sigure")
