@@ -1,4 +1,4 @@
-let box, active, table, input, prev, next, tablePrev, tableNext, list;
+let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs;
 let scrollTime = 250;
 let scrollDist = 200;
 let interval = 1000/120; // 120 FPS
@@ -12,7 +12,6 @@ function scrollByDistance(x , y, duration){
     let sum = 0;
     let scroll = setInterval(() => {
         let dist = (Math.abs((time > midCount ? (count - time)**power : time**power ) - midCount**power )) ** (1/power);
-        // let dist = Math.abs(time - midCount);
         let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;
         let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;
         window.scrollBy(scrollx , scrolly)
@@ -22,13 +21,15 @@ function scrollByDistance(x , y, duration){
     }, interval);
     
     setTimeout(() => {
-        clearInterval(scroll);
+        if(time >= count){
+            clearInterval(scroll);
+        }
     }, duration);
 }
 
 function scrollTop(e){
-    // scrollByDistance(0, -window.scrollY, scrollTime * 2);
-    document.querySelector('#BackTop').click();
+    scrollByDistance(0, -window.scrollY, scrollTime * 2);
+    // document.querySelector('#BackTop').click();
 }
 
 function scrollBottom(e){
@@ -37,7 +38,6 @@ function scrollBottom(e){
 
 function scrollMiddle(e){
     scrollByDistance(0, (document.body.scrollHeight / 2 - window.scrollY - window.screen.height/2), scrollTime * 2);
-    console.log(document.body.scrollHeight / 2 - window.scrollY);
 }
 
 function changeTablePage(direction){
@@ -51,6 +51,10 @@ function changeTablePage(direction){
 function goToPageByNumber(number){
     number = ~~number;
     if(list[number-1]) window.location.href = list[number-1].href;
+}
+
+function goToBreadcrumbByNumber(number){
+    if(breadcrumbs[number-1]) window.location.href = breadcrumbs[number-1].href;
 }
 
 function focusInput(){
@@ -78,23 +82,23 @@ function keyListener(e){
             break;
             
         case "ArrowLeft": case '[': case '-':
-            if(e.altKey) return;
+            if(e.altKey || e.ctrlKey) return;
             e.preventDefault();
             !(prev && next) ? changeTablePage('left') : window.location.href = prev.href;
             break;
         
         case "ArrowRight": case ']': case '=':
-            if(e.altKey) return;
+            if(e.altKey || e.ctrlKey) return;
             e.preventDefault();
             !(prev && next ) ? changeTablePage('right') : window.location.href = next.href;
             break;
         
-        case 'j': case "ArrowDown" :
+        case 'j': 
             e.preventDefault();
             scrollByDistance(0, scrollDist, scrollTime);
             break;
 
-        case 'k': case "ArrowUp" :
+        case 'k': 
             e.preventDefault();
             scrollByDistance(0, -scrollDist, scrollTime);
             break;
@@ -110,7 +114,7 @@ function keyListener(e){
             break;
 
         case '`':
-            console.log('focus', input);
+            console.log('focus');
             focusInput();
             break;
 
@@ -126,8 +130,24 @@ function keyListener(e){
             scrollMiddle(e);
             break;
 
+        case '!':
+            goToBreadcrumbByNumber(1);
+            break;
+            
+        case '@':
+            goToBreadcrumbByNumber(2);
+            break;
+
+        case '#':
+            goToBreadcrumbByNumber(3);
+            break;
+            
+        case '$':
+            goToBreadcrumbByNumber(4);
+            
+            break;
         default:
-            if(e.key.match(/[0-9]/)) goToPageByNumber(e.key);
+            if(e.key.match(/[0-9]/) && !e.ctrlKey) goToPageByNumber(e.key);
             break;
     } 
 }
@@ -140,7 +160,9 @@ window.onload = () => {
     prev = document.querySelector('.previous a');
     next = document.querySelector('.next a');
     list = document.querySelectorAll('#myTable a')
+    breadcrumbs = document.querySelectorAll('#breadcrumbs li a');
     active = false;
+    
 
     console.log("hello sigure")
     window.addEventListener('keydown', keyListener);
