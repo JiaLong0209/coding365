@@ -1,9 +1,10 @@
-let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs;
+let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles;
 let scrollTime = 250;
 let scrollDist = 200;
 let interval = 1000/120; // 120 FPS
 let minSpeed = 0, maxSpeed = 2;
 let power = 1.2;
+let shiftNums = ['!','@','#','$','%'];
 
 function scrollByDistance(x , y, duration){
     let time = 0;
@@ -44,17 +45,19 @@ function changeTablePage(direction){
     tablePrev = document.querySelector('#myTable_previous');
     tableNext = document.querySelector('#myTable_next');
     direction == 'left' ? tablePrev.click() : tableNext.click();
-
     list = document.querySelectorAll('#myTable a');
 }
 
-function goToPageByNumber(number){
-    number = ~~number;
-    if(list[number-1]) window.location.href = list[number-1].href;
+function goToPageByNumber(n){
+    window.location.href = (list[n-1] && n) ? list[n-1].href : list[9].href;
 }
 
-function goToBreadcrumbByNumber(number){
-    if(breadcrumbs[number-1]) window.location.href = breadcrumbs[number-1].href;
+function goToBreadcrumbByNumber(n){
+    breadcrumbs[n-1] ? window.location.href = breadcrumbs[n-1].href : null;
+}
+
+function goToArticleByNumber(n){
+    articles[n-1] ? window.location.href = articles[n-1].href : null;
 }
 
 function focusInput(){
@@ -134,24 +137,13 @@ function keyListener(e){
             scrollMiddle(e);
             break;
 
-        case '!':   // go to breadcrumb 1st item
-            goToBreadcrumbByNumber(1);
-            break;
-            
-        case '@':   // go to breadcrumb 2nd item
-            goToBreadcrumbByNumber(2);
-            break;
-
-        case '#':   // go to breadcrumb 3th item
-            goToBreadcrumbByNumber(3);
-            break;
-            
-        case '$':   // go to breadcrumb 4th item
-            goToBreadcrumbByNumber(4);
-            
-            break;
         default:
             if(e.key.match(/[0-9]/) && !e.ctrlKey) goToPageByNumber(e.key);
+            if(e.key.match(/[!@#$%]/)) {
+                let n = shiftNums.findIndex(i => i == e.key)+1;
+                e.ctrlKey ? goToArticleByNumber(n) : goToBreadcrumbByNumber(n);
+            };
+            
             break;
     } 
 }
@@ -165,6 +157,7 @@ window.onload = () => {
     next = document.querySelector('.next a');
     list = document.querySelectorAll('#myTable a')
     breadcrumbs = document.querySelectorAll('#breadcrumbs li a');
+    articles = document.querySelectorAll('article div:nth-child(2) li a');
     active = false;
     
 
