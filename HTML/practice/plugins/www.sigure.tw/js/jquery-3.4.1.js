@@ -96,7 +96,7 @@ function keyListener(e){
             !(prev && next ) ? changeTablePage('right') : window.location.href = next.href;
             break;
         
-        case 'j':   // scroll page to bottom by distance
+        case 'j': case 's':  // scroll page to bottom by distance
             scrollByDistance(0, scrollDist, scrollTime);
             break;
 
@@ -104,7 +104,7 @@ function keyListener(e){
             scrollByDistance(0, scrollDist*2, scrollTime);
             break;
 
-        case 'k':   // scroll page to top by distance
+        case 'k': case 'w':  // scroll page to top by distance
             scrollByDistance(0, -scrollDist, scrollTime);
             break;
 
@@ -120,11 +120,11 @@ function keyListener(e){
             scrollByDistance(0, scrollDist/4, scrollTime);
             break;
 
-        case 'h':   // scroll page to left by distance
+        case 'h': case 'a':  // scroll page to left by distance
             scrollByDistance(-scrollDist, 0, scrollTime);
             break;
 
-        case 'l':   // scroll page to right by distance
+        case 'l': case 'd':  // scroll page to right by distance
             scrollByDistance(scrollDist, 0, scrollTime);
             break;
 
@@ -141,7 +141,7 @@ function keyListener(e){
             scrollBottom(e);
             break;
         
-        case 'n':   // scroll to middle
+        case 'M':   // scroll to middle
             scrollMiddle(e);
             break;
 
