@@ -60,6 +60,10 @@ function goToArticleByNumber(n){
     articles[n-1] ? window.location.href = articles[n-1].href : null;
 }
 
+function openBreadCrumbTabByNumber(n){
+    breadcrumbs[n-1] ? window.open(breadcrumbs[n-1].href,'_blank') : null;
+}
+
 function focusInput(){
     setTimeout(() => {
         input.focus();
@@ -141,7 +145,7 @@ function keyListener(e){
             if(e.key.match(/[0-9]/) && !e.ctrlKey) goToPageByNumber(e.key);
             if(e.key.match(/[!@#$%]/)) {
                 let n = shiftNums.findIndex(i => i == e.key)+1;
-                e.ctrlKey ? goToArticleByNumber(n) : goToBreadcrumbByNumber(n);
+                e.ctrlKey ? e.altKey ? openBreadCrumbTabByNumber(n) : goToArticleByNumber(n): goToBreadcrumbByNumber(n);
             };
             
             break;
