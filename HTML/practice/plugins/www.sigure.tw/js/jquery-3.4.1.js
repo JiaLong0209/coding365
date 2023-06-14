@@ -8,24 +8,20 @@ let shiftNums = ['!','@','#','$','%'];
 
 function scrollByDistance(x , y, duration){
     let time = 0;
-    let count = duration / interval;
+    let count = Math.round(duration / interval);
     let midCount = (count / 2);
     let sum = 0;
     let scroll = setInterval(() => {
+        if(time >= count) clearInterval(scroll);
         let dist = (Math.abs((time > midCount ? (count - time)**power : time**power ) - midCount**power )) ** (1/power);    // calculate the distance, but it isn't linear
         let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
         let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
-        window.scrollBy(scrollx , scrolly)
+        window.scrollBy(scrollx, scrolly );
+        
         time += 1;
         sum += scrolly;
-        // console.log(sum, scrolly);
     }, interval);
     
-    setTimeout(() => {
-        if(time >= count){
-            clearInterval(scroll);
-        }
-    }, duration);
 }
 
 function scrollTop(e){
@@ -116,6 +112,14 @@ function keyListener(e){
             scrollByDistance(0, -scrollDist*2, scrollTime);
             break;
 
+        case 'i':
+            scrollByDistance(0, -scrollDist/4, scrollTime);
+            break;
+
+        case 'm':
+            scrollByDistance(0, scrollDist/4, scrollTime);
+            break;
+
         case 'h':   // scroll page to left by distance
             scrollByDistance(-scrollDist, 0, scrollTime);
             break;
@@ -137,7 +141,7 @@ function keyListener(e){
             scrollBottom(e);
             break;
         
-        case 'm':   // scroll to middle
+        case 'n':   // scroll to middle
             scrollMiddle(e);
             break;
 
