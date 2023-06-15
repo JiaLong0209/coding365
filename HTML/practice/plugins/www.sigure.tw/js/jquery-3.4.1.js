@@ -67,22 +67,25 @@ function focusInput(){
     }, 200);
 }
 
+function toggleSearchBar(){ 
+    if(active){
+        box.style.bottom = '50px';
+        box.style.opacity = '0.9';
+        table.style.display = 'block';
+        focusInput();
+    }else{
+        table.style.display = 'none';
+        box.style.bottom = '-50px';
+        box.style.opacity = '0';
+    };
+}
+
 function keyListener(e){
     switch (e.key){
-        case "Escape": case "Tab" : // open search bar
+        case "Escape": case "Tab": case "/":   // open search bar
             e.preventDefault();
             active = !active;
-            
-            if(active){
-                box.style.bottom = '50px';
-                box.style.opacity = '0.9';
-                table.style.display = 'block';
-                focusInput();
-            }else{
-                table.style.display = 'none';
-                box.style.bottom = '-50px';
-                box.style.opacity = '0';
-            };
+            toggleSearchBar();
             break;
             
         case "ArrowLeft": case '[': case '-': case '{': case '_':   // move tablePage to left, or go to previous website
@@ -144,6 +147,10 @@ function keyListener(e){
         
         case 'M':   // scroll to middle
             scrollMiddle(e);
+            break;
+
+        case ' ':
+            e.preventDefault();
             break;
 
         default:
