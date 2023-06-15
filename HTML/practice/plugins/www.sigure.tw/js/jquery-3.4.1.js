@@ -10,7 +10,6 @@ function scrollByDistance(x , y, duration){
     let time = 0;
     let count = Math.round(duration / interval);
     let midCount = (count / 2);
-    let sum = 0;
     let scroll = setInterval(() => {
         if(time >= count) clearInterval(scroll);
         let dist = (Math.abs((time > midCount ? (count - time)**power : time**power ) - midCount**power )) ** (1/power);    // calculate the distance, but it isn't linear
@@ -18,8 +17,7 @@ function scrollByDistance(x , y, duration){
         let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
         window.scrollBy(scrollx, scrolly );
         
-        time += 1;
-        sum += scrolly;
+        time++;
     }, interval);
     
 }
@@ -159,11 +157,9 @@ function keyListener(e){
                 let n = shiftNums.findIndex(i => i == e.key)+1;
                 e.ctrlKey ? e.altKey ? openBreadCrumbTabByNumber(n) : goToArticleByNumber(n): goToBreadcrumbByNumber(n);
             };
-            
             break;
     } 
 }
-
 
 window.onload = () => {
     box = document.querySelector('#srchBox');
@@ -176,7 +172,6 @@ window.onload = () => {
     articles = document.querySelectorAll('article div:nth-child(2) li a');
     active = false;
     
-
     console.log("hello sigure")
     window.addEventListener('keydown', keyListener);
 }
