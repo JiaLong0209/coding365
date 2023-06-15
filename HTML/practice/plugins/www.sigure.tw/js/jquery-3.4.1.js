@@ -40,6 +40,7 @@ function scrollMiddle(e){
 function changeTablePage(direction){
     tablePrev = document.querySelector('#myTable_previous');
     tableNext = document.querySelector('#myTable_next');
+    if(!(tablePrev || tableNext)) return;
     direction == 'left' ? tablePrev.click() : tableNext.click();
     list = document.querySelectorAll('#myTable a');
 }
@@ -87,13 +88,13 @@ function keyListener(e){
         case "ArrowLeft": case '[': case '-': case '{': case '_':   // move tablePage to left, or go to previous website
             if(e.altKey || e.ctrlKey || !e.shiftKey) return;
             e.preventDefault();
-            !(prev && next) ? changeTablePage('left') : window.location.href = prev.href;
+            !(prev || next) ? changeTablePage('left') : window.location.href = prev.href;
             break;
         
         case "ArrowRight": case ']': case '=': case '}': case '+':  // move tablePage to right, or go to next website
             if(e.altKey || e.ctrlKey || !e.shiftKey) return;
             e.preventDefault();
-            !(prev && next ) ? changeTablePage('right') : window.location.href = next.href;
+            !(prev || next ) ? changeTablePage('right') : window.location.href = next.href;
             break;
         
         case 'j': case 's':  // scroll page to bottom by distance
