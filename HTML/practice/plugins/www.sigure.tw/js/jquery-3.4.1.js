@@ -25,12 +25,12 @@ function scrollByDistance(x , y, duration){
 }
 
 function scrollTop(e){
-    scrollByDistance(0, -window.scrollY, scrollTime * 2);
+    scrollByDistance(0, -window.scrollY, scrollTime * 3);
     // document.querySelector('#BackTop').click();
 }
 
 function scrollBottom(e){
-    scrollByDistance(0, document.body.scrollHeight, scrollTime * 2);
+    scrollByDistance(0, document.body.scrollHeight - window.scrollY - window.innerHeight + 150, scrollTime * 3);
 }
 
 function scrollMiddle(e){
