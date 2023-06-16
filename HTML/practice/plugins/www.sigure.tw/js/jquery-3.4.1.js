@@ -8,6 +8,7 @@ let shiftNums = ['!','@','#','$','%'];
 let vocabularys = [];
 let vocabularyString = '';
 let printVocabularyMode = 1; // console each line == 0, console vocabularyString == 1
+let spacing = 8;
 
 function scrollByDistance(x , y, duration){
     let time = 0;
@@ -81,6 +82,16 @@ function toggleSearchBar(){
     };
 }
 
+function vocabularyFormat(str){
+    let diff = spacing - str.length;
+    if(diff > 0){
+        for(let i = 0; i < diff; i++){
+            str += ' ';
+        }
+    }
+    return str;
+}
+
 function calculateVocabularyCount(){
     let temp = [];
     vocabularyString = '\n';
@@ -91,7 +102,8 @@ function calculateVocabularyCount(){
             if(j != 0 && j < childs[1].children.length){
                 temp.push(childs[1].children[j]);
                 for(let k of childs[1].children[j].children){
-                    vocabularyString += `${k.innerText}  `;
+                    // vocabularyString += `${k.innerText}  `;
+                    vocabularyString += `${vocabularyFormat(k.innerText)} `;
                 }
                 vocabularyString += '\n';
             }
