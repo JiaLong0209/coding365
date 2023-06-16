@@ -6,6 +6,8 @@ let minSpeed = 0, maxSpeed = 2;
 let power = 1.2;
 let shiftNums = ['!','@','#','$','%']; 
 let vocabularys = [];
+let vocabularyString = '';
+let printVocabularyMode = 1; // console each line == 0, console vocabularyString == 1
 
 function scrollByDistance(x , y, duration){
     let time = 0;
@@ -81,26 +83,43 @@ function toggleSearchBar(){
 
 function calculateVocabularyCount(){
     let temp = [];
+    vocabularyString = '\n';
     for(let i in vocabularyTables){
         // console.log(vocabularyTables[i]);
         let childs = [...vocabularyTables[i].children];
         for(let j in childs[1].children){
-            if( j != 0 && j < childs[1].children.length){
+            if(j != 0 && j < childs[1].children.length){
                 temp.push(childs[1].children[j]);
+                for(let k of childs[1].children[j].children){
+                    vocabularyString += `${k.innerText}  `;
+                }
+                vocabularyString += '\n';
             }
             if(j == childs[1].children.length -1){
                 temp.push('');
+                vocabularyString += '\n';
             }
+            
         }
         vocabularys = temp;
     }
     
     count = vocabularys.length - vocabularyTables.length;
-    for(let i of vocabularys){
-        console.log(typeof i == 'object' ? i.innerText : i);
+    printVocabulary();
+    
+}
+
+function printVocabulary(){
+    if(printVocabularyMode){
+
+        console.log(vocabularyString+`\nVocabulary Count: ${count}\n`);
+    }else {
+        for(let i of vocabularys){
+            console.log(typeof i == 'object' ? i.innerText : i);
+        }
+        console.log(`-------------------------`);
+        console.log(`Vocabulary Count: ${count}`);
     }
-    console.log(`-------------------------`);
-    console.log(`Vocabulary Count: ${count}`);
 }
 
 function keyListener(e){
@@ -201,8 +220,9 @@ window.onload = () => {
     active = false;
     vocabularyTables = Array.from(document.querySelectorAll('div[itemprop="articleBody"] table')).slice(0, -3);
     
-    console.log("hello sigure")
+    console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
+
 }
 
 /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
