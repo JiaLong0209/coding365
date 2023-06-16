@@ -1,10 +1,11 @@
-let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles;
+let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
 let scrollTime = 250;
 let scrollDist = 200;
 let interval = 1000/120; // 120 FPS
 let minSpeed = 0, maxSpeed = 2;
 let power = 1.2;
 let shiftNums = ['!','@','#','$','%']; 
+let vocabularys = [];
 
 function scrollByDistance(x , y, duration){
     let time = 0;
@@ -76,6 +77,30 @@ function toggleSearchBar(){
         box.style.bottom = '-50px';
         box.style.opacity = '0';
     };
+}
+
+function calculateVocabularyCount(){
+    let temp = [];
+    for(let i in vocabularyTables){
+        // console.log(vocabularyTables[i]);
+        let childs = [...vocabularyTables[i].children];
+        for(let j in childs[1].children){
+            if( j != 0 && j < childs[1].children.length){
+                temp.push(childs[1].children[j]);
+            }
+            if(j == childs[1].children.length -1){
+                temp.push('');
+            }
+        }
+        vocabularys = temp;
+    }
+    
+    count = vocabularys.length - vocabularyTables.length;
+    for(let i of vocabularys){
+        console.log(typeof i == 'object' ? i.innerText : i);
+    }
+    console.log(`-------------------------`);
+    console.log(`Vocabulary Count: ${count}`);
 }
 
 function keyListener(e){
@@ -151,6 +176,9 @@ function keyListener(e){
             e.preventDefault();
             break;
 
+        case 'C':
+            calculateVocabularyCount();
+            break;
         default:
             if(e.key.match(/[0-9]/) && !e.ctrlKey) goToPageByNumber(e.key);
             if(e.key.match(/[!@#$%]/)) {
@@ -171,6 +199,7 @@ window.onload = () => {
     breadcrumbs = document.querySelectorAll('#breadcrumbs li a');
     articles = document.querySelectorAll('article div:nth-child(2) li a');
     active = false;
+    vocabularyTables = Array.from(document.querySelectorAll('div[itemprop="articleBody"] table')).slice(0, -3);
     
     console.log("hello sigure")
     window.addEventListener('keydown', keyListener);
