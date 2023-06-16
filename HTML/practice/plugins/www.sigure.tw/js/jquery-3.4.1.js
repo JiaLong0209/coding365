@@ -20,7 +20,6 @@ function scrollByDistance(x , y, duration){
         let scrollx = x/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
         let scrolly = y/count * (maxSpeed - (dist/midCount) * (maxSpeed - minSpeed)) * power;   // make the scroll more smooth
         window.scrollBy(scrollx, scrolly );
-        
         time++;
     }, interval);
     
@@ -28,7 +27,6 @@ function scrollByDistance(x , y, duration){
 
 function scrollTop(e){
     scrollByDistance(0, -window.scrollY, scrollTime * 3);
-    // document.querySelector('#BackTop').click();
 }
 
 function scrollBottom(e){
@@ -92,17 +90,25 @@ function vocabularyFormat(str){
     return str;
 }
 
+async function copyVocabulary(){
+    try {
+        await navigator.clipboard.writeText(vocabularyString);
+        console.log('Content copied to clipboard')
+    } catch (err){
+        console.error('Failed to copy: ', err);
+    }
+}
+
 function calculateVocabularyCount(){
     let temp = [];
-    vocabularyString = '\n';
+    vocabularyString = '';
+    
     for(let i in vocabularyTables){
-        // console.log(vocabularyTables[i]);
         let childs = [...vocabularyTables[i].children];
         for(let j in childs[1].children){
             if(j != 0 && j < childs[1].children.length){
                 temp.push(childs[1].children[j]);
                 for(let k of childs[1].children[j].children){
-                    // vocabularyString += `${k.innerText}  `;
                     vocabularyString += `${vocabularyFormat(k.innerText)} `;
                 }
                 vocabularyString += '\n';
@@ -111,25 +117,21 @@ function calculateVocabularyCount(){
                 temp.push('');
                 vocabularyString += '\n';
             }
-            
         }
         vocabularys = temp;
     }
-    
+
     count = vocabularys.length - vocabularyTables.length;
+    vocabularyString += `Vocabulary Count: ${count}\n`;
     printVocabulary();
-    
+    copyVocabulary();
 }
 
 function printVocabulary(){
     if(printVocabularyMode){
-
-        console.log(vocabularyString+`\nVocabulary Count: ${count}\n`);
+        console.log(vocabularyString);
     }else {
-        for(let i of vocabularys){
-            console.log(typeof i == 'object' ? i.innerText : i);
-        }
-        console.log(`-------------------------`);
+        for(let i of vocabularys) console.log(typeof i == 'object' ? i.innerText : i);
         console.log(`Vocabulary Count: ${count}`);
     }
 }
