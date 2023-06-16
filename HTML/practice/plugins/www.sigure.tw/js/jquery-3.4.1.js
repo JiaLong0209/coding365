@@ -46,7 +46,12 @@ function changeTablePage(direction){
 }
 
 function goToPageByNumber(n){
-    window.location.href = (list[n-1] && n) ? list[n-1].href : list[9].href;
+    if(list.length != 0){
+        window.location.href = (list[n-1] && n) ? list[n-1].href : list[9].href;
+    }else{
+        // window.location.href = document.querySelectorAll('div[itemprop="articleBody"] tbody td a')[n-1].href;
+        window.location.href = vocabularyTables[0].children[1].children[n-1].children[0].children[0].href 
+    }
 }
 
 function goToBreadcrumbByNumber(n){
