@@ -5,7 +5,10 @@ function keyinWord(e){
 	if(e.which != '32') return;
 	if(active){
         completes = document.querySelectorAll('.place .complete').length;
-		input.value = origin == 'https://10fastfingers.com' ? words[word_pointer] : w[completes];
+		let target = origin == 'https://10fastfingers.com' ? words[word_pointer] : w[completes];
+		input.value = target;
+		navigator.clipboard.writeText(target);
+		console.log(`Copied '${target}'`)
 	}else{
 		input.value = input.value;
 	}
