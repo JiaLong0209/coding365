@@ -49,7 +49,8 @@ function goToPageByNumber(n){
     if(list.length != 0){
         window.location.href = (list[n-1] && n) ? list[n-1].href : list[9].href;
     }else{
-         window.location.href = document.querySelectorAll('div[itemprop="articleBody"] tbody td a')[n-1].href;
+        let url = document.querySelectorAll('div[itemprop="articleBody"] tbody td a')[n-1]?.href;
+        if(url) window.location.href = url;
         // window.location.href = vocabularyTables[0].children[1].children[n-1].children[0].children[0].href 
     }
 }
@@ -109,7 +110,7 @@ function calculateVocabularyCount(){
     vocabularyString = '';
     
     for(let i in vocabularyTables){
-        let childs = [...vocabularyTables[i].children];
+        let childs = [...vocabularyTables[i]?.children];
         for(let j in childs[1].children){
             if(j != 0 && j < childs[1].children.length){
                 temp.push(childs[1].children[j]);
@@ -227,7 +228,7 @@ function keyListener(e){
     } 
 }
 
-window.onload = () => {
+// window.onload = () => {
     box = document.querySelector('#srchBox');
     table = document.querySelector('#srch');
     input = document.querySelector('.gsc-input input');
@@ -242,7 +243,7 @@ window.onload = () => {
     console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
 
-}
+// }
 
 /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
 
