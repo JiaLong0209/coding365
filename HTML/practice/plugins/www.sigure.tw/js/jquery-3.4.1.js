@@ -228,7 +228,8 @@ function keyListener(e){
     } 
 }
 
-// window.onload = () => {
+window.onload = () => {
+    
     box = document.querySelector('#srchBox');
     table = document.querySelector('#srch');
     input = document.querySelector('.gsc-input input');
@@ -243,7 +244,7 @@ function keyListener(e){
     console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
 
-// }
+}
 
 /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
 

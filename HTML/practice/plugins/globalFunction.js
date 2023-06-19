@@ -78,10 +78,6 @@ function keyListener(e){
             scrollMiddle(e);
             break;
 
-        case ' ':
-            e.preventDefault();
-            break;
-
         default:
             break;
     } 
