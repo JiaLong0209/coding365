@@ -228,6 +228,22 @@ function keyListener(e){
     } 
 }
 
+function copyTextByClick(e){
+    let text = [...e.target.innerText];
+    let str = '';
+    if(text.length == 0){
+        return;
+    }
+    if(text.findIndex(i => i == '\n') != -1){
+        str = text.slice(0, text.findIndex(i => i == '\n')+1).join('');
+        navigator.clipboard.writeText(str);
+        console.log(`copied: \n${str}`);
+    }else{
+        navigator.clipboard.writeText(text.join(''));
+        console.log(`copied: \n${text.join('')}`);
+    }
+}
+
 window.onload = () => {
     
     box = document.querySelector('#srchBox');
@@ -243,7 +259,7 @@ window.onload = () => {
     
     console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
-
+    window.addEventListener('click', copyTextByClick);
 }
 
 /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
