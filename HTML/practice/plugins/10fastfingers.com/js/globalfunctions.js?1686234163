@@ -2,16 +2,20 @@
 let w, input, origin, url , mode ,active, completes;
 
 function keyinWord(e){
+	if(e.which != '32' && e.which != '13') return;
+	let isEnterKey = e.which == '13' ? 1 : 0;
+	let target = origin == 'https://10fastfingers.com' ? words[word_pointer + isEnterKey] : w[completes + isEnterKey];
+	navigator.clipboard.writeText(target);
+	console.log(`Copied '${target}'`)
 	if(e.which != '32') return;
+
 	if(active){
         completes = document.querySelectorAll('.place .complete').length;
-		let target = origin == 'https://10fastfingers.com' ? words[word_pointer] : w[completes];
 		input.value = target;
-		navigator.clipboard.writeText(target);
-		console.log(`Copied '${target}'`)
 	}else{
 		input.value = input.value;
 	}
+	
 }
 
 function setupPlugin(){

@@ -1,3 +1,4 @@
+// TODO copy selected word, temporary text bar, 
 let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
 let scrollTime = 250;
 let scrollDist = 200;
