@@ -1,4 +1,9 @@
-// TODO copy selected word, temporary text bar, 
+/* TODO 20230622~
+    1. copy selected word
+    2. temporary text bar
+    3. move mouse pointer by pressing key
+    4. select and copy word by pressing key
+*/
 let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
 let scrollTime = 250;
 let scrollDist = 200;
@@ -261,6 +266,7 @@ window.onload = () => {
     console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
     window.addEventListener('click', copyTextByClick);
+    console.log(box, table);
 }
 
 /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
