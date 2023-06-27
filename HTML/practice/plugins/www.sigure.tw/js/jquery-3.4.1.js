@@ -1,8 +1,9 @@
 /* TODO 20230622~
-    1. copy selected word
+    1. copy selected text                   20230627 v. 
     2. temporary text bar
     3. move mouse pointer by pressing key
     4. select and copy word by pressing key
+    5. code refactoring
 */
 let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
 let scrollTime = 250;
@@ -15,6 +16,7 @@ let vocabularys = [];
 let vocabularyString = '';
 let printVocabularyMode = 1; // console each line == 0, console vocabularyString == 1
 let spacing = 8;
+let isMouseDown = false;
 
 function scrollByDistance(x , y, duration){
     let time = 0;
@@ -102,12 +104,12 @@ function vocabularyFormat(str){
     return str;
 }
 
-async function copyVocabulary(){
+async function copy(str){
     try {
-        await navigator.clipboard.writeText(vocabularyString);
-        console.log('Content copied to clipboard')
-    } catch (err){
-        console.error('Failed to copy: ', err);
+        await navigator.clipboard.writeText(str);
+        console.log(`Copied: \n${str}`);
+    }catch (err){
+        console.log('Failed to copy: ', err);
     }
 }
 
@@ -136,7 +138,7 @@ function calculateVocabularyCount(){
     count = vocabularys.length - vocabularyTables.length;
     vocabularyString += `Vocabulary Count: ${count}\n`;
     printVocabulary();
-    copyVocabulary();
+    copy(vocabularyString);
 }
 
 function printVocabulary(){
@@ -237,17 +239,24 @@ function keyListener(e){
 function copyTextByClick(e){
     let text = [...e.target.innerText];
     let str = '';
-    if(text.length == 0){
-        return;
-    }
+
+    if(text.length == 0 || !isMouseDown) return;
     if(text.findIndex(i => i == '\n') != -1){
-        str = text.slice(0, text.findIndex(i => i == '\n')+1).join('');
-        navigator.clipboard.writeText(str);
-        console.log(`copied: \n${str}`);
+        str = text.slice(0, text.findIndex(i => i == '\n')+1).join('');  
+        copy(str);
     }else{
-        navigator.clipboard.writeText(text.join(''));
-        console.log(`copied: \n${text.join('')}`);
+        copy(text);
     }
+}
+
+function mouseDownHandler(){
+    isMouseDown = true;
+}
+
+function copySelectedText(){
+    if(!document.getSelection().toString()) return;
+    copy(document.getSelection().toString());
+    isMouseDown = false;
 }
 
 window.onload = () => {
@@ -262,11 +271,14 @@ window.onload = () => {
     articles = document.querySelectorAll('article div:nth-child(2) li a');
     active = false;
     vocabularyTables = Array.from(document.querySelectorAll('div[itemprop="articleBody"] table')).slice(0, -3);
-    
     console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
     window.addEventListener('click', copyTextByClick);
-    console.log(box, table);
+
+    window.addEventListener('mousedown', mouseDownHandler)
+    window.addEventListener('mouseup', copySelectedText)
+
+
 }
 
 /*! jQuery v3.4.1 | (c) JS Foundation and other contributors | jquery.org/license */
