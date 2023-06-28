@@ -4,6 +4,8 @@
     3. move mouse pointer by pressing key
     4. select and copy word by pressing key
     5. code refactoring
+    6. decrease the volume of the sound 
+    7. smoother page move
 */
 let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
 let scrollTime = 250;
@@ -82,16 +84,16 @@ function focusInput(){
 }
 
 function toggleSearchBar(){ 
-    if(active){
-        box.style.bottom = '50px';
-        box.style.opacity = '0.9';
-        table.style.display = 'block';
-        focusInput();
-    }else{
-        table.style.display = 'none';
-        box.style.bottom = '-50px';
-        box.style.opacity = '0';
-    };
+    // if(active){
+    //     box.style.bottom = '50px';
+    //     box.style.opacity = '0.9';
+    //     table.style.display = 'block';
+    //     focusInput();
+    // }else{
+    //     table.style.display = 'none';
+    //     box.style.bottom = '-50px';
+    //     box.style.opacity = '0';
+    // };
 }
 
 function vocabularyFormat(str){
