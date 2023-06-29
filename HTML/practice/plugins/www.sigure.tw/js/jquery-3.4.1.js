@@ -6,6 +6,7 @@
     5. code refactoring
     6. decrease the volume of the sound 
     7. smoother page move
+    8. copy text without <rt> tag (平仮名)
 */
 let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
 let scrollTime = 250;
