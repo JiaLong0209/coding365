@@ -4,7 +4,7 @@
     3. move mouse pointer by pressing key
     4. select and copy word by pressing key
     5. code refactoring
-    6. decrease the volume of the sound 
+    6. decrease the volume of the sound     20230630 v.
     7. smoother page move
     8. copy text without <rt> tag (平仮名)
 */
@@ -280,7 +280,7 @@ window.onload = () => {
 
     window.addEventListener('mousedown', mouseDownHandler)
     window.addEventListener('mouseup', copySelectedText)
-
+    audio.volume = 0.3;
 
 }
 
