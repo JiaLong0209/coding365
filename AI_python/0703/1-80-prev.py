@@ -63,6 +63,8 @@ def Fn(a ,b):
         if index+1 not in range(len(list)):
             return gapList
 
-x = input("開始的數值：")
-y = input("結束的數值：")
-Fn(x,y)
+Fn(11, 21)
+
+# x = input("開始的數值：")
+# y = input("結束的數值：")
+# Fn(x,y)
