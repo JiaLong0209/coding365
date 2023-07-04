@@ -1,7 +1,7 @@
-
-    #     return True
-    # else:
-    #     if(int(num) % int(num[i]) ):
-    #         return False
-    #     else:
-    #         return isDivisor(num, i+1)
+isor(num):
+    for i in str(num):
+        if(num % int(i)):
+            return False
+        else:
+            continue 
+    return True
