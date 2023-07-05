@@ -1,0 +1,1 @@
+[a[f(a)] for f in fl]

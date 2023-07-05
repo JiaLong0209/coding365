@@ -1,5 +1,8 @@
 from functools import reduce
 
+# def sumOfNumber(*nums):
+#     return reduce(lambda x, y: x+y, nums)
+
 # **挑戰看看，寫出能算出總和的函式
 def sumOfNumber(*nums):
     sum = 0
@@ -7,31 +10,16 @@ def sumOfNumber(*nums):
         sum += i
     return sum
 
-# def sumOfNumber(*nums):
-#     return reduce(lambda x, y: x+y, nums)
-
 print(sumOfNumber(10,20,30))
 
 
-# ***挑戰看看，寫出能算出字串中字母的頻率的函
-def frequencyOfAlphabet(str): return {i : f'{round(str.count(i)/len(str)*100,2)}%' for i in str}
-# frequencyOfAlphabet = lambda str: {i : f'{round(str.count(i)/len(str)*100,2)}%' for i in str}
+# ***挑戰看看，寫出能算出字串中字母的頻率的函式
+def frequencyOfAlphabet(str): 
+    return {i : f'{round(str.count(i)/len(str)*100,2)}%' for i in str}
 
 print(frequencyOfAlphabet("Hello world!!!"))
 
-
 # ****挑戰看看，兩數之間的最大差距的自除數
-# def isSelfDivisor(num):
-#     for i in num:
-#         if(int(i)==0):
-#             return False
-#         elif(int(num) % int(i)):
-#             return False
-#         else:
-#             continue 
-#     return True
-
-# simplified version
 def isSelfDivisor(s, i=0): 
     return True if len(s) == i else (False if (int(s) % int(s[i]) if s[i]!='0' else True) else isSelfDivisor(s, i+1))
 
@@ -42,6 +30,9 @@ def maxDistance(a, b):
     return max(distanceList([x for x in range(a, b+1) if isSelfDivisor(str(x))]))
 
 print(maxDistance(11, 20))
+
+
+# frequencyOfAlphabet = lambda str: {i : f'{round(str.count(i)/len(str)*100,2)}%' for i in str}
 
 
 # simple

@@ -1,11 +1,9 @@
 l = [1,3,1,2,2,4,5,3]
-
-# Dictionary Comprehension 
 d = {i : l.count(i)  for i in l}  
-
-# Filter and Lambda function
 print(dict(filter(lambda x: x[1]>1,d.items())))
 
+# Dictionary Comprehension 
+# Filter and Lambda function
 
 # for i in l:
 #     print(i)
