@@ -1,0 +1,772 @@
+/*!
+* Copyright 2020 -
+* by 時雨（Sigure）
+* https://www.sigure.tw
+*/
+
+console.log("sorry sigure");
+
+var datetime = new Date();
+
+// Audio Display
+if ($('b').length > 0) {
+		$('#bar').css("display","block");
+		$('#audioBox').css("display","inline-block");
+}
+if(location.href == 'https://www.sigure.tw/'){
+		$('#action').css("display","none");
+}
+
+// Set Audio Speed
+var sum;
+const audio = document.createElement("audio");
+function PlaySound(soundobj) {
+		audio.src = 'https://data.sigure.tw/audio/'+soundobj+'.wav?'+datetime.getTime();
+		if(sum == null){
+				audio.playbackRate=1;
+		}else{
+				audio.playbackRate=sum;
+		}
+		audio.play();
+}
+function setP() {
+		if($("#setSpeedNum").html() <= 1.9){
+				var a = $("#setSpeedNum").html();
+				var b = 0.2;
+				sum = Number(a) + Number(b);
+				$("#setSpeedNum").html(sum.toFixed(1));
+				audio.playbackRate=sum;
+		}
+}
+function setM() {
+		if($("#setSpeedNum").html() > 0.2){
+				var a = $("#setSpeedNum").html();
+				var b = 0.2;
+				sum = Number(a) - Number(b);
+				$("#setSpeedNum").html(sum.toFixed(1));
+				audio.playbackRate=sum;
+		}
+}
+
+
+// Backtop
+$(function(){
+	$('#BackTop').click(function() {
+		$('html,body').animate({
+			scrollTop: 0
+		}, 333);
+	});
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 50) {
+			$('#BackTop').fadeIn('fast');
+		} else {
+			$('#BackTop').stop().fadeOut('fast');
+		}
+	});
+});
+
+// Copyright
+if (window.location.href.indexOf("/team/") === -1) {
+	document.body.oncopy = event => {
+		event.preventDefault(); 
+		let textFont,
+		copyFont = window.getSelection(0).toString();
+		if (copyFont.length > 200) {
+		textFont =
+			copyFont +
+			'\n' +
+			'作者：時雨の町\n' +
+			'出處：https://www.sigure.tw'+window.location.pathname+'\n' +
+			'著作權歸時雨の町所有，請勿任意轉載，引用請註明出處。';
+		} else {
+		textFont = copyFont;
+		}
+		if (event.clipboardData) {
+		return event.clipboardData.setData('text', textFont);
+		} else {
+		return window.clipboardData.setData('text', textFont);
+		}
+	};
+}
+
+
+// Img
+var modal = $('#modal').get(0);
+var bgImg = $('#bgImg').get(0);
+function showBgImg(e){
+	modal.style.display = 'block';
+	bgImg.src = e.src;
+		modal.onclick = function() {
+				modal.style.display = 'none';
+		}
+}
+function zoom(e){
+	modal.style.display = 'block';
+	bgImg.src = e.src;
+		modal.onclick = function() {
+				modal.style.display = 'none';
+		}
+}
+
+// Pop up
+$(function() {
+		$(".popup").click(function() {
+				$(".popup").hide();
+		})
+});
+
+// Ruby
+document.addEventListener("copy", function() {
+var rtList = $('rt');
+var contentList = [];
+Array.prototype.forEach.call(rtList, function(rt) {
+	contentList.push(rt.textContent);
+	rt.textContent = "";
+});
+setTimeout(function() {
+	Array.prototype.forEach.call(rtList, function(rt) {
+		rt.textContent = contentList.shift();
+	});
+}, 0);
+}, true);
+
+// Quiz
+$(function() {
+	$('.ansBtn').val('解說');
+	$('.quizAct ol label li label').hide(); 
+	$('.quizAct .ansText').hide();
+	$("ol label").click(function() {
+		switch(true){
+			case location.hostname == 'www.sigure.tw':
+			$(this).closest("ol label li label").hide(); 
+			break;
+			default:
+			alert('請在本站線上使用');
+			location.href = 'https://www.sigure.tw/wps/login.php';
+			break;
+		}
+	});
+	$(".quizAct input").click(function() {
+		switch(true){
+			case location.hostname == 'www.sigure.tw':
+			$(this).next("ol label li label").toggle();
+			$(this).next(".ansText").toggle();  
+			break;
+			default:
+			alert('請在本站線上使用');
+			location.href = 'https://www.sigure.tw/wps/login.php';
+			break;
+		}
+	});
+
+	// Answer Random
+	$(".quizAct > ol ol").each(function() {
+		var $this = $(this);
+		var $specialLabel = $this.find("> label:contains('以上皆')");
+		var $labels = $this.find("> label").not($specialLabel);
+		$labels.sort(function() {
+			return Math.random() - 0.5;
+		}).each(function() {
+			$(this).nextAll().appendTo(this);
+		}).appendTo($this);
+		$specialLabel.appendTo($this);
+	});
+	// Answer Random New ver
+	$(".quizActN > li > ol").each(function() {
+		var $this = $(this);
+		var $specialLabel = $this.find("> li:contains('以上皆')");
+		var li = $this.find("> li").not($specialLabel);
+		li.sort(function() {
+			return Math.random() - 0.5;
+		}).each(function() {
+			$(this).nextAll().appendTo(this);
+		}).appendTo($this);
+		$specialLabel.appendTo($this);
+	});
+
+});
+
+// Quiz New
+$(function() {
+	$('li[data-answer]').append('<input type="radio">');
+	$('li[data-answer]').on('click', function() {
+		if ($(this).find('.fa-check').length > 0 || $(this).find('.fa-times').length > 0 || $(this).find('.fa-circle').length > 0) {
+			return;
+		}
+		var selected = $(this).data('answer');
+		if (selected == 'correct') {
+			$(this).append('<i class="fa-regular fa-circle"></i>');
+		} else {
+			$(this).append('<i class="fas fa-times"></i>');
+		}
+	});
+});
+
+
+$(function() {
+	$('.quizActN .ansText').hide();
+	$(".quizActN input").click(function() {
+		switch(true){
+			case location.hostname == 'www.sigure.tw':
+			$(this).siblings('.ansText').toggle();
+			break;
+			default:
+			alert('請在本站線上使用');
+			location.href = 'https://www.sigure.tw/wps/login.php';
+			break;
+		}
+	});
+});
+
+
+
+// Facebook turn to App
+var userAgent = navigator.userAgent;
+var android = userAgent.indexOf('Android') > -1 || userAgent.indexOf('Adr') > -1;
+var ios = !!userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+if(android==true){
+		$("#fbApp").html('<a href="fb://profile/100044424069834" target="_blank" rel="noopener noreferrer" style="color:#0095ff;"><img src="/image/website/facebook.png" alt="facebook"/></a>');
+		$(".fbAppFt").html('<a href="fb://profile/100044424069834" target="_blank" rel="noopener noreferrer">Facebook</a>');
+}else if(ios==true){
+		$("#fbApp").html('<a href="fb://profile/100044424069834" target="_blank" rel="noopener noreferrer" style="color:#0095ff;"><img src="/image/website/facebook.png" alt="facebook"/></a>');
+		$(".fbAppFt").html('<a href="fb://profile/100044424069834" target="_blank" rel="noopener noreferrer">Facebook</a>');
+}else{
+		$("#fbApp").html('<a href="https://www.facebook.com/sigure.tw/" target="_blank" rel="noopener noreferrer" title="Facebook粉絲專頁" style="color:#0095ff;"><img src="/image/website/facebook.png" alt="facebook"/></a>');
+		$(".fbAppFt").html('<a href="https://www.facebook.com/sigure.tw/" target="_blank" rel="noopener noreferrer" title="Facebook粉絲專頁">Facebook</a>');
+}
+
+// Menu
+$(function(){
+	$('#mBtn').on('click', function(){
+		$('nav.menu > ul').css({'z-index':'998','opacity':'1','display':'flex'});
+		$('#mcBtn').css({'display':'block','position':'fixed','top':'8rem','right':'30px','font-size':'40px','z-index':'999'});
+		$('#mcBtn').on('click', function(){
+			$('#mcBtn').css({'display':'none'});
+			$('nav.menu > ul').css({'z-index':'-1','opacity':'0'});
+		});
+		
+		
+	});
+});
+
+if(android==true||ios==true){
+	// $('nav.menu > ul > li').on('click', function(){
+	// 	$(this).children('ul').toggle();
+	// });
+	// $('nav.menu > ul > li > ul > li').on('mouseover', function(){
+
+	// 	// $(this).parent().css({"display":"flow-root !important","border":"2px solid blue"});
+	// 	$(this).children('ul').toggle();
+	// });
+}else{
+	$('nav.menu > ul > li').on('mouseover', function(){
+		$(this).children('ul').css('display','block');
+	});
+	$('nav.menu > ul > li > ul > li').on('mouseover', function(){
+		$(this).children('ul').css('display','block');
+	});
+	$('nav.menu > ul > li').on('mouseleave', function(){
+		$(this).children('ul').css('display','none');
+	});
+	$('nav.menu > ul > li > ul > li').on('mouseleave', function(){
+		$(this).children('ul').css('display','none');
+	});
+}
+
+// Search Switch（header）
+var searchClose = true;
+function search(){
+		if(searchClose == true){
+				$("#search").css({'display':'block','position':'absolute'});
+				$("#searchIcon").toggleClass("fa-search fa-times");
+				$('#search').html('<script async src="https://cse.google.com/cse.js?cx=partner-pub-2969778954609193:7702034856"></script><div class="gcse-search"></div>');
+				$('header > div:nth-child(3) >div:nth-child(2)').html('<i class="fa-solid fa-square-xmark"></i>');
+				searchClose = false;
+		}else{
+			$("#search").css({'display':'none'});
+			$('header > div:nth-child(3) >div:nth-child(2)').html('<i class="fa-regular fa-search"></i>');
+			searchClose = true;
+		}
+		$('main ,nav.menu').on('click',function() {
+		$("#search").css({'display':'none'});
+		$('header > div:nth-child(3) >div:nth-child(2)').html('<i class="fa-regular fa-search"></i>');
+		searchClose = true;
+		});
+}
+
+// ftBar settings (search)
+$(function() {
+	var $setBox = $('#setBox'); // Top box
+	var $settings = $('#settings'); // settings button
+	var $srchBox = $('#srchBox'); // search box
+	var $srchBtn = $('#srchBtn'); // search button
+	var $srch = $("#srch"); // search
+	
+	var isUp = false;
+	var srchIsUp = false;
+
+	$setBox.detach();
+	$srchBox.detach();
+
+	// Settings
+	$settings.on('click', function() {
+		if (isUp) {
+			$setBox.animate({ bottom: '-100px', opacity: 0 }, 200, function() {
+			  $setBox.detach();
+			});
+			isUp = false;
+		} else {
+			$setBox.insertAfter($('#ftBar'));
+			$setBox.animate({bottom: '50px', opacity: 1}, 200);
+			isUp = true;
+			// if srchBox is opened
+			if(srchIsUp){
+				$srchBox.animate({ bottom: '-100px', opacity: 0 }, 200, function() {
+				  $srchBox.detach();
+				});
+				$srchBtn.toggleClass('fa-search fa-square-xmark');
+				srchIsUp = false;
+			}
+			$('#kigou').on("click", function() {
+				$.getScript('/js/kigou.js');
+			});
+		}
+		$settings.toggleClass('fa-sliders fa-square-xmark');
+	});
+
+	// Search
+	$srchBtn.on('click', function() {
+		if(srchIsUp){
+			$srchBox.animate({ bottom: '-50px', opacity: 0 }, 200, function() {
+			  $srchBox.detach();
+			});
+			srchIsUp = false;
+		}else{
+			$srchBox.insertAfter($('#ftBar'));
+			$srch.html('<script async src="https://cse.google.com/cse.js?cx=partner-pub-2969778954609193:7702034856"></script><div class="gcse-search"></div>');
+			$srchBox.animate({bottom: '50px', opacity: 1}, 200);
+			srchIsUp = true;
+			// if setBox is opened
+			if (isUp) {
+				$setBox.animate({ bottom: '-50px', opacity: 0 }, 200, function() {
+				  $setBox.detach();
+				});
+				$settings.toggleClass('fa-sliders fa-square-xmark');
+				isUp = false;
+			}
+		}
+		$srchBtn.toggleClass('fa-search fa-square-xmark');
+	});
+});
+
+// LikeCoin && ADs && Search
+var show = true;
+if(typeof(old_pathname)=="undefined"){
+		pathname = window.location.pathname;
+}else{
+		pathname = old_pathname;
+}
+$(window).scroll(function(){
+var pro = $(".profiles").offset().top;
+if (pro>=100&&show==true){
+	if ($('#gad').length > 0) {
+		// AdSense
+    	$('#gad').html('<script data-ad-client="ca-pub-2969778954609193" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2969778954609193" crossorigin="anonymous"></script>');
+    	// Right Ad
+    	$('#gadRight').html('<div id="right-ad" style="width:300px; height:500px;"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2969778954609193" data-ad-slot="7807596231" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>');
+    	// AdGeek
+    	// $('#gtmAd').html("<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0], j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-5G3T9JN');</script>");
+		// Google Tag Manager
+		// $('#gtmAdNo').html('<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5G3T9JN" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>');
+		// Google Search
+		$('#search').html('<script async src="https://cse.google.com/cse.js?cx=partner-pub-2969778954609193:7702034856"></script><div class="gcse-search"></div>');
+	}
+	show = false;
+}
+});
+
+var gadFooter = true;
+// Footer & Right AD
+$(window).scroll(function(){
+	var doc = $(document.body).height();
+	var scr = $(document).scrollTop();
+	var win = $(window).height();
+	if (Math.ceil(win+scr)>=(doc-50)){
+		$('footer').fadeIn('slow');
+		if(gadFooter == true){
+		// Footer Ad
+    	$('#gadFooter').html('<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2969778954609193" data-ad-slot="5816393681" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>');
+		}
+		gadFooter = false;
+		if (Math.ceil(win+scr)>=(doc-660)){
+			$('#right-ad').css({'bottom':'580px','top':'auto'});
+		}		
+	}else{
+		if (Math.ceil(win+scr)<(doc-660)){
+			$('#right-ad').css({'bottom':'auto','top':'200px'});
+		}
+	}
+
+});
+
+// Lock Text
+$(function(){
+		$(".lock_icon").hover(
+			function(){
+				$(this).toggleClass("fa-lock fa-lock-open");
+				$(this).toggleClass("red green");
+			},
+			function(){
+				$(this).toggleClass("fa-lock-open fa-lock");
+				$(this).toggleClass("green red");
+			}
+		)
+		$(".lock_icon").click(function(){
+			location.href='/join-vip.php';
+		})
+});
+
+// rt
+if($('div.block-dashed, td').find('rt').length > 0){
+		$('div.block-dashed, td').each(function(index, element) {
+				$(element).css({'padding-top':'20px','line-height':'2.5em'});
+				if ( $( this ).find('rt').length === 0 ) {
+						$(this).css('padding-top','10px');
+				}
+		});
+}
+
+// rt (quiz)
+if($('div.ansText').find('rt').length > 0){
+		$('div.ansText').each(function(index, element) {
+				$(element).css({'padding-top':'20px','line-height':'2.5em'});
+				if ( $( this ).find('rt').length === 0 ) {
+						$(this).css('padding-top','10px');
+				}
+		});
+}
+
+// Marguee
+$(function (){ var timer = setTimeout(this.marquee, 0); }());
+function marquee() {
+		var scrollWidth = $('#marqueeBox').width();
+		var textWidth = $('.marqueeText').width();
+		var i = scrollWidth;
+				setInterval(function () {
+				i--;
+				if (i < -textWidth) {
+				i = scrollWidth;
+				}
+				$('.marqueeText').animate({ 'left': i + 'px' }, 5);
+		}, 5);
+}
+$('#marqueeClose').click(function() {
+		$('#marqueeBlock').css('display','none');
+		expire_days = 7; 
+		var d = new Date();
+		d.setTime(d.getTime() + (expire_days * 24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toGMTString();
+		document.cookie = "marquee=notice050531" + "; " + expires + '; path=/';
+});
+
+// Pre & Next
+$('.previous a span').replaceWith('<span><i class="fas fa-chevron-circle-left"></i>上一篇</span>');
+$('.next a span').replaceWith('<span>下一篇<i class="fas fa-chevron-circle-right"></i></span>');
+$('.previous span').append('<div class="pagerTitle">'+$('.previous a').attr('title')+'</div>');
+$('.next span').append('<div class="pagerTitle">'+$('.next a').attr('title')+'</div>');
+$('.download').prepend('<span><i class="fa-solid fa-download"></i>下載</span><br>');
+$('.nblL').html('町友提問');
+$('.nblR').html('時雨の町');
+
+// h2,h3
+document.querySelectorAll("h2, h3").forEach(header => {
+    let a = $(header).find("a");
+    if ($(a).length > 0) {
+        let id = $(a).attr("id");
+        let href = $(a).attr("href");
+        let text = $(a).text();
+        let copyBtn = `<i class="fa-solid fa-link copyBtn" style="display: none;" data-id="${id}"></i>`;
+
+        if (href == undefined) {
+            href = "#" + id;
+        }
+
+        if (text.trim().length == 0) {
+            text = $(header).text();
+        }
+
+        $(header).empty();
+        $(header).append(`<a href="${href}" id="${id}"></a>`);
+        $(header).append(text);
+        $(header).append(copyBtn);
+
+        document.querySelector(`${header.tagName.toLowerCase()} i[data-id="${id}"]`)?.addEventListener("click", () => {
+            let url = new URL(document.location.toString());
+            let path = url.origin + url.pathname + href;
+            navigator.clipboard.writeText(path).then(function () {
+                if ($(header).find(`span[data-id="${id}"]`).length == 0) {
+                    $(header).append(`<span class="copyTips" data-id="${id}">複製成功!</span>`);
+                }
+            }, function (err) {
+                if ($(header).find(`span[data-id="${id}"]`).length == 0) {
+                    $(header).append(`<span class="copyTips" data-id="${id}">複製失敗!</span>`);
+                }
+            });
+        });
+
+        header.addEventListener("mouseover", () => { $(header).find("i").css("display", "inline-block") });
+        header.addEventListener("mouseleave", () => { $(header).find("i").css("display", "none"); $(header).find(`span[data-id="${id}"]`).remove(); });
+    }
+});
+
+// h2,h3 div
+$(function(){
+
+	// div fix ex:/learn-japanese/mix/knowledge/sports-day.php
+	$("div.h-list").each(function() {
+		var id = $(this).attr("id");
+		var title = $(this).text();
+		var newLink = $("<a>").attr("href", "#" + id).attr("id", id).text(title);
+		$(this).replaceWith($("<h2>").append(newLink));
+	});
+	$("h2 > h2").unwrap();
+
+	// p fix (h2) ex:/learn-japanese/mix/knowledge/tense.php	
+	$('p.block-box-title').each(function() {
+		var $title = $(this);
+		if ($title.find('a').length > 0) {
+			var id = $title.find('a').attr('id');
+			$title.replaceWith($('<h2>').append($('<a>').attr('href', '#' + id).attr('id', id).text($title.find('a').text())));
+		} else {
+			$title.replaceWith($('<h2>').text($title.text()));
+		}
+	});
+
+	// p fix(h3) ex:/learn-japanese/mix/knowledge/tense.php
+	$(".block-box-title-small").replaceWith(function() {
+		return "<h3>" + $(this).text() + "</h3>";
+	});
+
+
+
+  document.querySelectorAll("h2, h3").forEach(header => {
+    let a = $(header).find("a");
+    if ($(a).length > 0) {
+        let id = $(a).attr("id");
+        let href = $(a).attr("href");
+        let text = $(a).text();
+        let copyBtn = `<i class="fa-solid fa-link copyBtn" style="display: none;" data-id="${id}"></i>`;
+
+        if (href == undefined) {
+            href = "#" + id;
+        }
+
+        if (text.trim().length == 0) {
+            text = $(header).text();
+        }
+
+        $(header).empty();
+        $(header).append(`<a href="${href}" id="${id}"></a>`);
+        $(header).append(text);
+        $(header).append(copyBtn);
+
+        document.querySelector(`${header.tagName.toLowerCase()} i[data-id="${id}"]`)?.addEventListener("click", () => {
+            let url = new URL(document.location.toString());
+            let path = url.origin + url.pathname + href;
+            navigator.clipboard.writeText(path).then(function () {
+                if ($(header).find(`span[data-id="${id}"]`).length == 0) {
+                    $(header).append(`<span class="copyTips" data-id="${id}">複製成功!</span>`);
+                }
+            }, function (err) {
+                if ($(header).find(`span[data-id="${id}"]`).length == 0) {
+                    $(header).append(`<span class="copyTips" data-id="${id}">複製失敗!</span>`);
+                }
+            });
+        });
+
+        header.addEventListener("mouseover", () => { $(header).find("i").css("display", "inline-block") });
+        header.addEventListener("mouseleave", () => { $(header).find("i").css("display", "none"); $(header).find(`span[data-id="${id}"]`).remove(); });
+    	}
+	});
+});
+
+
+// Tips Pop
+function tips(message, okCallback) {
+  var tipsModule = $('#tipsModule');
+  var tipsBox = $('#tipsBox');
+  var tips = $('#tips');
+  var tipsCloseBtn = $('<button>').addClass('tipsCloseBtn').html('<i class="fa-solid fa-circle-xmark"></i>');
+  
+  tips.html($('<div>').html(message));
+  tips.append(tipsCloseBtn);
+  tipsModule.show();
+  
+  tipsCloseBtn.on('click', function() {
+    tipsModule.hide();
+    if (typeof okCallback === 'function') {
+      okCallback();
+    }
+  });
+}
+
+// change ja css
+var platform = navigator.platform;
+if (platform.indexOf('Mac') !== -1) {
+  // Mac
+  $(':lang(ja)').css('font-weight', 'unset');
+}
+
+// next show or hide
+if ($(".next a").attr("href") == "") {
+    $(".next").hide();
+}
+
+// Fix the first img & Set VIP tips above the article
+$(function (){
+	// article & quiz ONLY
+	if (window.location.pathname !== '/' && window.location.pathname.indexOf('/learn-japanese/') !== -1 || window.location.pathname.indexOf('/quiz/') !== -1) {
+		// console.log('1');
+		// has first img
+		if($('article > div > img:first').length > 0 || $('article > div > figure:first').length > 0){
+			// console.log('2');
+			// no figure
+			if (!$('article > div img:first').parent().is('figure')) {
+				// console.log('3');
+				// add figure & figcaption
+				$('article > div img:first').wrap('<figure></figure>');
+				$('article > div img:first').after('<figcaption>' + $('article > div img:first').attr('alt') + '</figcaption>');
+
+				// is vip content
+				if (jsVariable==true && $('.keyword-vip').length !== -1) {
+					// console.log('4');
+					// add vip tips
+					$("article > div > figure:first").first().after('<span class="keyword-vip"></span>');		
+				}
+			// has figure
+			} else {
+				// console.log('5');
+				if (jsVariable==true && $('.keyword-vip').length == 0) {
+					// console.log('6');
+					if ($("figure").length > 0) {
+						// console.log('7');
+						$("article > div > figure:first").first().after('<span class="keyword-vip"></span>');
+					} else {
+						// console.log('8');
+						$("article > div:first").after('<span class="keyword-vip"></span>');
+					}
+				}
+			}
+		// no first img
+		} else {
+			// console.log('9');
+			if (jsVariable==true && $('.keyword-vip').length == 0) {
+				// console.log('10');
+				$("article > div:first").after('<span class="keyword-vip"></span>');
+			}
+		}
+		
+	}
+});
+
+
+// Quiz index with added lock icons
+$(function (){
+	if (window.location.href.indexOf("/quiz/") > -1 && $('.quizIndex').length) {
+		$('.quizIndex a').each(function() {
+			$(this).after('<span class="Plock on"></span>');
+		});
+
+		$('#myTable_paginate').on('click', function() {
+			$('.quizIndex a').each(function() {
+				if ($(this).next().hasClass('Plock on')) {
+
+				} else {
+					$(this).after('<span class="Plock on"></span>');
+				}
+			});
+		});
+	}
+});
+
+
+// toc
+$(".block-liststyle").removeClass("block-liststyle").addClass("toc");
+
+// bilingual
+$(function(){
+  $('.bilingual *[lang="ja"]').hide();
+  $('.langToggle, .nolangToggle').text('日本語');
+  $('.langToggle').click(function() {
+    var langToggleBtn = $(this);
+    var bilingual = langToggleBtn.closest('.bilingual');
+    var twText = bilingual.find('*[lang="zh-Hant-TW"]');
+    var jaText = bilingual.find('*[lang="ja"]');
+    if (langToggleBtn.text() === '日本語') {
+      langToggleBtn.text('中国語');
+      twText.hide();
+      jaText.show();
+      langToggleBtn.addClass('langToggleIco');
+    } else {
+      langToggleBtn.text('日本語');
+      twText.show();
+      jaText.hide();
+      langToggleBtn.removeClass('langToggleIco');
+    }
+  });
+
+  $('.nolangToggle').click(function() {
+  	tips('此為<span lang="en">VIP</span>功能<br>歡迎加入支持<br><button onclick=\"location.href=\'/join-vip.php\'\">前往升級</button>');
+  });
+});
+
+$(function() {
+  $('#settings').on("click", function() {
+    $.ajax({
+		type: 'POST',
+		url: '/wps/z-act.php',
+		dataType: "json",
+		data: {
+		settings:"settings"
+		},
+      success: function(data) {
+        // console.log(data.y);
+      },
+      error: function(xhr, status, error) {
+        // console.log(error);
+      }
+    });
+  });
+  $('#srchBtn').on("click", function() {
+    $.ajax({
+		type: 'POST',
+		url: '/wps/z-act.php',
+		dataType: "json",
+		data: {
+		srchBtn:"srchBtn"
+		},
+      success: function(data) {
+        // console.log(data.y);
+      },
+      error: function(xhr, status, error) {
+        // console.log(error);
+      }
+    });
+  });
+  $('#kigou').on("click", function() {
+    $.ajax({
+		type: 'POST',
+		url: '/wps/z-act.php',
+		dataType: "json",
+		data: {
+		kigou:"kigou"
+		},
+      success: function(data) {
+        // console.log(data.y);
+      },
+      error: function(xhr, status, error) {
+        // console.log(error);
+      }
+    });
+  });
+});

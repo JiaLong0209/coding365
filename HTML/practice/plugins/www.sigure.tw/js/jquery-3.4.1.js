@@ -280,7 +280,7 @@ window.onload = () => {
 
     window.addEventListener('mousedown', mouseDownHandler)
     window.addEventListener('mouseup', copySelectedText)
-    audio.volume = 0.3;
+    audio.volume = 0.4;
 
 }
 
