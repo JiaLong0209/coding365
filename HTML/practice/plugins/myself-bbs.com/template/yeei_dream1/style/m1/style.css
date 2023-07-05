@@ -5,6 +5,18 @@ Powered by Yeei.cn
 æ›´å¤šé…è‰²ä¸‹è½½ï¼šhttp://www.yeei.cn/forum-54-1.html
 */
 
+*{
+    transition: 0.2s;
+}
+
+*::selection{
+    background: #0f2263;
+    color: #fff;
+    text-decoration: rgb(181, 219, 43) wavy underline overline 1px ;
+    text-shadow: 4px 3px 1px rgb(196, 182, 60);
+}
+
+
 body{background: #08090D url(body.jpg) no-repeat center 0;background-size: cover;background-attachment: fixed;background-position-y: 0;background-blend-mode: normal;}
 .a_h{ padding:0px}
 .head_y{background:none;}
