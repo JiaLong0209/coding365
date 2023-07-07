@@ -11,10 +11,10 @@ plt.subplot(221)
 plt.plot(x,y)
 
 plt.subplot(222)
-plt.bar(x,y,width=0.1)
+plt.bar(x,y,width=0.2)
 
 plt.subplot(223)
-plt.hist(y)
+plt.hist(x,bins=500, density=False)
 
 plt.subplot(224)
 plt.scatter(x,y, s=3, c='#f35')
