@@ -5,13 +5,15 @@ import numpy as np
     #可以被 5 整除
     #可以被 3 和 5 整除
 a = np.array([6, 7, 8, 10, 24, 45, 99,100])
-f1 = lambda x: x%3!=0
-f2 = lambda x: x%5==0
-f3 = lambda x: x%15==0
-FnList = [f1,f2,f3]
 
-print(a)
-for f in FnList : print(a[f(a)])
+termList = [a%3!=0, a%5==0, a%15==0]
+for t in termList: print(a[t])
+
+# f1 = lambda x: x%3!=0
+# f2 = lambda x: x%5==0
+# f3 = lambda x: x%15==0
+# FnList = [f1,f2,f3]
+# for f in FnList : print(a[f(a)])
 
 #創建⼤⼩為 10 的隨機Numpy Array並將最⼤值替換為 0
 b = np.random.random(size=10)

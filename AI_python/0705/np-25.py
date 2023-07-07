@@ -22,16 +22,17 @@ print(np.pad(d,1))
 #將 3x3 隨機矩陣歸⼀化為0~1，每⼀個元素都套⽤：（x - x min）/（x max - x min)
 e = np.random.randint(low=0, high=100,size=(3,3))
 print(np.array(list(map(lambda x: (x-e.min())/(e.max()-e.min()),e))))
-
-# other method
 # fn = lambda x : (x-e.min())/(e.max()-e.min())
 # print(fn(e))
 
 #給定⼀個⼀維陣列0~12，取所有2到9之外的元素
 f = np.random.randint(low=0, high=13, size=20)
 print(np.array([x for x in f if x<2 or x>9]))
-f1 = f[f<2]
-f2 = f[f>9]
-print(np.concatenate((f1,f2)))
+# print(f[np.logical_or(f<2, f>9)])
+
+# f1 = f[f<2]
+# f2 = f[f>9]
+# print(np.concatenate((f1,f2)))
+
 
 
