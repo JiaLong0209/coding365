@@ -95,3 +95,4 @@ plt.pie(values, labels=['no has','has'], shadow=True, autopct=make_autopct(value
 
 plt.savefig('hw1.png')
 
+print(df[df['report_id']=='R0001190'])
