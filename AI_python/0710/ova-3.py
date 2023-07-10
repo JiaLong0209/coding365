@@ -19,7 +19,7 @@ print(df)
 df.to_csv('cpc.csv')
 
 
-
+# bug version
 # labels = ['調價日期', '無鉛汽油92', '無鉛汽油95', '無鉛汽油98', '高級柴油', '二行程無鉛汽油', '煤油', '甲種漁船油(KL)', '乙種漁船油(KL)', '低硫燃料油(0.5%)(KL)', '甲種低硫燃料油/低硫鍋爐油(0.5%)(KL)', '特種低硫燃料油(KL)	', '低硫鍋爐油(1%)(KL)']
 # for i,v in enumerate(page.select('span')[:-1]): 
 #     index, text = i%13, v.text 
