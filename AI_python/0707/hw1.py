@@ -70,7 +70,6 @@ def make_autopct(values):
         return f'{r(percent)}%\n({val})'
     return autopct
 
-# color = ['#b96','#aaf']
 color = ['#8dc','#b96']
 values = [f_count,m_count]
 plt.subplot(221)
@@ -95,4 +94,4 @@ plt.pie(values, labels=['no has','has'], shadow=True, autopct=make_autopct(value
 
 plt.savefig('hw1.png')
 
-print(df[df['report_id']=='R0001190'])
+# print(df[df['report_id']=='R0001190'])
