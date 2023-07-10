@@ -66,7 +66,8 @@ print(f'Females and Males reporting: \n    females: {percent(f_rpt_prop)}\n    m
 def make_autopct(values):
     def autopct(percent):
         total = sum(values)
-        val = int(round(percent * total/100))
+        val = float(r(percent * total/100)) 
+        val = str(val)+'%' if val%1 else int(val)
         return f'{r(percent)}%\n({val})'
     return autopct
 
@@ -76,7 +77,8 @@ plt.subplot(221)
 plt.title('Reporting Count')
 plt.pie(values, labels=['female','male'], shadow=True, autopct=make_autopct(values),textprops={'color':'#333','size':9},colors=color)
 
-values = [f_d1_count,m_d1_count]
+
+values = [100*f_d1_prop, 100*m_d1_prop]
 plt.subplot(222)
 plt.title('Gender with Disease1')
 plt.pie(values, labels=['female','male'], shadow=True, autopct=make_autopct(values),textprops={'color':'#333','size':9},colors=color)
@@ -84,12 +86,12 @@ plt.pie(values, labels=['female','male'], shadow=True, autopct=make_autopct(valu
 values = [f_count - f_d1_count, f_d1_count]
 plt.subplot(223)
 plt.title('Females with Disease1')
-plt.pie(values, labels=['no has','has'], shadow=True, autopct=make_autopct(values),textprops={'color':'#333','size':9},colors=color)
+plt.pie(values, labels=['has no','has'], shadow=True, autopct=make_autopct(values),textprops={'color':'#333','size':9},colors=color)
 
 values = [m_count - m_d1_count, m_d1_count]
 plt.subplot(224)
 plt.title('Males with Disease1')
-plt.pie(values, labels=['no has','has'], shadow=True, autopct=make_autopct(values),textprops={'color':'#333','size':9},colors=color)
+plt.pie(values, labels=['has no','has'], shadow=True, autopct=make_autopct(values),textprops={'color':'#333','size':9},colors=color)
 # print(df.describe())
 
 plt.savefig('hw1.png')
