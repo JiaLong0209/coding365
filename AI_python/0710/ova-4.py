@@ -8,10 +8,7 @@ selectors = ['span.button','.BBoardRate','.SBoardRate','.BuyIncreaseRate','.Sell
 data = {}
 
 def update(value, i):
-    if(data.get(labels[i]) == None):
-        data[labels[i]] = [value]    
-    else:
-        data[labels[i]].append(value)
+    data[labels[i]] = [value] if(data.get(labels[i]) == None) else [*data[labels[i]],value]
 
 def getPage(url):
     return soup(requests.get(url).text, 'html.parser')
