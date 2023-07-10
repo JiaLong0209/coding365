@@ -7,11 +7,11 @@ labels = ['幣種','即期買入','即期賣出','網銀買入','網銀賣出','
 selectors = ['span.button','.BBoardRate','.SBoardRate','.BuyIncreaseRate','.SellDecreaseRate','.CashBBoardRate','.CashSBoardRate']
 data = {}
 
-def update(value, i):
-    data[labels[i]] = [value] if(data.get(labels[i]) == None) else [*data[labels[i]],value]
-
 def getPage(url):
     return soup(requests.get(url).text, 'html.parser')
+
+def update(value, i):
+    data[labels[i]] = [value] if(data.get(labels[i]) == None) else [*data[labels[i]],value]
 
 page = getPage(url)
 
