@@ -4,8 +4,8 @@ import pandas as pd
 
 fish = input('請輸入魚貨名稱： ')
 url = 'https://data.coa.gov.tw/Service/OpenData/FromM/AquaticTransData.aspx'
-
 getPage = lambda x: requests.get(x).text
+
 j = json.loads(getPage(url))
 
 list = []
