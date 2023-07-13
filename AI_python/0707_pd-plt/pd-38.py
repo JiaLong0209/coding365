@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 # 算出新北市新店區的成人、兒童口罩剩餘總和
-mask = pd.read_csv('maskdata.csv')
+mask = pd.read_csv('./maskdata.csv')
 NTC = pd.DataFrame()
 NTC['location']= [u'新北市新店區']
 NTC['adult']=[0]

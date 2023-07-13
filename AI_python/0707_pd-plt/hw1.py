@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 def r(n): return round(n,2)
 def percent(n): return str(r(n*100))+'%'
 
-df = pd.read_csv('./0707/hw1.csv')
+df = pd.read_csv('./0707_pd-plt/hw1.csv')
 
 #Calculate BMI
 df['BMI'] = r(df['weight'] / (df['height']/100)**2)

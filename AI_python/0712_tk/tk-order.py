@@ -56,7 +56,6 @@ drink_text = tk.Label(window, text=f'總金額： {sum_price}', font=('Arial', 1
 drink_text.grid(row=15, column=0)
 
 
-
 window.mainloop()
 
 # side
