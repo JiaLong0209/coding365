@@ -57,7 +57,7 @@ class brick(pygame.sprite.Sprite):
 class moveclip(pygame.sprite.Sprite):
     def __init__(self,color,x,y):
         pygame.sprite.Sprite.__init__(self)
-        self.image=pygame.Surface([50,20])
+        self.image=pygame.Surface([700,30])
         self.image.fill(color)
         self.rect=self.image.get_rect()
         self.rect.x=x
@@ -78,7 +78,6 @@ def gameover(message):
     window.blit(text,(window.get_width()/2-150,window.get_height()/2))
     pygame.display.update()
     run=False
-    time.sleep(3)
 
 point=0
 window=pygame.display.set_mode((600,400))
@@ -90,14 +89,14 @@ window.blit(background,(0,0))#把畫布貼在繪圖視窗window上
 allsprite=pygame.sprite.Group()#角色群組變數
 bricksprite=pygame.sprite.Group()
 controllersprite=pygame.sprite.Group()
-theball=ball(6,100,100,20,(0,0,255))
+theball=ball(38,100,290,20,(0,0,255))
 allsprite.add(theball)
 controller=moveclip((255,0,0),0,350)
 allsprite.add(controller)
 controllersprite.add(controller)
 clock=pygame.time.Clock()
 
-for i in range(3):
+for i in range(20):
     for j in range(0,15):
         thebrick=brick((random.randint(0,255),random.randint(0,255),random.randint(0,255)),j*40+1,i*15+1)
         bricksprite.add(thebrick)
@@ -110,10 +109,10 @@ playing=False#playing true代表球正在動
 run=True#run false代表程式結束
 
 while run:
-    clock.tick(40)
+    clock.tick(640)
     for event in pygame.event.get():
-        if event.type==pygame.QUIT:#使用者者按x結束視窗
-            running=False#跳出pygame
+        if event.type == pygame.QUIT:#使用者者按x結束視窗
+            run = False #跳出pygame
 
     button=pygame.mouse.get_pressed()
 

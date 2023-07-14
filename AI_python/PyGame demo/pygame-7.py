@@ -22,6 +22,7 @@ while True:
 
         #可以用鍵盤方向按鈕控制移動
         if event.type == pygame.KEYDOWN:
+            print(event.key)
             if event.key == pygame.K_UP:
                 site[1] -= 8
             if event.key == pygame.K_DOWN:
