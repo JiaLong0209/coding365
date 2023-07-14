@@ -11,6 +11,7 @@ import time
 # 5. 背景圖片的旋轉速率會隨著分數越來越快，圖片大小也越大
 # 6. 背景音樂的音量會隨著分數越來越大
 # 7. GameOver時，可以透過點擊左鍵重新開始遊戲 
+# TODO. 寫出預測ball軌道的function，讓bar自己去接球
 
 FPS = 120
 brick_size = [40, 25]
@@ -27,8 +28,8 @@ ball_x , ball_y = 250 , 300
 ball_speed = 4
 row, column = 4, 15
 res_msg = ' Restart?'
-
-
+fix = './0714_pygame/brickGame/'
+# fix = ''
 class ball(pygame.sprite.Sprite):  # 輸入代表這個類別是特殊的角色類別
     direction = 0
     speed = 0
@@ -131,7 +132,7 @@ def spawnBricks(row, column):
 def restart():
     global point
     point = 0
-    music.set_volume(0.1)
+    pygame.mixer.music.set_volume(0.1)
     theball.x, theball.y = ball_x, ball_y
     theball.speed = ball_speed
     theball.direction = random.randint(25, 65)
@@ -144,7 +145,7 @@ def drawBackground():
     window.blit(bg2, (window.get_width()/2-bg2.get_width()/2, window.get_height()/2-bg2.get_height()/2)) 
 
 def updateMusciVolumn():
-    music.set_volume(0.2 + (point/(row*column))*0.8)
+    pygame.mixer.music.set_volume(0.2 + (point/(row*column))*0.8)
     print(0.2 + (point/(row*column))*0.8)
 
 rot = 10
@@ -155,11 +156,11 @@ point = 0
 window = pygame.display.set_mode((600, 400))
 pygame.display.set_caption("打磚塊")
 
-fix = './0714_pygame/brickGame/'
 
-music = pygame.mixer.Sound(fix+'Eglair.mp3')
-music.set_volume(0.2)
-music.play()
+# music = pygame.mixer.Sound(fix+'Eglair.mp3')
+pygame.mixer.music.load(fix+'Eglair.mp3')
+pygame.mixer.music.set_volume(0.2)
+pygame.mixer.music.play(-1)
 
 background = pygame.Surface(window.get_size()) 
 background = background.convert_alpha() 
