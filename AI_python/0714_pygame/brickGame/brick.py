@@ -28,8 +28,9 @@ ball_x , ball_y = 250 , 300
 ball_speed = 4
 row, column = 4, 15
 res_msg = ' Restart?'
-fix = './0714_pygame/brickGame/'
-# fix = ''
+
+path = 1
+fix = './0714_pygame/brickGame/' if path else ''
 class ball(pygame.sprite.Sprite):  # 輸入代表這個類別是特殊的角色類別
     direction = 0
     speed = 0
