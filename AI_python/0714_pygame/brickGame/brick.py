@@ -27,16 +27,17 @@ moveclip_color = [230, 230, 230]
 moveclip_size = [120, 30]
 moveclip_pos = [window_size[0]/2-moveclip_size[0]/2,window_size[1]- 10]
 text_color = [205, 80, 80]
-speed_buff = 0.4
-ball_x , ball_y = window_size[0]/2-10 , window_size[1]*0.9
-ball_speed = 4
+speed_buff = 0.5
+# speed_buff = 0.2
+ball_x , ball_y = window_size[0]/2-10 , window_size[1]*0.8
+ball_speed = 3
 ball_size = 25
 max_speed = 75
 
-row, column = round((window_size[1]/brick_size[1])*0.8), round(window_size[0]/brick_size[0])
+row, column = round((window_size[1]/brick_size[1])*0.7), round(window_size[0]/brick_size[0])
 res_msg = ' Restart?'
-autoMode = True
-activeBackground2 = False
+autoMode = 1
+activeBackground2 = True
 simplePredict = False
 path = 1
 fix = './0714_pygame/brickGame/' if path else ''
@@ -134,7 +135,7 @@ class moveclip(pygame.sprite.Sprite):
         self.rect.y = y
 
     def update(self):
-        if autoMode:
+        if autoMode > 0:
             self.rect.x = predictPos()
         else:
             pos = pygame.mouse.get_pos()
@@ -257,6 +258,10 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:   
             run = False  
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_SPACE:
+                autoMode *= -1
+                print(autoMode)
     
     button = pygame.mouse.get_pressed() 
     if button[0]:

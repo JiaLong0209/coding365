@@ -1,4 +1,4 @@
-import pygame,random,math,time
+import pygame,random,math,time,sys
 
 class ball(pygame.sprite.Sprite):#輸入代表這個類別是特殊的角色類別
     direction=0
@@ -57,7 +57,7 @@ class brick(pygame.sprite.Sprite):
 class moveclip(pygame.sprite.Sprite):
     def __init__(self,color,x,y):
         pygame.sprite.Sprite.__init__(self)
-        self.image=pygame.Surface([700,30])
+        self.image=pygame.Surface([50,20])
         self.image.fill(color)
         self.rect=self.image.get_rect()
         self.rect.x=x
@@ -78,25 +78,32 @@ def gameover(message):
     window.blit(text,(window.get_width()/2-150,window.get_height()/2))
     pygame.display.update()
     run=False
+    time.sleep(3)
 
 point=0
+
 window=pygame.display.set_mode((600,400))
 pygame.display.set_caption("打磚塊")
+
 background=pygame.Surface(window.get_size())#畫布
 background=background.convert()#可有可無
 background.fill((255,255,255))#畫布上色
 window.blit(background,(0,0))#把畫布貼在繪圖視窗window上
+
 allsprite=pygame.sprite.Group()#角色群組變數
 bricksprite=pygame.sprite.Group()
 controllersprite=pygame.sprite.Group()
-theball=ball(38,100,290,20,(0,0,255))
+theball=ball(6,100,100,20,(0,0,255))
+
 allsprite.add(theball)
 controller=moveclip((255,0,0),0,350)
 allsprite.add(controller)
 controllersprite.add(controller)
+
 clock=pygame.time.Clock()
 
-for i in range(20):
+#這一段是畫出各個磚塊
+for i in range(3):
     for j in range(0,15):
         thebrick=brick((random.randint(0,255),random.randint(0,255),random.randint(0,255)),j*40+1,i*15+1)
         bricksprite.add(thebrick)
@@ -105,14 +112,15 @@ for i in range(20):
 msgstart="Click mouse button to start"
 msgstartdisplay=font.render(msgstart,100,(255,0,0))
 window.blit(msgstartdisplay, (window.get_width()/2-50,window.get_height()/2))
+
 playing=False#playing true代表球正在動
 run=True#run false代表程式結束
 
 while run:
-    clock.tick(640)
+    clock.tick(40)
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:#使用者者按x結束視窗
-            run = False #跳出pygame
+        if event.type==pygame.QUIT:#使用者者按x結束視窗
+            running=False#跳出pygame
 
     button=pygame.mouse.get_pressed()
 
@@ -122,9 +130,12 @@ while run:
 
     if playing:
         window.blit(background,(0,0))#清除繪圖視窗window
+
         if theball.y>=window.get_height():
             gameover("you lose!")
+
         controller.update()
+
         #如果球撞到磚塊 加分 球往下反彈 且判定有沒有剩下的方塊 後面的True代表要把bricksprite裡碰撞到的東西消除掉
         hitbrick=pygame.sprite.spritecollide(theball,bricksprite,True)
         if len(hitbrick)>0:
@@ -133,17 +144,22 @@ while run:
             theball.hittop()
             if len(bricksprite)==0:
                 gameover("you win!")
+
         #如果球撞倒打版 球往上反彈 後面的False代表不要把bricksprite裡碰撞到的東西消除掉
         hitclip=pygame.sprite.spritecollide(theball,controllersprite,False)
         if len(hitclip)>0:
             theball.hittop()
+
         #繪製所有的角色 球 磚塊 打版
         theball.update()
 
-    allsprite.draw(window)
+    allsprite.draw(window)  #剩下的都畫出來
+
     msgscore="score: "+str(point)
     msgscoredisplay=font.render(msgscore,5,(255,0,0))
+
     window.blit(msgscoredisplay, (window.get_width()-60,window.get_height()-30))
     pygame.display.update()
 
 pygame.quit()
+sys.exit()
