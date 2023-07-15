@@ -1,0 +1,7 @@
+* {user-select: auto !important;}* {
+    user-select: auto;
+}* {
+    user-select: auto !i;
+}
+
+li {}
