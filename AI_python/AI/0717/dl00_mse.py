@@ -20,3 +20,5 @@ def get_mse(data,m,b):
     return mse
 
 get_mse(data,m,b)
+
+print(get_mse(data,m,b))
