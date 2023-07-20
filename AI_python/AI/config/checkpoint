@@ -1,0 +1,2 @@
+model_checkpoint_path: "dl02_my_mnist.weight"
+all_model_checkpoint_paths: "dl02_my_mnist.weight"
