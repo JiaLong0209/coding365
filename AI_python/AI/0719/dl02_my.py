@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow import keras
-from keras.layers import Dense
+from keras.layers import Dense, Dropout
 target_size = 28 * 28
 categories = 10
 
@@ -26,8 +26,9 @@ test_labels = labelsCategorical(test_labels)
 model = tf.keras.models.Sequential()
 
 # 5. Add model layers
-model.add(Dense(units=28*10, activation='relu', input_shape=(target_size,)))
-# model.add(Dense(units=28*10, activation='relu'))
+model.add(Dense(units=28*8, activation='relu', input_shape=(target_size,)))
+model.add(Dropout(0.2))
+model.add(Dense(units=28*8, activation='relu'))
 # model.add(Dense(units=100, activation='relu'))
 # model.add(Dense(units=128, activation='relu'))
 # model.add(Dense(units=256, activation='relu'))
