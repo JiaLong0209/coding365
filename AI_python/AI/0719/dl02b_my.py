@@ -20,17 +20,17 @@ def predictImage(path):
     answer = np.argmax(model.predict(x))
     return answer
 
-base_path = './AI/src/mnist/'
+# base_path = './AI/src/mnist/'
+base_path = './AI/src/hard_mnist/'
 # predictImage('./AI/src/01.png')
-
+ 
 images = sorted([f for f in glob.glob(os.path.join(base_path, '*.png'))])
-print(images)
+# print(images)
 acc = np.array([])
 for i,image in enumerate(images):
     predict = predictImage(image)
     print(image)
     print(f'predict: {predict} answer: {i%10}')
     acc = np.append(acc, predict==i%10)
-
-print(acc)
+print(acc.reshape(int(len(acc)/10),10))
 print(f'{round(len(acc[acc==True])/len(acc)*100,3)}%')
