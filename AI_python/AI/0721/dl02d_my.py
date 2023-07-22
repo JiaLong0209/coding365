@@ -29,11 +29,11 @@ model = tf.keras.models.Sequential()
 from keras.layers import Flatten, BatchNormalization, Conv2D, MaxPool2D
 # 5. Add model layers
 model.add(Conv2D(32, (3,3), strides=1, padding='same', activation='relu', input_shape=(28,28,1)))
-model.add(BatchNormalization())
+# model.add(BatchNormalization())
 model.add(MaxPool2D((2,2), strides=2, padding='same'))
 model.add(Conv2D(8, (3,3), strides=1, padding='same', activation='relu'))
 model.add(BatchNormalization())
-model.add(MaxPool2D((2,2), strides=3, padding='same'))
+model.add(MaxPool2D((2,2), strides=2, padding='same'))
 model.add(Flatten())
 model.add(Dense(units=28*8, activation='relu'))
 model.add(Dropout(0.2))
