@@ -64,3 +64,12 @@ with open("./AI/config/dl02_my_mnist.config", "w") as text_file:
 
 
 model.save_weights("./AI/config/dl02_my_mnist.weight")
+
+
+# best score
+# loss: 0.0170 - accuracy: 0.9942 
+# val_loss: 0.0325 - val_accuracy: 0.9911
+
+# my_test accuracy: 70%
+#[0. 1. 1. 1. 1. 1. 1. 0. 0. 1.
+# 0. 1. 0. 1. 1. 0. 0. 1. 0. 0.]
