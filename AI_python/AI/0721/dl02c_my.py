@@ -12,6 +12,7 @@ model = keras.models.load_model('./AI/mnist_model')
 # 2. Checking the properties of model
 model.summary()
 
+# 3. Loading image
 def loadScaleImg(path):
     return imgUtils.load_img(path, color_mode="grayscale", target_size=imgSize)
 
@@ -23,7 +24,8 @@ def predictImage(path):
     answer = np.argmax(model.predict(x))
     return answer
 
-base_path = './AI/src/mnist/'
+# base_path = './AI/src/mnist/'
+base_path = './AI/src/hard_mnist/'
 # predictImage('./AI/src/01.png')
 
 images = sorted([f for f in glob.glob(os.path.join(base_path, '*.png'))])
@@ -34,6 +36,5 @@ for i,image in enumerate(images):
     print(image)
     print(f'predict: {predict} answer: {i%10}')
     acc = np.append(acc, predict==i%10)
-
-print(acc)
+print(acc.reshape(int(len(acc)/10),10))
 print(f'{round(len(acc[acc==True])/len(acc)*100,3)}%')
