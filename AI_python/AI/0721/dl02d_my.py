@@ -3,8 +3,10 @@ from tensorflow import keras
 import tensorflow as tf
 import numpy as np
 import glob, os
+import sys
 
-hardMode = False
+hardMode = True if len(sys.argv)>1 else False
+print(hardMode, sys.argv)
 imgSize = (28,28)
 imgUtils = keras.preprocessing.image
 
