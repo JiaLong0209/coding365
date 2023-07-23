@@ -1,82 +1,45 @@
-import tensorflow as tf
+# Load Model
 from tensorflow import keras
-from keras.layers import Dense, Dropout
+import tensorflow as tf
+import numpy as np
+import glob, os
 
-target_size = 28 * 28
-categories = 10
+hardMode = False
+imgSize = (28,28)
+imgUtils = keras.preprocessing.image
 
-def preprocessInput(images):
-    return images.reshape(len(images), 28, 28, 1)/255.0
+# 1. Loading model 
+model = keras.models.load_model('./AI/mnist_model')
 
-def labelsCategorical(labels):
-    return keras.utils.to_categorical(labels)
-
-# 1. Get training data
-mnist = keras.datasets.mnist
-(train_images, train_labels),(test_images, test_labels) = mnist.load_data()
-
-# 2. Make dataset to target size
-train_images = preprocessInput(train_images)
-test_images = preprocessInput(test_images)
-
-# 3. Make labels to categorical label
-train_labels = labelsCategorical(train_labels)
-test_labels = labelsCategorical(test_labels)
-
-# 4. Initialize a model
-model = tf.keras.models.Sequential()
-
-from keras.layers import Flatten, BatchNormalization, Conv2D, MaxPool2D
-# 5. Add model layers
-model.add(Conv2D(32, (3,3), strides=1, padding='same', activation='relu', input_shape=(28,28,1)))
-# model.add(BatchNormalization())
-model.add(MaxPool2D((2,2), strides=2, padding='same'))
-model.add(Conv2D(8, (3,3), strides=1, padding='same', activation='relu'))
-model.add(BatchNormalization())
-model.add(MaxPool2D((2,2), strides=2, padding='same'))
-model.add(Flatten())
-model.add(Dense(units=28*8, activation='relu'))
-model.add(Dropout(0.2))
-model.add(Dense(units=28*8, activation='relu'))
-model.add(Dense(units=categories, activation='softmax'))
-
+# 2. Checking the properties of model
 model.summary()
 
-# quit()
-# 6. Configure the training method
-model.compile(optimizer='adam',loss='categorical_crossentropy', metrics=['accuracy'])
+# 3. Loading image
+def loadScaleImg(path):
+    return imgUtils.load_img(path, color_mode="grayscale", target_size=imgSize)
 
-# 7. Training start
-model.fit(train_images, train_labels,
-             epochs=8,
-             batch_size = 100,
-             verbose=1,
-            #  validation_split=0.2,
-             validation_data=(test_images,test_labels),
-            #  validation_freq=20
-             )
+def predictImage(path):
+    image = loadScaleImg(path)
+    image = imgUtils.img_to_array(image).reshape(imgSize)
 
-model.save('./AI/mnist_model')
-from keras.models import model_from_json
-json_string = model.to_json()
-with open("./AI/config/dl02_my_mnist.config", "w") as text_file:
-    text_file.write(json_string)
+    x = image.reshape(1,28, 28, 1) / 255.0
+    answer = np.argmax(model.predict(x))
+    return answer
 
+if hardMode:
+    base_path = './AI/src/hard_mnist/'
+else :
+    base_path = './AI/src/mnist/'
+    
+# predictImage('./AI/src/01.png')
 
-model.save_weights("./AI/config/dl02_my_mnist.weight")
-
-
-# best score
-# loss: 0.0170 - accuracy: 0.9942 
-# val_loss: 0.0325 - val_accuracy: 0.9911
-
-# src/mnist accuracy: 70%
-# [0. 1. 1. 1. 1. 1. 1. 0. 0. 1.]
-# [0. 1. 0. 1. 1. 0. 0. 1. 0. 0.]
-
-# src/hard_mnist accuracy: 57.5%
-# [0. 0. 0. 0. 0. 1. 0. 1. 0. 0.]
-# [1. 1. 1. 1. 1. 1. 1. 1. 1. 0.]
-# [1. 1. 1. 1. 1. 1. 0. 0. 1. 0.]
-# [1. 1. 1. 1. 0. 1. 0. 0. 0. 0.]
-
+images = sorted([f for f in glob.glob(os.path.join(base_path, '*.png'))])
+# print(images)
+acc = np.array([])
+for i,image in enumerate(images):
+    predict = predictImage(image)
+    print(image)
+    print(f'predict: {predict} answer: {i%10}')
+    acc = np.append(acc, predict==i%10)
+print(acc.reshape(int(len(acc)/10),10))
+print(f'{round(len(acc[acc==True])/len(acc)*100,3)}%')
