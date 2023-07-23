@@ -1,3 +1,4 @@
+# Data Enhancement
 import tensorflow as tf
 from tensorflow import keras
 from keras.layers import Dense, Dropout
@@ -8,13 +9,15 @@ import matplotlib.image as mpimg
 target_size = 28 * 28
 categories = 10
 
+def doubleArray(arr):
+    return np.append(arr, arr, axis=0)
+
 def showImageTable(images, name):
     for i in range(0, 5):
         for j in range(0, 5):
             plt.subplot(5,5,(i*5+j)+1)
             showImage(images[(i*5+j)])
     plt.savefig(f'./AI/src/mnist_plt/{name}')
-
 
 def showImage(image):
     plt.imshow(image)  
@@ -37,6 +40,17 @@ test_images = preprocessInput(test_images)
 train_labels = labelsCategorical(train_labels)
 test_labels = labelsCategorical(test_labels)
 
+# *. Extend data length
+# train_images = doubleArray(train_images)
+# train_labels = doubleArray(train_labels)
+# test_images = doubleArray(test_images)
+# test_labels = doubleArray(test_labels)
+
+# train_images = doubleArray(train_images)
+# train_labels = doubleArray(train_labels)
+# test_images = doubleArray(test_images)
+# test_labels = doubleArray(test_labels)
+
 # 4. Initialize a model
 model = tf.keras.models.Sequential()
 
@@ -57,24 +71,27 @@ model.add(Dense(units=categories, activation='softmax'))
 
 model.summary()
 
-batch_size = 100
+batch_size = 64
+
+# Define ImageDataGenerator
 datagen = tf.keras.preprocessing.image.ImageDataGenerator(
     rotation_range = 10,     # 0 ~ 180
-    zoom_range = 0.2,
-    width_shift_range = 0.2 ,
-    height_shift_range = 0.2,
+    zoom_range = 0.25,
+    width_shift_range = 0.12,
+    height_shift_range = 0.12,
 )
 
 img_iter = datagen.flow(train_images, train_labels, batch_size=batch_size)
 
 old = train_images
-showImageTable(old,'old01.png')
 
+# Apply new data on train_images
 datagen.fit(train_images)
 
-
-x, y = img_iter.next()
+x, y = img_iter.next()  # get next new data by batch_size
 print(x.shape, y.shape)
+
+showImageTable(old,'old01.png')
 showImageTable(x, 'new01.png')
 # fig, ax = plt.subplots(nrows=5, ncols=5)
 # for i in range(25):
@@ -82,7 +99,7 @@ showImageTable(x, 'new01.png')
 #     ax.flatten()[i].imshow(np.squeeze(image))
 # plt.savefig('./AI/src/mnist_plt/01.png')
 
-quit()
+# quit()
 
 # 6. Configure the training method
 model.compile(optimizer='adam',loss='categorical_crossentropy', metrics=['accuracy'])
@@ -106,21 +123,42 @@ with open("./AI/config/dl02_my_mnist.config", "w") as text_file:
 
 model.save_weights("./AI/config/dl02_my_mnist.weight")
 
+# best score batch: 64, data: 240000
+# loss: 0.0442 - accuracy: 0.9862 
+# - val_loss: 0.0237 - val_accuracy: 0.9930
 
-# best score
-# loss: 0.0944 - accuracy: 0.9708
-# val_loss: 0.0774 - val_accuracy: 0.9774
+# best score batch: 32, data: 120000
+# loss: 0.0572 - accuracy: 0.9827 
+# - val_loss: 0.0342 - val_accuracy: 0.9898
+
+# best score batch: 500, data: 120000
+# loss: 0.0650 - accuracy: 0.9793 
+# - val_loss: 0.0330 - val_accuracy: 0.9896
 
 
-# src/mnist accuracy: 80%
-# [[1. 0. 1. 1. 1. 0. 0. 1. 1. 1.]
+# batch: 1000, data: 60000
+# src/mnist accuracy: 90%   
+# [[1. 1. 1. 1. 1. 1. 0. 1. 1. 1.]
 #  [1. 1. 0. 1. 1. 1. 1. 1. 1. 1.]]
 
 
-# src/hard_mnist accuracy:60%
-# [[0. 1. 0. 0. 0. 1. 0. 0. 0. 1.]
-#  [1. 0. 1. 1. 1. 1. 1. 1. 1. 1.]
-#  [0. 0. 1. 0. 1. 1. 0. 1. 1. 0.]
+# batch: 500, data: 120000
+# src/hard_mnist accuracy: 67.5%
+# [[0. 1. 0. 0. 1. 0. 0. 0. 0. 1.]
+#  [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+#  [0. 0. 1. 1. 1. 1. 0. 1. 1. 0.]
+#  [1. 1. 1. 1. 1. 1. 0. 1. 1. 0.]]
+
+# batch: 50, data: 60000
+# src/hard_mnist accuracy: 67.5%
+# [[0. 1. 0. 1. 0. 1. 1. 0. 1. 1.]
+#  [1. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+#  [0. 0. 1. 1. 0. 1. 0. 0. 1. 0.]
 #  [1. 1. 1. 1. 1. 1. 0. 1. 0. 0.]]
 
 
+
+
+# batch: 1000, data: 60000
+# loss: 0.1416 - accuracy: 0.9560 
+# val_loss: 0.1121 - val_accuracy: 0.9801
