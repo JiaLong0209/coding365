@@ -1,10 +1,23 @@
-# Convolutional Neural Network
 import tensorflow as tf
 from tensorflow import keras
 from keras.layers import Dense, Dropout
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
 
 target_size = 28 * 28
 categories = 10
+
+def showImageTable(images, name):
+    for i in range(0, 5):
+        for j in range(0, 5):
+            plt.subplot(5,5,(i*5+j)+1)
+            showImage(images[(i*5+j)])
+    plt.savefig(f'./AI/src/mnist_plt/{name}')
+
+
+def showImage(image):
+    plt.imshow(image)  
 
 def preprocessInput(images):
     return images.reshape(len(images), 28, 28, 1)/255.0
@@ -27,8 +40,9 @@ test_labels = labelsCategorical(test_labels)
 # 4. Initialize a model
 model = tf.keras.models.Sequential()
 
-from keras.layers import Flatten, BatchNormalization, Conv2D, MaxPool2D
 # 5. Add model layers
+from keras.layers import Flatten, BatchNormalization, Conv2D, MaxPool2D
+
 model.add(Conv2D(32, (3,3), strides=1, padding='same', activation='relu', input_shape=(28,28,1)))
 # model.add(BatchNormalization())
 model.add(MaxPool2D((2,2), strides=2, padding='same'))
@@ -43,14 +57,40 @@ model.add(Dense(units=categories, activation='softmax'))
 
 model.summary()
 
-# quit()
+batch_size = 100
+datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+    rotation_range = 10,     # 0 ~ 180
+    zoom_range = 0.2,
+    width_shift_range = 0.2 ,
+    height_shift_range = 0.2,
+)
+
+img_iter = datagen.flow(train_images, train_labels, batch_size=batch_size)
+
+old = train_images
+showImageTable(old,'old01.png')
+
+datagen.fit(train_images)
+
+
+x, y = img_iter.next()
+print(x.shape, y.shape)
+showImageTable(x, 'new01.png')
+# fig, ax = plt.subplots(nrows=5, ncols=5)
+# for i in range(25):
+#     image = x[i]
+#     ax.flatten()[i].imshow(np.squeeze(image))
+# plt.savefig('./AI/src/mnist_plt/01.png')
+
+quit()
+
 # 6. Configure the training method
 model.compile(optimizer='adam',loss='categorical_crossentropy', metrics=['accuracy'])
 
 # 7. Training start
-model.fit(train_images, train_labels,
+model.fit(img_iter,
              epochs=8,
-             batch_size = 100,
+             batch_size = batch_size,
              verbose=1,
             #  validation_split=0.2,
              validation_data=(test_images,test_labels),
@@ -68,16 +108,19 @@ model.save_weights("./AI/config/dl02_my_mnist.weight")
 
 
 # best score
-# loss: 0.0170 - accuracy: 0.9942 
-# val_loss: 0.0325 - val_accuracy: 0.9911
+# loss: 0.0944 - accuracy: 0.9708
+# val_loss: 0.0774 - val_accuracy: 0.9774
 
-# src/mnist accuracy: 70%
-# [0. 1. 1. 1. 1. 1. 1. 0. 0. 1.]
-# [0. 1. 0. 1. 1. 0. 0. 1. 0. 0.]
 
-# src/hard_mnist accuracy: 57.5%
-# [0. 0. 0. 0. 0. 1. 0. 1. 0. 0.]
-# [1. 1. 1. 1. 1. 1. 1. 1. 1. 0.]
-# [1. 1. 1. 1. 1. 1. 0. 0. 1. 0.]
-# [1. 1. 1. 1. 0. 1. 0. 0. 0. 0.]
+# src/mnist accuracy: 80%
+# [[1. 0. 1. 1. 1. 0. 0. 1. 1. 1.]
+#  [1. 1. 0. 1. 1. 1. 1. 1. 1. 1.]]
+
+
+# src/hard_mnist accuracy:60%
+# [[0. 1. 0. 0. 0. 1. 0. 0. 0. 1.]
+#  [1. 0. 1. 1. 1. 1. 1. 1. 1. 1.]
+#  [0. 0. 1. 0. 1. 1. 0. 1. 1. 0.]
+#  [1. 1. 1. 1. 1. 1. 0. 1. 0. 0.]]
+
 
