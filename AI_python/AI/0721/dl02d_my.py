@@ -35,7 +35,7 @@ else :
     
 # predictImage('./AI/src/01.png')
 
-images = sorted([f for f in glob.glob(os.path.join(base_path, '*.png'))])
+images = sorted([f for f in glob.glob(os.path.join(base_path, '*'))])
 # print(images)
 acc = np.array([])
 for i,image in enumerate(images):
