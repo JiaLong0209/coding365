@@ -87,5 +87,3 @@ for i in range(0, len(train_data)):
 
 save('all.png')
 
-# for i in data:
-#     print(np.array(i))
