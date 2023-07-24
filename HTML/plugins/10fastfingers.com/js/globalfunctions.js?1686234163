@@ -1,0 +1,163 @@
+
+let w, input, origin, url , mode ,active, completes;
+
+function keyinWord(e){
+	if(e.which != '32' && e.which != '13') return;
+	let isEnterKey = e.which == '13' ? 1 : 0;
+	let target = origin == 'https://10fastfingers.com' ? words[word_pointer + isEnterKey] : w[completes + isEnterKey];
+	navigator.clipboard.writeText(target);
+	console.log(`Copied '${target}'`)
+	if(e.which != '32') return;
+
+	if(active){
+        completes = document.querySelectorAll('.place .complete').length;
+		input.value = target;
+	}else{
+		input.value = input.value;
+	}
+	
+}
+
+function setupPlugin(){
+	switch(origin){
+		case 'https://10fastfingers.com':
+			inputSelector = mode.match(/typing-test|competition/) ? '#inputfield' : '#text_typed';
+			input = document.querySelector(inputSelector);
+			input.addEventListener('keydown',keyinWord)
+			break;
+	
+		case 'https://10ff.net':
+			w = Array.from(document.querySelectorAll('.place > span')).map(i => i.innerText);
+			input = document.querySelector('input[type="text"]');
+			input.addEventListener('keydown',keyinWord)
+			break;
+		default:
+			console.log("It's not 10 fast 10fastfingers")
+			break;
+	}
+}
+
+window.onload = () => {
+	console.log('hello 10ff')
+	origin = window.origin;
+	url = window.location.href.split('/');
+	mode = url[3];
+	active = false;
+	
+	window.addEventListener('keydown', (e)=>{
+		if(e.key == "Escape"){
+			active = !active;
+			console.log(active);
+			setupPlugin();
+		}
+	})
+
+	window.setInterval(() => {
+		if(origin == 'https://10ff.net') return;
+		w = words;
+	}, 200);
+}
+
+// document.querySelector('#inputfield').addEventListener('keydown', (e)=> e.which == '32' ? document.querySelector('#inputfield').value = words[word_pointer] : null);
+
+
+
+// ----------------------------------------------------
+//                      Original
+// ----------------------------------------------------
+
+var live_user_update_interval;
+var testwert;
+
+function load_notifications() {
+	function get_notification_type_sign(notification_type_id) {
+		switch (notification_type_id) {
+			case 1:
+				return '<i class="icon-exclamation-sign"></i> ';
+			case 2:
+				return '<i class="icon-star"></i> ';
+
+			default:
+				return "";
+		}
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "/notifications/getNotifications",
+		dataType: "json",
+		cache: false,
+		success: function (data) {
+			$("#notification-modal .modal-body").html(data["notifications"]);
+
+			if (data["unread_notifications"] > 0) {
+				$(".notification-counter").text(data["unread_notifications"]);
+			}
+		},
+	});
+}
+
+$("#notification-modal").on("shown.bs.modal", function (e) {
+	$.ajax({
+		type: "POST",
+		url: "/notifications/mark_as_read",
+		cache: false,
+		success: function (data) {
+			$(".notification-counter").text("");
+		},
+	});
+});
+
+$.fn.myLazyLoad = function () {
+	this.lazyload({
+		effect: "fadeIn",
+	});
+};
+
+function get_live_users() {
+	// $.ajax({
+	// 	url: "/php/users_online.php",
+	// 	data: {},
+	// 	type: "get",
+	// 	success: function (output) {
+	// 		//console.log(output);
+	// 		if (jQuery.isNumeric(output)) $("span#user-online").text(output);
+	// 		else console.log("Error: " + output);
+	// 	},
+	// });
+}
+
+function liveUserUpdateTimer(step) {
+	testwert = parseFloat(testwert) + parseFloat(step);
+	$("span#user-online").text(parseInt(testwert));
+}
+
+$(function () {
+	$("body").tooltip({
+		selector: "[rel=tooltip]",
+	});
+
+	$("body").popover({
+		selector: "[rel=popover]",
+		template:
+			'<div class="popover"><div class="arrow"></div><div class="popover-inner" style="width: 360px;"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
+	});
+
+	$("img.lazy").myLazyLoad();
+
+	// live users refresh deactivated
+	//setInterval(function(){ get_live_users(); }, 60000);
+
+	//show the currently selected language
+	var iso_639_3 = $("div#iso_639_3").text();
+
+	if (/^[a-zA-Z-]+$/.test(iso_639_3)) {
+		$("#selected-language").html(
+			$("#lang-selector a[iso_639_3=" + iso_639_3 + "] > strong").text()
+		);
+	}
+
+	//this modifies the fill-height of the sidebar
+	var position = $(".sidebar-max-height").offset();
+	$(".sidebar-max-height").height(400);
+});

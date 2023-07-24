@@ -1,0 +1,67 @@
+/*
+[name]æ¢¦å¹»æ˜Ÿç©º[/name]
+[iconbgcolor]#333333[/iconbgcolor]
+Powered by Yeei.cn
+æ›´å¤šé…è‰²ä¸‹è½½ï¼šhttp://www.yeei.cn/forum-54-1.html
+*/
+
+*{
+    transition: 0.2s;
+}
+
+*::selection{
+    background: #0f2263;
+    color: #fff;
+    text-decoration: rgb(181, 219, 43) wavy underline overline 1px ;
+    text-shadow: 4px 3px 1px rgb(196, 182, 60);
+}
+
+
+body{background: #08090D url(body.jpg) no-repeat center 0;background-size: cover;background-attachment: fixed;background-position-y: 0;background-blend-mode: normal;}
+.a_h{ padding:0px}
+.head_y{background:none;}
+/* .head_yn_bg{} */
+.head_yn{ background:none;height:200px; }
+.head_logo{ padding-top:50px}
+.slidebar li.on { background:#81BCEB; filter:none; color: #fff; font-weight: 700; }
+.c_yt{background: url(central_t.png) repeat-x 0 0;}
+.c_yt .c_r{background:url(central_t.png) no-repeat right -125px;}
+.c_yt .c_l{background:url(central_t.png) no-repeat 0 -62px;}
+.c_yt { color:#ddd}
+.c_yt a{ color:#ddd;}
+.c_yt .pipe{ color:#555}
+.member .avt img{background:#213141; border:1px solid #444; border-bottom:1px solid #333;border-right:1px solid #333 }
+.mb_11 span{ color:#999;}
+.a_mu{ background:none}
+#scbar_yeei{background: url(search.png) no-repeat 0 0;}
+#scbar_yeei #scbar_type{ background:none;}
+#scbar_type{color:#888!important;}
+#scbar_txt{color:#999!important;width:245px; padding-left:5px;}
+#scbar_type_menu { border:1px solid #000; background:#333;margin-top:6px;filter:alpha(opacity=60);opacity:0.6;}
+#scbar_type_menu a { color:#ddd; border-bottom:1px dotted #666}
+#scbar_type_menu a:hover { background:#000; color:#ddd; border-bottom:1px dotted #666}
+.yeei_sw2l .tb .a a {background:url(tab_a.gif) no-repeat 0 0!important;font-weight: 700; color:#4D5D74;}
+.c_yeeib{margin:0 4px;background: #f6f9ffe6;_background:#fff;}
+.bm{ background:none}
+.yeei_sw{background:#fff;}
+.fl .fl_tb tr {background:none;}
+#ft .xs0 a{ color:#aaa}
+
+/* 捲軸底色 */
+*::-webkit-scrollbar-track {
+    background-color: #03091100;
+    /* box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2); */
+    /* border-radius: 5px; */
+}
+
+/* 捲軸寬度 */
+*::-webkit-scrollbar {
+    width: 3px;
+    height: 10px;
+}
+
+/* 捲軸本體顏色 */
+*::-webkit-scrollbar-thumb {
+    background-color: #3954ad71;
+    /* border-radius: 5px; */
+}
