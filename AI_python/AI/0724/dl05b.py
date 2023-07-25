@@ -51,6 +51,8 @@ valid_it = datagen.flow_from_directory('drive/MyDrive/00AI/valid/',
 
 model.fit(train_it, steps_per_epoch=12, validation_data=valid_it, validation_steps=4, epochs=20)
 
+# minor fix by very small learning rate
+
 base_model.trainable = True
 model.compile(optimizer=keras.optimizers.RMSprop(learning_rate = .00001),  # Very low learning rate
               loss=keras.losses.BinaryCrossentropy(from_logits=True),
