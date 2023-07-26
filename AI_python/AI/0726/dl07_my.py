@@ -18,15 +18,6 @@ def vectorize_sequences(sequences, dimension=10000):
   return results
 
 import numpy as np
-xxlist=[[15,2,16],[1,7,18]]
-#xxarr=np.array(xxlist)
-xx = np.zeros((len(xxlist), 20))
-print(xxlist)
-print(xx)
-for i, sequence in enumerate(xxlist):
-  print(i,sequence)
-  xx[i, sequence] = 1
-print(xx)
 
 x_train = vectorize_sequences(train_data) #25,000*10,000=250,000,000
 x_test = vectorize_sequences(test_data)
@@ -66,14 +57,13 @@ history = model.fit(x_train,
       batch_size=256,
       validation_data=(x_test, y_test))
 
-def textToSequences(str):
-    str = str.lower().split()
-    return [word_index.get(i,'?') for i in (str)] 
+textToSequences = lambda str: [word_index.get(i,'?') for i in (str.lower().split())]
+preprocess_input = lambda str_list: vectorize_sequences(np.array([textToSequences(i) for i in (str_list)]))
 
 str_list = ["This movie is really good","This is the worst movie I've ever seen"]
-my_train = np.array([ textToSequences(i) for i in (str_list)])
-my_train = vectorize_sequences(my_train)
-print(my_train)
+print(str_list)
+my_train = preprocess_input(str_list)
+print(my_train) 
 model.predict(my_train)
 
 
