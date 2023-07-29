@@ -4,7 +4,7 @@ let scrollDist = 200;
 let interval = 1000 / 120; // 120 FPS
 let minSpeed = 0, maxSpeed = 2;
 let power = 1.2;
-let ar = 0.25
+let ar = 0.25   
 line_width = 1;
 
 function scrollByDistance(x, y, duration) {
