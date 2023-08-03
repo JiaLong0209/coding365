@@ -52,41 +52,9 @@ function keyListener(e) {
             switchPenOrEraser();
             break;
 
-        case ' ':
-            e.preventDefault();
-            break;
-
-        case 'j':  // scroll page to bottom by distance
-            scrollByDistance(0, scrollDist, scrollTime);
-            break;
-
-        case 'J':   // scroll page to bottom by distance, but double the scroll distance
-            scrollByDistance(0, scrollDist * 2, scrollTime);
-            break;
-
-        case 'k':  // scroll page to top by distance
-            scrollByDistance(0, -scrollDist, scrollTime);
-            break;
-
-        case 'K':   // scroll page to top by distance, but double the scroll distance
-            scrollByDistance(0, -scrollDist * 2, scrollTime);
-            break;
-
-        case 'i':
-            scrollByDistance(0, -scrollDist / 4, scrollTime);
-            break;
-
-        case 'm':
-            scrollByDistance(0, scrollDist / 4, scrollTime);
-            break;
-
-        case 'h':   // scroll page to left by distance
-            scrollByDistance(-scrollDist, 0, scrollTime);
-            break;
-
-        case 'l':  // scroll page to right by distance
-            scrollByDistance(scrollDist, 0, scrollTime);
-            break;
+        // case ' ':
+        //     e.preventDefault();
+        //     break;
 
         default:
             keyMaping(e.key)

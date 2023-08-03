@@ -7,8 +7,9 @@
     6. decrease the volume of the sound     20230630 v.
     7. smoother page move
     8. copy text without <rt> tag (平仮名)
+    9. hidden 平仮名 hotkey 't'              20230803 v.
 */
-let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables;
+let box, active, table, input, prev, next, tablePrev, tableNext, list, breadcrumbs, articles, vocabularyTables, rts;
 let scrollTime = 250;
 let scrollDist = 200;
 let interval = 1000/120; // 120 FPS
@@ -20,6 +21,8 @@ let vocabularyString = '';
 let printVocabularyMode = 1; // console each line == 0, console vocabularyString == 1
 let spacing = 8;
 let isMouseDown = false;
+let hiddenHinagara = false;
+
 
 function scrollByDistance(x , y, duration){
     let time = 0;
@@ -229,6 +232,10 @@ function keyListener(e){
         case 'C':
             calculateVocabularyCount();
             break;
+
+        case 't':
+            hiddenRts();
+            break;
         default:
             if(e.key.match(/[0-9]/) && !e.ctrlKey) goToPageByNumber(e.key);
             if(e.key.match(/[!@#$%]/)) {
@@ -237,6 +244,13 @@ function keyListener(e){
             };
             break;
     } 
+}
+
+function hiddenRts(){
+    hiddenHinagara = !hiddenHinagara
+    for(let i of rts){
+        i.style.display = hiddenHinagara ? 'none' : 'block'
+    }
 }
 
 function copyTextByClick(e){
@@ -248,7 +262,7 @@ function copyTextByClick(e){
         str = text.slice(0, text.findIndex(i => i == '\n')+1).join('');  
         copy(str);
     }else{
-        copy(text);
+        copy(text.join(''));
     }
 }
 
@@ -274,13 +288,18 @@ window.onload = () => {
     articles = document.querySelectorAll('article div:nth-child(2) li a');
     active = false;
     vocabularyTables = Array.from(document.querySelectorAll('div[itemprop="articleBody"] table')).slice(0, -3);
+    rts = document.querySelectorAll('rt')
     console.log("hello 時雨の町")
     window.addEventListener('keydown', keyListener);
     window.addEventListener('click', copyTextByClick);
 
     window.addEventListener('mousedown', mouseDownHandler)
     window.addEventListener('mouseup', copySelectedText)
-    audio.volume = 0.4;
+    audio.volume = 0.8;
+
+    // for (let i of rts){
+    //     i.style.userSelect = 'none'
+    // }
 
 }
 
