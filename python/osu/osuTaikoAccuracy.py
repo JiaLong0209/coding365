@@ -37,4 +37,4 @@ a.printInfo()
 a.printInfo()
 
 b = taiko(*hits_arr*4)
-b.printInfo()
+b.printInfo() 
