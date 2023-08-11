@@ -33,31 +33,33 @@ class Osu(OsuMode):
     def __init__(self, perfect=0, good=0, bad=0, miss=0):
         super().__init__(**dict(list(locals().items())[1:-1]))
         self.hits = list(locals().values())[1:-1]
-        self.weights = [300, 100, 50, 0]
         self.text = ['300', '100', '50', '0']
-        
+        self.weights = [300, 100, 50, 0]
+        self.accuracy = self.calcAccuracy()
+
 class Taiko(OsuMode):
     def __init__(self, perfect=0, good=0, miss=0):
         super().__init__(**dict(list(locals().items())[1:-1]))
         self.hits = list(locals().values())[1:-1]
-        self.text = ['良','可','不可']
+        self.text = ['良', '可', '不可']
         self.weights = [300, 100, 0]
         self.accuracy = self.calcAccuracy()
- 
+
 
 class Mania(OsuMode):
     def __init__(self, perfectPlus=0, perfect=0, great=0, good=0, bad=0, miss=0):
         super().__init__(**dict(list(locals().items())[1:-1]))
         self.hits = list(locals().values())[1:-1]
-        self.text = ['300+', '300', '200', '100', '50', '0']
+        self.text = ['300+', '300', '200', '100', '50', 'miss']
         self.weights = [300, 300, 200, 100, 50, 0]
         self.accuracy = self.calcAccuracy()
+
 
 class Catch(OsuMode):
     def __init__(self, fruits=0, drops=0, droplets=0, totalFruits=0, totalDrops=0, totalDroplets=0):
         print(np.array(list(locals().values()))[:])
         self.hits = np.array(list(locals().values()))[1:-3]
-        self.total = np.array(list(locals().values()))[4: ]
+        self.total = np.array(list(locals().values()))[4:]
         self.text = ['fruits', 'drops', 'droplets']
         self.weights = [300, 300, 300]
         self.mode = self.__class__.__name__
