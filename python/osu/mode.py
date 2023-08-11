@@ -2,6 +2,7 @@ import numpy as np
 
 
 class OsuMode:
+
     def __init__(self, perfectPlus=0, perfect=0, great=0, good=0, bad=0, miss=0):
         self.notes = np.sum(np.array(list(locals().values())[1:]))
         self.hits = list(locals().values())[1:-1]
@@ -9,7 +10,6 @@ class OsuMode:
         self.text = []
         self.accuracy = 0
         self.mode = self.__class__.__name__
-        # print(dict(list(locals().items())[1:]))
 
     def calcAccuracy(self):
         total = 0
@@ -30,6 +30,7 @@ class OsuMode:
 
 
 class Osu(OsuMode):
+
     def __init__(self, perfect=0, good=0, bad=0, miss=0):
         super().__init__(**dict(list(locals().items())[1:-1]))
         self.hits = list(locals().values())[1:-1]
@@ -37,7 +38,9 @@ class Osu(OsuMode):
         self.weights = [300, 100, 50, 0]
         self.accuracy = self.calcAccuracy()
 
+
 class Taiko(OsuMode):
+
     def __init__(self, perfect=0, good=0, miss=0):
         super().__init__(**dict(list(locals().items())[1:-1]))
         self.hits = list(locals().values())[1:-1]
@@ -47,6 +50,7 @@ class Taiko(OsuMode):
 
 
 class Mania(OsuMode):
+
     def __init__(self, perfectPlus=0, perfect=0, great=0, good=0, bad=0, miss=0):
         super().__init__(**dict(list(locals().items())[1:-1]))
         self.hits = list(locals().values())[1:-1]
@@ -56,6 +60,7 @@ class Mania(OsuMode):
 
 
 class Catch(OsuMode):
+
     def __init__(self, fruits=0, drops=0, droplets=0, totalFruits=0, totalDrops=0, totalDroplets=0):
         print(np.array(list(locals().values()))[:])
         self.hits = np.array(list(locals().values()))[1:-3]
