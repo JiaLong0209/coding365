@@ -1,4 +1,12 @@
-rt {}
+input#tempTextInput {
+    /* bottom: 1000px; */
+    height: 20px;
+    text-align: center;
+    margin: auto;
+}input#tempTextInput {
+    width: 100px;
+    bottom: 50px;
+}rt {}
 
 rt {
     user-select: none;
