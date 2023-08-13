@@ -1,6 +1,6 @@
 /* TODO 20230622~
     1. copy selected text                   20230627 v. 
-    2. temporary text bar
+    2. temporary text bar                   20230814 v.
     3. move mouse pointer by pressing key
     4. select and copy word by pressing key
     5. code refactoring
@@ -22,6 +22,10 @@ let printVocabularyMode = 1; // console each line == 0, console vocabularyString
 let spacing = 8;
 let isMouseDown = false;
 let hiddenHinagara = false;
+let tempTextBar = document.createElement('input');
+let tempTextBarStyle = document.createElement('style');
+let animationTime = '0.15s'
+let tempTextBarToggleTime = 150
 
 
 function scrollByDistance(x , y, duration){
@@ -83,21 +87,23 @@ function openBreadCrumbTabByNumber(n){
 
 function focusInput(){
     setTimeout(() => {
-        input.focus();
-    }, 200);
+       tempTextBar.focus();
+    }, tempTextBarToggleTime);
 }
 
 function toggleSearchBar(){ 
-    // if(active){
-    //     box.style.bottom = '50px';
-    //     box.style.opacity = '0.9';
-    //     table.style.display = 'block';
-    //     focusInput();
-    // }else{
-    //     table.style.display = 'none';
-    //     box.style.bottom = '-50px';
-    //     box.style.opacity = '0';
-    // };
+    if(active){
+        tempTextBar.style.animation = `slideIn ${animationTime} forwards`
+        tempTextBar.style.opacity = '0.9';
+        tempTextBar.style.display = 'block';
+        focusInput();
+    }
+    else{
+        tempTextBar.style.animation = `slideOut ${animationTime} forwards`
+        setTimeout(() => {
+            tempTextBar.style.display = 'none';
+        }, tempTextBarToggleTime);
+    }
 }
 
 function vocabularyFormat(str){
@@ -156,14 +162,18 @@ function printVocabulary(){
     }
 }
 
+function isTempTextBarHotkey(key){
+    return key == 'Escapse' || key == 'Tab' || key == '/';
+}
+
 function keyListener(e){
+    if(active && !isTempTextBarHotkey(e.key)) return;
     switch (e.key){
         case "Escape": case "Tab": case "/":   // open search bar
             e.preventDefault();
             active = !active;
             toggleSearchBar();
             break;
-            
         case "ArrowLeft": case '[': case '-': case '{': case '_':   // move tablePage to left, or go to previous website
             if(e.altKey || e.ctrlKey || !e.shiftKey) return;
             e.preventDefault();
@@ -276,8 +286,57 @@ function copySelectedText(){
     isMouseDown = false;
 }
 
-window.onload = () => {
+function setTempTextBarStyle(){
+    tempTextBar.id = 'tempTextBar'
+    let css = `
+    input#tempTextBar {
+        display: none;
+        position: sticky;
+        bottom: 15%;
+        width: 50vw;
+        height: 35px;
+        text-align: center;
+        border: solid #262841 3px;
+        border-radius: 10px;
+        margin: auto;
+        background: #2b374d;
+        color: #ccc;
+        z-index: 100;
+        animation: slideIn 0.2s forwards;
+    }
     
+    @keyframes slideIn{
+        
+        0% {
+            transform: translateY(120px);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut{
+        
+        0% {
+            transform: translateY(0px);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(120px);
+            opacity: 0;
+        }
+    }
+
+    `
+    tempTextBarStyle.appendChild(document.createTextNode(css));
+    document.head.appendChild(tempTextBarStyle)
+    
+}
+
+function init(){
+
     box = document.querySelector('#srchBox');
     table = document.querySelector('#srch');
     input = document.querySelector('.gsc-input input');
@@ -289,17 +348,21 @@ window.onload = () => {
     active = false;
     vocabularyTables = Array.from(document.querySelectorAll('div[itemprop="articleBody"] table')).slice(0, -3);
     rts = document.querySelectorAll('rt')
+    audio.volume = 0.9;
+    document.body.appendChild(tempTextBar)
+    
+    setTempTextBarStyle()
+
+}
+
+window.onload = () => {
     console.log("hello 時雨の町")
+    init();
     window.addEventListener('keydown', keyListener);
     window.addEventListener('click', copyTextByClick);
-
     window.addEventListener('mousedown', mouseDownHandler)
     window.addEventListener('mouseup', copySelectedText)
-    audio.volume = 0.8;
 
-    // for (let i of rts){
-    //     i.style.userSelect = 'none'
-    // }
 
 }
 
