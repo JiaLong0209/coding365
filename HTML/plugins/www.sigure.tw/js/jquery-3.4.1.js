@@ -299,7 +299,7 @@ function setTempTextBarStyle(){
         border: solid #262841 3px;
         border-radius: 10px;
         margin: auto;
-        background: #2b374d;
+        background: #2b374ddd;
         color: #ccc;
         z-index: 100;
         animation: slideIn 0.2s forwards;
@@ -328,7 +328,6 @@ function setTempTextBarStyle(){
             opacity: 0;
         }
     }
-
     `
     tempTextBarStyle.appendChild(document.createTextNode(css));
     document.head.appendChild(tempTextBarStyle)
