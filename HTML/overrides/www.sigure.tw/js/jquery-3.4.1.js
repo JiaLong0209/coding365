@@ -311,6 +311,7 @@ function setTempTextBarStyle(){
             transform: translateY(120px);
             opacity: 0;
         }
+        
         100% {
             transform: translateY(0px);
             opacity: 1;
