@@ -32,8 +32,8 @@ function scrollMiddle(e){
 }
 
 function keyListener(e){
+
     switch (e.key){
-        
         case 'j': case 's':  // scroll page to bottom by distance
             scrollByDistance(0, scrollDist, scrollTime);
             break;
