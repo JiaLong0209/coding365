@@ -1,366 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anchor</title>
-    <script src="popup.js"></script>
-    <style>
-        :root {
-            /* --primary: rgb(129, 40, 40); */
-            --primary: rgba(73, 11, 11, 0.911);
-            --fontsize: 20px;
-        }
-
-        * {
-            /* box-sizing: border-box; */
-            user-select: none;
-            scroll-behavior: smooth;
-            margin: 0;
-            padding: 0;
-            font-family: Tahoma, Geneva, Verdana, sans-serif;
-            list-style: none;
-            cursor: url(https://github.com/JiaLong0209/myproducts/blob/main/smear-tool/image/cursor01.cur?raw=true), auto !important;
-        }
-
-        /* 捲軸底色 */
-        *::-webkit-scrollbar-track {
-            background-color: #fff;
-            /* box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.2); */
-
-        }
-
-        /* 捲軸寬度 */
-        *::-webkit-scrollbar {
-            width: 7px;
-        }
-
-        /* 捲軸本體顏色 */
-        *::-webkit-scrollbar-thumb {
-            background-color: var(--primary);
-        }
-
-        .container {
-            width: 100vw;
-            display: flex;
-            overflow: hidden;
-            flex-direction: column;
-            align-items: center;
-            background-image: url(https://media.istockphoto.com/id/858144788/vector/vector-seamless-subtle-geometric-lines-pattern-abstract-geometric-background-design.jpg?s=612x612&w=0&k=20&c=DZdi1zubaPwr1l1IlX82r3Q3F37mqjZCzwWgXP--tdE=);
-            /* background-image: url(https://media.istockphoto.com/id/1142068361/vector/blue-line-art-guilloche-pattern-vector-abstract-striped-background-squiggle-thin-lines.jpg?s=612x612&w=0&k=20&c=x8RQukugMUwUp8eOVyRakjrc9UjpvykYUcHOLJ0CdXg=); */
-        }
-
-        ul {
-            width: 100%;
-            display: flex;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .text {
-            text-align: justify;
-            margin: 10px 102px;
-            color: rgb(49, 49, 49);
-            letter-spacing: 0.075rem;
-            line-height: 2rem;
-            font-size: var(--fontsize);
-        }
-
-        ul>a {
-            width: 100%;
-            background: var(--primary);
-            transition: 0.3s;
-            padding: 15px;
-            font-size: 20px;
-            text-decoration: none;
-            color: rgb(243, 243, 243);
-            transition: 0.2s;
-            text-align: center;
-            outline: none;
-        }
-
-        ul>a:hover {
-            background: rgb(26, 26, 26);
-            box-shadow: 0px 20px 1px -15px rgb(199, 62, 62);
-            color: rgb(255, 255, 255);
-
-            /* background: rgb(255, 255, 255, 0.1);
-            box-shadow: 0 0 2px 3px var(--primary);
-            border: 0px solid var(--primary);
-            color: var(--primary); */
-        }
-        
-
-        .title {
-            margin: 10px;
-            font-size: 30px;
-            color: rgb(59, 19, 19);
-            transition: 0.4s;
-        }
-
-        .title:hover {
-            transform: rotate(360deg);
-        }
-
-        .scrollTop {
-            display: block;
-            position: fixed;
-            width: 45px;
-            height: 45px;
-            bottom: 50px;
-            right: 30px;
-            border-radius: 50%;
-            border: 2px solid var(--primary);
-            background: var(--primary);
-            transition: 0.4s;
-            font-size: 37px;
-            color: #fff;
-            text-align: center;
-            transform: rotate(-90deg);
-            user-select: none;
-            text-decoration: none;
-        }
-
-        .scrollTop:hover {
-            background: rgb(255, 255, 255, 0.1);
-            transform: rotate(270deg);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-
-        footer {
-            width: 100%;
-            background: var(--primary);
-            letter-spacing: 0.13rem;
-            font-size: 1.2rem;
-            text-align: center;
-            color: rgb(252, 204, 204);
-            padding: 10px 0;
-        }
-    </style>
+    <title>My Rhythm Game</title>
+    <link rel="stylesheet" href="popup.css">
+    <link rel="icon" href="https://pbs.twimg.com/media/ClUjwFiWYAAs04k.jpg">
 </head>
+<body> 
+<audio class="song">
+    <source src="https://github.com/JiaLong0209/playground/blob/main/rhythm_game/MyVersion/music1.mp3" type="audio/mpeg">
+    <!-- https://wall.alphacoders.com/big.php?i=761158 -->
+    <!-- https://www.youtube.com/watch?v=n5DKP3FhIqI&ab_channel=R3MusicBox -->
+</audio>
 
-<body>
-    <div class="container">
-        <ul>
-            <a href="#onw">One</a>
-            <a href="#two">Two</a>
-            <a href="#three">Three</a>
-            <a href="#four">Four</a>
-        </ul>
-        <a class="scrollTop" href="#">➤</a>
-        <div class="box">
-            <h1 class="title" id="one">One</h1>
-            <p class="text">This pie chart shows consideration of students in a high school in Taiwan before they join a
-                club. Based on the chart, we can find that the most important factor is whether the club suits their
-                interest, and the proportion of this factor is occupies nearly half in this chart. By contrast, the
-                other three factors are less important than the former. 21% of the students choose clubs that relieve
-                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
-                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
-                When it comes to joining a club, there are two factors for me to consider. First, like the students
-                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
-                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
-                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
-                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
-                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
-                most important factor is whether the club suits their interest, and the proportion of this factor is
-                occupies nearly half in this chart. By contrast, the other three factors are less important than the
-                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
-                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
-                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
-                me to consider. First, like the students surveyed, I prefer clubs that I have an interest in or passion
-                for, and I hope that the club relates music, dance or information. Secondly, I am a person who always
-                wants to learn new skills, so whether I can learn a new skill from club will be second most important
-                factor to me. To sum up, I want to join a club that can help me develop my interests and learn new
-                skills.</p>
+<div class="container">
+    <div class="background"></div>
+    <div class="setting"></div>
+    <div class="game">
+        <div class="hit">
+            <div class="hit__combo"></div>
+            <div class="hit__accuracy"></div>
         </div>
-        <div class="box">
-            <h1 class="title" id="two">Two</h1>
-            <p class="text">The pie chart shows that a country status of resources recycle in 2019.
-                Based on the pie chart, it is divided into five categories while respectively paper, metals, plastics,
-                bottles and others, and we can find that the proportion of recycling of these categories respectively
-                57.3%, 23.2%, 9.5%, 7.9% and 2.1%.
-                Additionally, the biggest proportion of recycle in these categories is paper. However in my family, my
-                family's biggest proportion of recycling in these categories is plastics, both are worlds apart in the
-                biggest proportion of recycling. From my own perspective, the reason why exceeding gap in both
-                because there is a financial subsidy about recycling of papers in the country, while my family just like
-                to drink beverages which packaged in plastic so much, thus led to such a consequence.Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Voluptatum blanditiis rerum praesentium quod voluptatem iusto
-                itaque delectus quam. Similique dolor nulla, velit temporibus accusamus adipisci amet quas aut commodi
-                quos sapiente ratione et facilis numquam dolores! Eveniet consequuntur quas, nam dolorum assumenda,
-                omnis eligendi ex ipsa blanditiis doloribus repudiandae quisquam nostrum animi reiciendis dignissimos
-                ratione asperiores inventore quibusdam itaque laborum ab dolore consequatur ipsam totam. Non ipsum
-                accusantium quos aliquid! Maiores deleniti fugit, sit quis nesciunt dolorum non temporibus provident
-                excepturi quod quibusdam eligendi tenetur, facere itaque ad mollitia laudantium distinctio impedit
-                consequuntur pariatur repellendus. Nesciunt repellat ea velit eligendi omnis explicabo, facere error
-                temporibus fugit earum sint quas. Facere repellendus rerum sed voluptas et debitis tempora similique
-                porro dolorum modi vitae ipsa ab placeat incidunt unde, animi earum recusandae possimus aspernatur
-                consequatur nemo veniam ea illo aperiam. Autem harum id temporibus! Accusamus consectetur quis ratione
-                praesentium voluptatem minus aspernatur nemo eos amet modi. Ut magni optio alias mollitia! Soluta totam
-                unde, adipisci inventore minus aliquid dolor consequatur aliquam tempora architecto. Accusamus
-                voluptates culpa placeat ad quia dolore ea modi magnam voluptatibus harum eius quis inventore facere
-                soluta aliquid qui exercitationem commodi et recusandae quibusdam, ratione eligendi ipsum perspiciatis!
-                Cumque cum tempore eos quis a ratione error expedita ipsum veniam dignissimos explicabo, optio iure
-                The pie chart shows that a country status of resources recycle in 2019.
-                Based on the pie chart, it is divided into five categories while respectively paper, metals, plastics,
-                bottles and others, and we can find that the proportion of recycling of these categories respectively
-                57.3%, 23.2%, 9.5%, 7.9% and 2.1%.
-                Additionally, the biggest proportion of recycle in these categories is paper. However in my family, my
-                family's biggest proportion of recycling in these categories is plastics, both are worlds apart in the
-                biggest proportion of recycling. From my own perspective, the reason why exceeding gap in both
-                because there is a financial subsidy about recycling of papers in the country, while my family just like
-                to drink beverages which packaged in plastic so much, thus led to such a consequence.corrupti
-                consequatur totam! Inventore, consectetur deleniti quisquam rerum eligendi dolore. Possimus,
-                ratione ab modi maxime inventore quaerat odio, nobis, fugit nisi in ea esse neque autem nostrum. Totam,
-                nemo non! Quasi molestias amet totam autem qui accusantium, dolorum repellat placeat debitis. Labore
-                repellat quia quaerat eveniet laudantium officia, magni voluptatem eos quo error illo rerum fuga
-                perspiciatis quibusdam laboriosam officiis nesciunt accusamus repellendus ipsum aut? Quos molestias
-                molestiae error deserunt, eaque dolorem inventore numquam maiores architecto consectetur debitis
-                accusantium non recusandae sequi sapiente. Officia, adipisci dolor! Lorem ipsum dolor, sit amet
-                consectetur adipisicing elit. Aperiam, aliquid accusamus! Vel deleniti ad numquam quidem cupiditate
-                repudiandae odio illo assumenda expedita modi laboriosam quo enim amet, soluta sunt et alias asperiores
-                debitis vitae dicta aperiam adipisci maiores sequi. Ducimus excepturi facere adipisci doloremque.
-                Cupiditate quisquam rerum debitis dolorum sequi ullam a ad odio, molestias maiores obcaecati. Ut facilis
-                excepturi repudiandae, ducimus dolorum optio quae omnis cumque maxime sequi pariatur ipsum similique
-                architecto perferendis. Sapiente earum magni labore totam dolorem veniam itaque molestias quae facilis
-                quis asperiores tempore modi obcaecati repudiandae, at voluptate odio? Laboriosam labore aliquid
-                doloribus culpa maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum laboriosam ratione
-                provident voluptas. Soluta, nesciunt asperiores? Perspiciatis mollitia corporis dignissimos facere
-                perferendis, delectus labore impedit autem, eos aut a et.</p>
+        <div class="track-container">
+            <!-- <div class="keyJudge">
+                <div class="keyBtn keyBtn--d"></div>
+                <div class="keyBtn keyBtn--f"></div>
+                <div class="keyBtn keyBtn--j"></div>
+                <div class="keyBtn keyBtn--k"></div>
+            </div> -->
         </div>
-        <div class="box">
-            <h1 class="title" id="three">Three</h1>
-            <p class="text"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur ea, nihil earum est
-                iure nesciunt perspiciatis a necessitatibus laborum repellat ex mollitia nobis reprehenderit, soluta
-                inventore adipisci perferendis ab sequi voluptatibus iusto facilis placeat voluptates. Placeat nihil
-                corrupti odio veniam praesentium. Totam magnam culpa iusto esse voluptas cupiditate laborum, aliquam
-                corrupti expedita voluptatum molestiae consectetur, voluptatem consequatur, nostrum eos et! Vero
-                accusantium numquam ut enim, sed sapiente id, dolores minima atque beatae libero accusamus molestias
-                quam neque! Id quos totam placeat! Accusantium impedit non deleniti amet ut quisquam recusandae eaque
-                odio? Vel sed doloremque, iusto doloribus vitae iste exercitationem necessitatibus inventore cum
-                explicabo ad id distinctio, asperiores eos similique nihil culpa nemo officiis facilis! Necessitatibus
-                obcaecati quaerat suscipit deleniti id ullam ipsa, possimus quibusdam maiores corporis, modi expedita
-                quod. Modi, adipisci libero eum, ipsam est repudiandae placeat veritatis maiores, ducimus deleniti
-                obcaecati reiciendis excepturi nemo veniam eligendi. Nam quibusdam, assumenda tempora harum vel aperiam
-                dolore aspernatur dolor dolorem blanditiis laborum maiores natus odio nemo? Aliquid sed magnam inventore
-                sapiente unde distinctio tempore asperiores. Doloribus sit recusandae, amet tenetur tempora quaerat
-                necessitatibus, sunt a illo dicta voluptatibus repellat perferendis maiores ipsam impedit iure!
-                Consequuntur minima quam sed perspiciatis. Veniam, mollitia non. Lorem ipsum dolor, sit amet consectetur
-                adipisicing elit. Aperiam, aliquid accusamus! Vel deleniti ad numquam quidem cupiditate repudiandae odio
-                illo assumenda expedita modi laboriosam quo enim amet, soluta sunt et alias asperiores debitis vitae
-                dicta aperiam adipisci maiores sequi. Ducimus excepturi facere adipisci doloremque. Cupiditate quisquam
-                rerum debitis dolorum sequi ullam a ad odio, molestias maiores obcaecati. Ut facilis excepturi
-                repudiandae, ducimus dolorum optio quae omnis cumque maxime sequi pariatur ipsum similique architecto
-                perferendis. Sapiente earum magni labore totam dolorem veniam itaque molestias quae facilis quis
-                asperiores tempore modi obcaecati repudiandae, at voluptate odio? Laboriosam labore aliquid doloribus
-                culpa maiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum laboriosam ratione provident
-                voluptas. Soluta, nesciunt asperiores? Perspiciatis mollitia corporis dignissimos facere perferendis,
-                delectus labore impedit autem, eos aut a et.</p>
-            <p class="text">Uid Uid Uid Uid Uid Uid Uid Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-                repellendus ratione quaerat et maxime! Labore id nam ea error velit doloribus rem quaerat! Excepturi
-                reprehenderit numquam amet quis laudantium fuga corrupti magnam illo officia, recusandae ipsa nesciunt,
-                molestias nihil iste? Culpa corporis saepe nesciunt eius dicta maxime a animi eos. Corporis ipsa hic
-                placeat, corrupti, facilis alias ea magni, ex architecto ducimus maiores ut nemo maxime tempora iusto
-                In the generation which technology swiftly developed, a mounting number of 3c products are published and
-                discarded, such as computers, tablets and smartphones according to the left graph. Therefore, when more
-                people use those 3c products, the more 3c products are abandoned. As a result, it led to the beautiful
-                scape becoming a terrible scene that looks like the graph in right.
-                From my own perspective, the main factor why caused this consequence is technical companies excessively
-                published products. For instance, the Apple company almost publishes a newly developed smartphone and
-                personal computer. Therefore, in order to keep up with trends, people usually purchase the product which
-                was published lately, and led to the old product was discarded. As a consequence, the exceedingly
-                immense 3c products were abandoned. After all, the old do not go, the new do not come.
-                For this problem, I have come up with some solution. First, appeal to those companies didn't publish new
-                products frequently. Second, donating the old device which can execute its function to remote or
-                impoverished area. Last, appeal to people that don't exceedingly pursue material life. odio nulla
-                delectus expedita? Iste, dolorum saepe hic aut corporis odit aliquid eum eos? Eaque eum
-                laudantium repellat eveniet explicabo dolorem voluptates dolores a ipsam perspiciatis consectetur odit
-                alias, veritatis amet error ullam consequuntur nihil ipsa aspernatur sunt omnis? Culpa repudiandae
-                numquam excepturi autem amet earum rerum, eligendi, odio deleniti exercitationem expedita vero
-                distinctio dicta quidem doloribus beatae laboriosam dolor dolorem obcaecati officiis. Est minima nihil
-                impedit doloremque tenetur repudiandae animi, nemo reprehenderit suscipit accusantium autem mollitia
-                neque repellendus totam exercitationem qui facere voluptatem enim quam ea? Earum debitis at quibusdam
-                doloremque? Maiores obcaecati commodi aut sint, quas amet corporis soluta? Voluptate sapiente, quisquam
-                fugit amet corporis, velit porro consectetur laborum id omnis, incidunt aperiam? Doloribus debitis
-                impedit, ad ex dolore vel consectetur fuga fugit, provident error, obcaecati id ratione vitae libero.
-                Uid Uid Uid Uid Uid Uid Uid Uid Uid Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam,
-                aliquid accusamus! Vel deleniti ad numquam quidem cupiditate repudiandae odio illo assumenda expedita
-                modi laboriosam quo enim amet, soluta sunt et alias asperiores debitis vitae dicta aperiam adipisci
-                maiores sequi. Ducimus excepturi facere adipisci doloremque. Cupiditate quisquam rerum debitis dolorum
-                sequi ullam a ad odio, molestias maiores obcaecati. Ut facilis excepturi repudiandae, ducimus dolorum
-                optio quae omnis cumque maxime sequi pariatur ipsum similique architecto perferendis. Sapiente earum
-                magni labore totam dolorem veniam itaque molestias quae facilis quis asperiores tempore modi obcaecati
-                repudiandae, at voluptate odio? Laboriosam labore aliquid doloribus culpa maiores. Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Cum laboriosam ratione provident voluptas. Soluta, nesciunt
-                asperiores? Perspiciatis mollitia corporis dignissimos facere perferendis, delectus labore impedit
-                autem, eos aut a et.</p>
-        </div>
-        <div class="box">
-            <h1 class="title" id="four">Four</h1>
-            <p class="text">This pie chart shows consideration of students in a high school in Taiwan before they join a
-                club. Based on the chart, we can find that the most important factor is whether the club suits their
-                interest, and the proportion of this factor is occupies nearly half in this chart. By contrast, the
-                other three factors are less important than the former. 21% of the students choose clubs that relieve
-                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
-                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
-                When it comes to joining a club, there are two factors for me to consider. First, like the students
-                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
-                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
-                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
-                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
-                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
-                most important factor is whether the club suits their interest, and the proportion of this factor is
-                occupies nearly half in this chart. By contrast, the other three factors are less important than the
-                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
-                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
-                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
-                me to consider. 21% of the students choose clubs that relieve
-                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
-                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
-                When it comes to joining a club, there are two factors for me to consider. First, like the students
-                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
-                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
-                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
-                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
-                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
-                most important factor is whether the club suits their interest, and the proportion of this factor is
-                occupies nearly half in this chart. By contrast, the other three factors are less important than the
-                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
-                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
-                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
-                me to consider. 21% of the students choose clubs that relieve
-                their stress from schoolwork, while about 15% want to learn new skills or make new friends in the club.
-                In conclusion, half students in a high school in Taiwan choose clubs that match their interest.
-                When it comes to joining a club, there are two factors for me to consider. First, like the students
-                surveyed, I prefer clubs that I have an interest in or passion for, and I hope that the club relates
-                music, dance or information. Secondly, I am a person who always wants to learn new skills, so whether I
-                can learn a new skill from club will be second most important factor to me. To sum up, I want to join a
-                club that can help me develop my interests and learn new skills.This pie chart shows consideration of
-                students in a high school in Taiwan before they join a club. Based on the chart, we can find that the
-                most important factor is whether the club suits their interest, and the proportion of this factor is
-                occupies nearly half in this chart. By contrast, the other three factors are less important than the
-                former. 21% of the students choose clubs that relieve their stress from schoolwork, while about 15% want
-                to learn new skills or make new friends in the club. In conclusion, half students in a high school in
-                Taiwan choose clubs that match their interest.When it comes to joining a club, there are two factors for
-                me to consider. First, like the students surveyed, I prefer clubs that I have an interest in or passion
-                for, and I hope that the club relates music, dance or information. Secondly, I am a person who always
-                wants to learn new skills, so whether I can learn a new skill from club will be second most important
-                factor to me. To sum up, I want to join a club that can help me develop my interests and learn new
-                skills.</p>
+        <div class="key-container">
+            
+            <div class="key key--d key--black">
+                <div class="keypress keypress-white"></div>
+                <span>D</span>
+            </div>
+            <div class="key key--f key--black">
+                <div class="keypress keypress-white"></div>
+                <span>F</span>
+            </div>
+            <div class="key key--j key--black">
+                <div class="keypress keypress-white"></div>
+                <span>J</span>
+            </div>
+            <div class="key key--k key--black">
+                <div class="keypress keypress-white"></div>
+                <span>K</span>
+            </div>
+
         </div>
     </div>
-    <footer>
-        <span>copyright &copy; JiaLong 2022</span>
-    </footer>
+    <div class="menu">
+        <div class="menu_speed">
+            <div class="speedBox">
+                <span class="btn--noteSpeedDown speedBtn"><</span>
+                <div class="noteSpeedTxt speedTxt">Note Speed:0</div>
+                <span class="btn--noteSpeedUp speedBtn">></span>
+            </div>
+            <div class="speedBox">
+                <span class="btn--songSpeedDown speedBtn"><</span>
+                <div class="songSpeedTxt speedTxt">Song Speed:0</div>
+                <span class="btn--songSpeedUp speedBtn">></span>
+            </div>
+            
+            <div class="speedBox">
+                <span class="btn--noteOffsetDown speedBtn"><</span>
+                <div class="noteOffsetTxt speedTxt">Note Offset:0ms</div>
+                <span class="btn--noteOffsetUp speedBtn">></span>
+            </div>
+            <div class="speedBox">
+                <span class="btn--songOffsetDown speedBtn"><</span>
+                <div class="songOffsetTxt speedTxt">Song Offset:0ms</div>
+                <span class="btn--songOffsetUp speedBtn">></span>
+            </div>
+        </div>
+        <div class="menu_start">
+            <button class="btn btn--primary btn--start">Start</button>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!--     
+mission:
+1.add keypress listener v 
+2.track container v
+3.add note
+4.hit note judgement
+5.load music 
+6.UI
+     -->
+<script src="song.js"></script>
+<script src="popup.js"></script>
 </body>
-
-
 </html>
