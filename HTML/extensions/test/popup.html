@@ -2,108 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Rhythm Game</title>
-    <link rel="stylesheet" href="popup.css">
-    <link rel="icon" href="https://pbs.twimg.com/media/ClUjwFiWYAAs04k.jpg">
+    <title>Move page by key</title>
+    
 </head>
-<body> 
-<audio class="song">
-    <source src="https://github.com/JiaLong0209/playground/blob/main/rhythm_game/MyVersion/music1.mp3" type="audio/mpeg">
-    <!-- https://wall.alphacoders.com/big.php?i=761158 -->
-    <!-- https://www.youtube.com/watch?v=n5DKP3FhIqI&ab_channel=R3MusicBox -->
-</audio>
-
-<div class="container">
-    <div class="background"></div>
-    <div class="setting"></div>
-    <div class="game">
-        <div class="hit">
-            <div class="hit__combo"></div>
-            <div class="hit__accuracy"></div>
-        </div>
-        <div class="track-container">
-            <!-- <div class="keyJudge">
-                <div class="keyBtn keyBtn--d"></div>
-                <div class="keyBtn keyBtn--f"></div>
-                <div class="keyBtn keyBtn--j"></div>
-                <div class="keyBtn keyBtn--k"></div>
-            </div> -->
-        </div>
-        <div class="key-container">
-            
-            <div class="key key--d key--black">
-                <div class="keypress keypress-white"></div>
-                <span>D</span>
-            </div>
-            <div class="key key--f key--black">
-                <div class="keypress keypress-white"></div>
-                <span>F</span>
-            </div>
-            <div class="key key--j key--black">
-                <div class="keypress keypress-white"></div>
-                <span>J</span>
-            </div>
-            <div class="key key--k key--black">
-                <div class="keypress keypress-white"></div>
-                <span>K</span>
-            </div>
-
-        </div>
+<body>
+    <!-- <script src="./popup.js"></script> -->
+    <div class="container">
+        <h3>Move page by key</h3>
     </div>
-    <div class="menu">
-        <div class="menu_speed">
-            <div class="speedBox">
-                <span class="btn--noteSpeedDown speedBtn"><</span>
-                <div class="noteSpeedTxt speedTxt">Note Speed:0</div>
-                <span class="btn--noteSpeedUp speedBtn">></span>
-            </div>
-            <div class="speedBox">
-                <span class="btn--songSpeedDown speedBtn"><</span>
-                <div class="songSpeedTxt speedTxt">Song Speed:0</div>
-                <span class="btn--songSpeedUp speedBtn">></span>
-            </div>
-            
-            <div class="speedBox">
-                <span class="btn--noteOffsetDown speedBtn"><</span>
-                <div class="noteOffsetTxt speedTxt">Note Offset:0ms</div>
-                <span class="btn--noteOffsetUp speedBtn">></span>
-            </div>
-            <div class="speedBox">
-                <span class="btn--songOffsetDown speedBtn"><</span>
-                <div class="songOffsetTxt speedTxt">Song Offset:0ms</div>
-                <span class="btn--songOffsetUp speedBtn">></span>
-            </div>
-        </div>
-        <div class="menu_start">
-            <button class="btn btn--primary btn--start">Start</button>
-        </div>
-
-
-
-
-    </div>
-</div>
-
-
-
-
-
-
-
-
-
-<!--     
-mission:
-1.add keypress listener v 
-2.track container v
-3.add note
-4.hit note judgement
-5.load music 
-6.UI
-     -->
-<script src="song.js"></script>
-<script src="popup.js"></script>
 </body>
 </html>
