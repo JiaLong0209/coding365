@@ -1,4 +1,11 @@
+/*      DevLogs
+    230821 v0.31    add key "hjklwasdmMigG" move page
 
+
+    TODO:
+    1. active button
+    2. continuous mode
+*/
 let scrollTime = 250;
 let scrollDist = 200;
 let interval = 1000/120; // 120 FPS
@@ -34,13 +41,9 @@ function scrollMiddle(e){
 }
  
 function keyListener(e){
-    if(e.target.tagName.toLowercase() == 'input') return;
+    let tag = e.target.tagName.toLowerCase();
+    if( tag == 'input' || tag == 'textarea' ) return;
     switch (e.key){
-        case "Escape": case "Tab": case "/":   // open search bar
-            e.preventDefault();
-            active = !active;
-            toggleSearchBar();
-            break;
         case "ArrowLeft": case '[': case '-': case '{': case '_':   // move tablePage to left, or go to previous website
             if(e.altKey || e.ctrlKey || !e.shiftKey) return;
             e.preventDefault();
@@ -105,9 +108,6 @@ function keyListener(e){
             calculateVocabularyCount();
             break;
 
-        case 't':
-            hiddenRts();
-            break;
         default:
             break;
     } 
