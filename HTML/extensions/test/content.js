@@ -4,4 +4,4 @@ function keyListener(e){
 
 console.log('hello MovePage');
 
-document.addEventListener('keypress', keyListener(e));
+document.addEventListener('keypress', (e) => keyListener(e));
