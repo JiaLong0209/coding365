@@ -3,7 +3,7 @@
   
     "name": "Move Page By Key",
     "description": "This a test chrome extension",
-    "version": "0.20",
+    "version": "0.31",
 
     "content_scripts": [
       {
