@@ -1,6 +1,6 @@
 /*      DevLogs
-    230821 v0.31    add key "hjklwasdmMigG" move page
-
+    230821 v0.3.1   add key "hjklwasdmMigG" move page
+    230823 v0.3.2   fix minor bug in content.js 
 
     TODO:
     1. active button
@@ -42,7 +42,8 @@ function scrollMiddle(e){
  
 function keyListener(e){
     let tag = e.target.tagName.toLowerCase();
-    if( tag == 'input' || tag == 'textarea' ) return;
+    // console.log(tag)
+    if( tag == 'input' || tag == 'textarea' || tag == 'div') return;
     switch (e.key){
         
         case 'j': case 's':  // scroll page to bottom by distance
