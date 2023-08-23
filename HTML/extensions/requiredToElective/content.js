@@ -1,6 +1,6 @@
-table = document.querySelectorAll('div#main table')
-t = table[1]
-trs = t.children[0].children
+tables = document.querySelectorAll('div#main table')
+table = tables[1]
+trs = table.children[0].children
 
 for(let i in trs){
     if(i > 0 && i < trs.length){
