@@ -3,7 +3,7 @@
   
     "name": "Required Courses to Elective.",
     "description": "This a test chrome extension",
-    "version": "1.0",
+    "version": "1.0.1",
 
     "content_scripts": [
       {
