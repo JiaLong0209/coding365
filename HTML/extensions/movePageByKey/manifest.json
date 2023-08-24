@@ -3,7 +3,7 @@
   
     "name": "Move Page By Key",
     "description": "This extension can move pages by hotkeys, such as pressing 'w' or 'k' to move pages up and 's' or 'j' to  move pages down.",
-    "version": "0.3.2",
+    "version": "0.4.0",
 
     "content_scripts": [
       {
@@ -17,6 +17,7 @@
         "16": "icon.png",
         "48": "icon.png",
         "128": "icon.png"
-      }
+      },
+      "default_popup": "popup.html"
     }
   }
