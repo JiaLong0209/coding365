@@ -1,0 +1,18 @@
+{  
+    "manifest_version" : 3,  
+    "name" : "flandre cover on webpage :)",  
+    "description" : "cover :)",  
+    "version" : "1.0",  
+    "action" : {  
+        "default_title" : "cover :)",  
+        "default_icon" : "icon.png"      
+    },  
+    "content_scripts" : [  
+        {  
+            "matches" : ["*://*/*"],  
+            "js" : ["content.js"],  
+            "css" : ["content.css"]  
+        }  
+    ],  
+    "permissions" : ["activeTab"]  
+}

@@ -1,0 +1,43 @@
+canvas {  
+    position: absolute;  
+    top: 0;  
+    left: 0;  
+    right: 0;  
+    bottom: 0;  
+}  
+
+@keyframes zboing {  
+    0% {  
+        transform: scale3d(1, 1, 1)  
+    }  
+    30% {  
+        transform: scale3d(1.2, 0.75, 1)  
+    }  
+    40% {  
+        transform: scale3d(0.85, 1.25, 1)  
+    }  
+    50% {  
+        transform: scale3d(1.05, 0.85, 1)  
+    }  
+    65% {  
+        transform: scale3d(0.95, 1.05, 1)  
+    }  
+    75% {  
+        transform: scale3d(1.05, 0.95, 1)  
+    }  
+    100% {  
+        transform: scale3d(1, 1, 1)  
+    }  
+}  
+
+#snow-button {  
+    background: url('https://github.com/JiaLong0209/coding365/blob/master/HTML/extensions/movePage/icon1.png?raw=true') no-repeat 0 0;  
+    width: 300px;  
+    height: 300px;  
+    background-size: 100% auto;  
+    animation: zboing 1.3s infinite 1s;  
+    position: fixed;  
+    top: 30px;  
+    left: 0%;  
+    z-index: 10;
+}
