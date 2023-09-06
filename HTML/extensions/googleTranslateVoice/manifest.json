@@ -1,0 +1,16 @@
+{  
+    "manifest_version" : 3,  
+    "name" : "Pressing key to active voice (Google translate)",  
+    "description" : "Pressing key to active google translate voice button",  
+    "version" : "0.1.0",  
+    "action" : {  
+        "default_title" : ":)",  
+        "default_icon" : "icon.png"      
+    },  
+    "content_scripts" : [  
+        {  
+            "matches" : ["https://translate.google.com.tw/*"],  
+            "js" : ["content.js"]
+        }  
+    ]
+}
