@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo $(date +'%H:%M %Y-%m-%d')
+
 if [ $# -eq 0 ]; then
     echo "No commit message provided."
     exit 1
@@ -48,3 +50,4 @@ if ! git diff --cached --quiet; then
 else
     echo "No changes to commit."
 fi
+echo 

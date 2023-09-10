@@ -1,0 +1,21 @@
+27 jialong
+30 reboot
+27 jialong
+127 jialong
+30 reboot
+27 jialong
+127 jialong
+30 reboot
+27 jialong
+
+cho 1234
+for ((i =0; i<5; i++)); do
+cho ${i}
+one
+ 127 jialong
+30 reboot
+27 jialong
+127 jialong
+
+30 re
+27 
