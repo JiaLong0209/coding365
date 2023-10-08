@@ -1,4 +1,4 @@
-window.onload = () => {
+(()=>{
    let closeInterval = setInterval(() => {
       if(document.querySelector('.opened') && document.querySelector('ytd-enforcement-message-view-model.ytd-popup-container')){
          let elements = [document.querySelector('.opened'),document.querySelector('ytd-enforcement-message-view-model.ytd-popup-container')]
@@ -9,4 +9,4 @@ window.onload = () => {
          clearInterval(closeInterval);
       }
    }, 1000);
-}
+})()
