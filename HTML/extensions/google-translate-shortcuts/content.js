@@ -1,35 +1,45 @@
 window.onload = () => {
     console.log('hello google translate');
-    let length, voiceButtons;
-    let voiceSelector = 'div.m0Qfkd span button';
+    let length, audioButtons;
+    let audioSelector = 'div.m0Qfkd span button';
     let textSelector = 'textarea.er8xn';
+    let inputText = document.querySelector(textSelector);
 
-    function switchBoth() {
+    function switchLangs() {
         document.querySelector('.lRTpdf').click();
     }
 
-    function focus() {
+    function focusInputText() {
         setTimeout(() => {
-            document.querySelector(textSelector).focus()
+            inputText.focus()
         }, 1);
     }
 
+    function clearInputText() {
+        focusInputText();
+        inputText.value = ''
+    }
+
     function init() {
-        voiceButtons = [document.querySelectorAll(voiceSelector)[0], document.querySelectorAll(voiceSelector)[1]]
+        audioButtons = [document.querySelectorAll(audioSelector)[0], document.querySelectorAll(audioSelector)[1]]
     }
 
     function keydownListener(e) {
         if (e.key == '`') {
-            focus();
+            focusInputText();
         }
         if (!e.altKey) return;
         switch (e.key.toLowerCase()) {
+            case 'o':
+                focusInputText();
+                break;
+
             case 'j':
-                voiceButtons[0].click();
+                audioButtons[0]?.click();
                 break;
 
             case 'k':
-                voiceButtons[1].click();
+                audioButtons[1]?.click();
                 break;
 
             case 'r':
@@ -37,7 +47,12 @@ window.onload = () => {
                 break;
 
             case 's':
-                switchBoth();
+            case 'i':
+                switchLangs();
+                break;
+
+            case 'u':
+                clearInputText();
                 break;
 
         }

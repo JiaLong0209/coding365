@@ -1,15 +1,15 @@
 {  
     "manifest_version" : 3,  
     "name" : "Simple Google Translate Keyboard Shortcuts",  
-    "description" : "Pressing key to active google translate voice button",  
+    "description" : "This extension provides keyboard shortcuts in the Google Translate page, but these shortcuts are not customizable.",  
     "version" : "0.2.1",  
     "action" : {  
-        "default_title" : ":)",  
+        "default_title" : "Simple Google Translate Keyboard shortcuts",  
         "default_icon" : "icon.png"      
     },  
     "content_scripts" : [  
         {  
-            "matches" : ["https://translate.google.com.tw/*"],  
+            "matches" : ["https://translate.google.com/*"],  
             "js" : ["content.js"]
         }  
     ]
