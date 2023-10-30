@@ -22,10 +22,8 @@ window.onload = () => {
         if (e.key == '`') {
             focus();
         }
-        if (!e.shiftKey && !e.altKey) return;
-
+        if (!e.altKey) return;
         switch (e.key.toLowerCase()) {
-
             case 'j':
                 voiceButtons[0].click();
                 break;
@@ -45,5 +43,5 @@ window.onload = () => {
         }
     }
     document.addEventListener('keydown', keydownListener);
-    setInterval(init, 1000)
+    setInterval(init, 500)
 }

@@ -1,8 +1,8 @@
 {  
     "manifest_version" : 3,  
-    "name" : "Pressing key to active voice (Google translate)",  
+    "name" : "Simple Google Translate Keyboard Shortcuts",  
     "description" : "Pressing key to active google translate voice button",  
-    "version" : "0.2.0",  
+    "version" : "0.2.1",  
     "action" : {  
         "default_title" : ":)",  
         "default_icon" : "icon.png"      
