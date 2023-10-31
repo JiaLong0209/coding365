@@ -1,5 +1,5 @@
-(window.onload = () => {
-    console.log('hello google translate',window.location.host.startsWith('translate.google.com'));
+(() => {
+    console.log('hello google translate', window.location.host.startsWith('translate.google.com'));
     if (!window.location.host.startsWith('translate.google.com')) return;
     let audioButtons;
     let audioSelector = 'div.m0Qfkd span button';
@@ -106,5 +106,4 @@
     }
     document.addEventListener('keydown', keydownListener);
     setInterval(init, 500)
-})()    
-// use IIFE can fix this script not work, but I don't know why
+})()
