@@ -95,7 +95,7 @@ window.onload = () => {
                 switchLangs();
                 break;
 
-            case 'u':
+            case 'l':
                 clearInputText();
                 break;
 
