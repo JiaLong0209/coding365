@@ -1,6 +1,6 @@
-window.onload = () => {
+(window.onload = () => {
+    console.log('hello google translate',window.location.host.startsWith('translate.google.com'));
     if (!window.location.host.startsWith('translate.google.com')) return;
-    console.log('hello google translate');
     let audioButtons;
     let audioSelector = 'div.m0Qfkd span button';
     let textSelector = 'textarea.er8xn';
@@ -57,7 +57,7 @@ window.onload = () => {
                     langButtons[3]?.click();
                     break;
 
-                case 'l':
+                case 'u':
                     langButtons[4]?.click();
                     break;
 
@@ -95,7 +95,7 @@ window.onload = () => {
                 switchLangs();
                 break;
 
-            case 'u':
+            case 'l':
                 clearInputText();
                 break;
 
@@ -106,4 +106,5 @@ window.onload = () => {
     }
     document.addEventListener('keydown', keydownListener);
     setInterval(init, 500)
-}
+})()    
+// use IIFE can fix this script not work, but I don't know why
