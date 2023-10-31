@@ -7,9 +7,14 @@
         "default_title" : "Simple Google Translate Keyboard shortcuts",  
         "default_icon" : "icon.png"      
     },  
+    "browser_specific_settings": {
+        "gecko": {
+          "id": "smt02091395@gmail.com_google-translate-shortcuts"
+        }
+      },
     "content_scripts" : [  
         {  
-            "matches" : ["https://translate.google.com/*"],  
+            "matches" : ["https://*/*"],  
             "js" : ["content.js"]
         }  
     ]

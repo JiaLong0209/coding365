@@ -1,4 +1,5 @@
 window.onload = () => {
+    if (!window.location.host.startsWith('translate.google.com')) return;
     console.log('hello google translate');
     let audioButtons;
     let audioSelector = 'div.m0Qfkd span button';
@@ -56,7 +57,7 @@ window.onload = () => {
                     langButtons[3]?.click();
                     break;
 
-                case 'u':
+                case 'l':
                     langButtons[4]?.click();
                     break;
 
@@ -96,6 +97,10 @@ window.onload = () => {
 
             case 'u':
                 clearInputText();
+                break;
+
+            case 'm':
+                switchToOrignalLang();
                 break;
         }
     }
