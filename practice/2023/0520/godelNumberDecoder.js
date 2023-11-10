@@ -89,11 +89,11 @@ function toGodelCode(num){
     return p;
 }
 
-// let p = '0*x=0';
-// let n = toGodelNumber(p);
-// let code = toGodelCode(n);
+let p = '(∃x)(x=sy)';
+let n = toGodelNumber(p);
+let code = toGodelCode(n);
 
-let temp = 134014370487315742199056189063162190005814697956250000000n;
-let code = toGodelCode(temp);
+// let temp = 134014370487315742199056189063162190005814697956250000000n;
+// let code = toGodelCode(temp);
 
-console.log(code); // s0+s0=ss0
+// console.log(code); // s0+s0=ss0
