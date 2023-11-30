@@ -1,0 +1,42 @@
+<body>
+    <main class="main">
+        <div class="content">
+            <input id="prev" onclick="changePic(pic, '-',     5)" type="button" value="上一張">
+            <span id="curPicNo">1 / 5</span>
+            <input id="next" onclick="changePic(pic, '+', 5)" type="button" value="下一張">
+        </div>
+        <hr>
+        <img id="pic" src="./images/pic-1.jpeg" alt="pic">
+    </main>
+    <!-- JS -->
+    <script>
+        // DOM
+        const next = document.querySelector("#next");
+        const curPicNo = document.querySelector("#curPicNo");
+        const prev = document.querySelector("#prev");
+
+        // Pic 號碼
+
+        let picNo = 1;
+        // 切換圖片函式
+        function changePic(dom, calc, total) {
+            picNo = calc === '+' ? (picNo % total) + 1 : ((picNo - 2 + total) % total) + 1;
+
+            // picNo = (picNo + total + (calc === '+' ? 0 : -2)) % total + 1
+
+            // picNo = (!(calc.charCodeAt() ^ 43) ? (picNo % total) + 1 : !(~picNo^-2) ? total : --picNo);
+            // picNo = (calc === '+' ? (picNo % total) + 1 : picNo == 1 ? total : --picNo);
+            // picNo = (calc === '+' ? (picNo % total) + 1 : !(picNo^1) ? total : --picNo);
+            picNo = (calc === '+' ? (picNo % total) + 1 : !(~picNo^-2) ? total : --picNo);
+
+            // calc === '+' ? picNo = (picNo % total) + 1 : picNo = picNo == 1 ? total : --picNo
+
+            dom.setAttribute("src", `./images/pic-${picNo}.jpeg`);
+            curPicNo.textContent = `${picNo} / ${total}`;
+        }
+
+    // 自動換圖：每隔一段時間（毫秒），執行一次函式
+    // setInterval(() => changePic(pic, '+', 5), 500);
+    </script>
+
+</body>
