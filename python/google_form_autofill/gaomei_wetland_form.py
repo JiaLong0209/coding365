@@ -64,7 +64,7 @@ payload = {
     "fbzx" : "-8790612009638299349",
 }
 
-num = 1  # number of executions
+num = 30  # number of executions
 period = np.arange(0.02, 1.0, 0.01)
 delay = 0  # delay of execution
 delay_mode = False
@@ -73,6 +73,7 @@ headers = {'Content-Type': 'application/json'}
 payload_list = []
 
 for times in range(num):
+    payload_list = []
     try:
         for index, entry in enumerate(entries):
             answer = random.choice(params[index])

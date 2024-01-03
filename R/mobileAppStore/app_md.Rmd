@@ -1,4 +1,4 @@
-# 
+#
 
 ---
 title: "R語言資料探勘-App Store分析"
@@ -38,9 +38,9 @@ output: html_document
 -   **"lang.num"**: 支援的語言數量
 -   **"vpp_lic"**: 啟用 Vpp 設備基於授權的許可
 
-![](images/Screenshot from 2023-12-25 06-59-11-01.png)
+![](images/Screenshot%20from%202023-12-25%2006-59-11-01.png)
 
-![](images/Screenshot from 2023-12-25 06-59-24.png)
+![](images/Screenshot%20from%202023-12-25%2006-59-24.png)
 
 ## 探勘目的
 
