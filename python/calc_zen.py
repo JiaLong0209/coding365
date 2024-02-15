@@ -1,6 +1,8 @@
+from datetime import date 
 from functools import reduce
-durations = []
 
+durations = []
+today = date.today()
 path = "zen_time.txt"
 f = open(path, 'r')
 
@@ -17,7 +19,9 @@ for line in f:
 
 
 duration_sum = reduce(lambda acc, cur: acc+cur, durations, 0)
-print(f'Total zen time: {duration_sum}mins ({duration_sum/60}hours)')
 
+print(f'Date: {today}')
+print(f'Total zen time: {duration_sum}mins ({duration_sum/60}hours)')
+print('-'*40)
 
 
