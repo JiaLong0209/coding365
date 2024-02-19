@@ -3,8 +3,11 @@ from functools import reduce
 
 durations = []
 today = date.today()
-path = "zen_time.txt"
-f = open(path, 'r')
+
+read_file = "zen_time.txt"
+result_file = "result.log"
+
+f = open(read_file, 'r')
 
 # date, from, to, duration, day
 for line in f:
@@ -19,9 +22,20 @@ for line in f:
 
 
 duration_sum = reduce(lambda acc, cur: acc+cur, durations, 0)
+f.close()
+f = open(result_file, 'a')
 
-print(f'Date: {today}')
-print(f'Total zen time: {duration_sum}mins ({duration_sum/60}hours)')
-print('-'*40)
+date_string = f'Date: {today} \n'
+total_zen_time =  f'Total zen time: {duration_sum}mins ({duration_sum/60}hours) \n'
+divider = '-'*40 + '\n'
 
+print(date_string)
+print(total_zen_time)
+print(divider)
+
+f.writelines(date_string)
+f.writelines(total_zen_time)
+f.writelines(divider)
+
+f.close()
 
