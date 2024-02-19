@@ -26,16 +26,17 @@ f.close()
 f = open(result_file, 'a')
 
 date_string = f'Date: {today} \n'
-total_zen_time =  f'Total zen time: {duration_sum}mins ({duration_sum/60}hours) \n'
+total_zen_time =  f'Total zen time: {duration_sum}mins ({round(duration_sum/60, 2)}hours) \n'
 divider = '-'*40 + '\n'
 
-print(date_string)
-print(total_zen_time)
-print(divider)
+print(date_string, end='')
+print(total_zen_time, end='')
+print(divider, end='')
 
-f.writelines(date_string)
-f.writelines(total_zen_time)
-f.writelines(divider)
+f.seek(0)
+f.write(date_string)
+f.write(total_zen_time)
+f.write(divider)
 
 f.close()
 
