@@ -82,3 +82,7 @@ class Catch(OsuMode):
         for i, v in enumerate(self.hits):
             print(f'{self.text[i]}: {v}')
         print(f'\nAccuracy: {self.accuracy}')
+
+
+
+
