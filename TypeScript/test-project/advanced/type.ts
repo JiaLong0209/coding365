@@ -5,14 +5,9 @@
 	type NameOrResolver = Name | NameResolver;
 	type NameOrResolver2 = string | (() => string);
 
+
 	let getName: (n: NameOrResolver) => Name =
-		(n: NameOrResolver) => {
-			if (typeof n === 'string') {
-				return n;
-			} else {
-				return n();
-			}
-		}
+		(n: NameOrResolver) => typeof n === 'string' ? n : n();
 
 	// function getName(n: NameOrResolver): Name {
 	// 	if(typeof n === 'string'){
@@ -21,7 +16,6 @@
 	// 		return n();
 	// 	}
 	// }
-
 
 	console.log(getName('yabe'))
 	console.log(getName(() => 'yabe_function'))
