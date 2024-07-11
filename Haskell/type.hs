@@ -66,6 +66,7 @@ num_type = do
     
     -- fromIntegral :: (Num b, Integral a) => a -> b
     print(fromIntegral (length [1,2,3,4,5]) + 7.4) -- Int to Float
+    print( (read (show (length [1,2,3,4,5])) :: Float) + 7.4) -- Int to Float
 
 
 
