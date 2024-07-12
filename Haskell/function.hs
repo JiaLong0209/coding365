@@ -56,14 +56,31 @@ pattern_match = do
     -- print(third (1,2,3))
     -- print(head' [10,2,3])
     
--------------------------------------
+
+---------- Guards ----------
+
+max' :: (Ord a) => a -> a -> a
+max' a b 
+    | a > b = a 
+    | otherwise = b
+
+compare' :: (Ord a) => a -> a -> Ordering
+a `compare'` b 
+    | a > b = GT 
+    | a == b = EQ
+    | otherwise = LT
 
 
+guards = do 
+    print(max' 5 10)
+    print(max' 22 10)
+
+    print(compare' 10 20)
+    print(compare' 54 20)
+
+
+---------- Main Function ----------
 main = do 
-    pattern_match
-
-
-
-
-
+    -- pattern_match
+    guards
 
