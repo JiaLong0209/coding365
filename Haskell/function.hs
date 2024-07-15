@@ -74,13 +74,43 @@ a `compare'` b
 guards = do 
     print(max' 5 10)
     print(max' 22 10)
-
     print(compare' 10 20)
     print(compare' 54 20)
 
+---------- Where ----------
+
+bmiTeller :: (RealFloat a) => a -> a -> String
+bmiTeller w h
+    | bmi <= skinny = "Skinny"
+    | bmi <= normal = "Normal"
+    | bmi <= fat = "Fat"
+    | otherwise = "Very fat"
+    where
+    bmi = w / h ^ 2
+    skinny = 18.5
+    normal = 25.0
+    fat = 30.0
+
+initials :: String -> String -> String
+initials f_name l_name = [f] ++ ". " ++ [l] ++ "."
+    where 
+    (f:_) = f_name
+    (l:_) = l_name
+
+calcBmis :: (RealFloat a) => [(a, a)] -> [a]
+calcBmis xs = [bmi w h | (w, h) <- xs]
+    where bmi w h = w / (h ^ 2)
+
+
+bmis = [(w, h) | w <- [40,45..55], h <- [1.4, 1.6.. 2.0]]
+where_ex = do 
+    print(bmiTeller 51 1.6)
+    print(initials "Jialong" "Long")
+    print(calcBmis bmis)
 
 ---------- Main Function ----------
 main = do 
     -- pattern_match
-    guards
+    -- guards
+    where_ex
 
