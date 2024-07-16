@@ -78,6 +78,8 @@ guards = do
     print(compare' 54 20)
 
 ---------- Where ----------
+-- Structure: func x y = var
+--              where var = x + y
 
 bmiTeller :: (RealFloat a) => a -> a -> String
 bmiTeller w h
@@ -108,9 +110,28 @@ where_ex = do
     print(initials "Jialong" "Long")
     print(calcBmis bmis)
 
+---------- Let ----------
+-- Structure: let [bindings] in [expressions]
+-- Point: `let` is an expression, `if` is also an expression.
+
+
+calcBmis_let :: (RealFloat a) => [(a, a)] -> [a]
+calcBmis_let xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
+
+let_ex = do 
+    print (10 * (let x = 4 in x * 10) )
+    print ([let square x = x ^ 2 in (square 3, square 4, square 5)])
+    print ((let (a,b,c) = (1,2,3) in a+b) * 10000)
+    print (calcBmis_let bmis)
+    print (10 * (let x = 4 in x * (let y = 5 in y * 2)) )
+
+
+
 ---------- Main Function ----------
 main = do 
     -- pattern_match
     -- guards
-    where_ex
+    -- where_ex
+    let_ex
+
 
