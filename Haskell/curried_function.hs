@@ -13,6 +13,18 @@ compareWithHundred = compare 100
 divideByTen :: (Floating a) => a -> a
 divideByTen = (/10)
 
+applyTwice :: (a->a) -> a -> a
+applyTwice f x = f (f x)
+
+zipWith' :: (a->b->c) -> [a] -> [b] -> [c]
+zipWith' _ _ [] = []
+zipWith' _ [] _ = []
+zipWith' f (x:xs) (y:ys) = f x y :  zipWith' f xs ys
+
+flip' :: (a->b->c) -> (b->a->c)
+flip' f x y = f y x
+-- flip' f = g where g x y = f y x
+
 
 curry_ex = do 
     -- max :: (Ord a) => a -> a -> a
@@ -29,6 +41,16 @@ curry_ex = do
     print((/10) 500 )
     print((/) 500 10 )
 
+    print( applyTwice (* 10) 5)
+    print( applyTwice (3:) [1])
+    print( (:) 3[3])
+
+    print(zipWith' (+) [1,2,3] [10,20,30])
+    print(zipWith' (*) [1,2,3] [10,20,30])
+    print(zipWith' (zipWith' (*)) [[1,2,3],[1,2,3,4],[1,2,3,4,5]] [[3,2,1], [10,2,5,13], [34,52,53,3,1]] ) 
+
+    print(flip' (zip) [1,2,3] "App")
+    print(zipWith' (flip' div) [10,10 ..] [100, 120.. 200])
 
 
 ---------- Main Function ----------
