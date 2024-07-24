@@ -25,6 +25,8 @@ flip' :: (a->b->c) -> (b->a->c)
 flip' f x y = f y x
 -- flip' f = g where g x y = f y x
 
+calc x = ((x * 100) ^ 2) + 10
+
 
 curry_ex = do 
     -- max :: (Ord a) => a -> a -> a
@@ -52,10 +54,32 @@ curry_ex = do
     print(flip' (zip) [1,2,3] "App")
     print(zipWith' (flip' div) [10,10 ..] [100, 120.. 200])
 
+---------- Map and Filter ---------
+
+map' :: (a -> b) -> [a] -> [b]
+map' _ [] = []
+map' f (x:xs) = f x : map' f xs  
+
+filter' :: (a -> Bool) -> [a] -> [a]
+filter' _ [] = [] 
+filter' p (x:xs) 
+    | p x = x : filter' p xs  
+    | otherwise = filter' p xs
+
+
+
+map_filter_ex = do 
+    print(map' compareWithHundred [50, 75.. 150])
+    print(map' (10*) [50, 75.. 150])
+    print(map' (calc) [50, 75.. 150])
+    print(map' (^2) [1..10])
+    print([ x^2 | x <- [1..10]])
+    print(filter' (>3) [1..10])
 
 ---------- Main Function ----------
 main = do 
-    curry_ex
+    -- curry_ex
+    map_filter_ex
 
 
 
