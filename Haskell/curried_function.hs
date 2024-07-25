@@ -67,6 +67,17 @@ filter' p (x:xs)
     | otherwise = filter' p xs
 
 
+quickSort :: (Ord a) => [a] -> [a]
+quickSort [] = []
+quickSort (x:xs) = quickSort (filter' (<=x) xs) ++ [x] ++ quickSort(filter' (>x) xs)
+
+collatzChain :: (Integral a) => a -> [a]
+collatzChain 1 = [1]
+collatzChain n 
+    | even n = n:collatzChain (n `div` 2)
+    | odd n = n:collatzChain (n*3 + 1)
+
+longChains = map (head) (filter (\xs -> length xs > 15) (map collatzChain [1..100]))
 
 map_filter_ex = do 
     print(map' compareWithHundred [50, 75.. 150])
@@ -75,7 +86,12 @@ map_filter_ex = do
     print(map' (^2) [1..10])
     print([ x^2 | x <- [1..10]])
     print(filter' (>3) [1..10])
-
+    print(quickSort [5,3,1,2,6,4])
+    print(takeWhile (<1000) (filter odd (map (^2) [1..]))) 
+    print(takeWhile (<1000) [ m | m <- [x^2 | x<-[1..]], odd m])
+    print(collatzChain 10)
+    print(longChains)
+ 
 ---------- Main Function ----------
 main = do 
     -- curry_ex
