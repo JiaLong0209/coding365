@@ -92,10 +92,57 @@ map_filter_ex = do
     print(collatzChain 10)
     print(longChains)
  
+
+---------- Lambda Function --------
+
+addThree :: (Num a) => a -> a -> a -> a
+addThree = \x -> \y -> \z -> x + y + z
+-- addThree x y z = x + y + z
+
+sum' :: (Num a) => [a] -> a
+sum' = foldl (+) 0
+-- sum' = foldl1 (+) -- initial value is first element 
+-- sum' xs = foldl (\acc x -> acc + x) 0 xs
+
+elem' :: (Eq a) => a -> [a] -> Bool
+elem' x xs = foldl (\acc y -> if x == y then True else acc) False xs
+
+map'' :: (a -> b) -> [a] -> [b]
+map'' f xs = foldr (\y acc -> f y : acc) [] xs
+-- map'' f xs = foldl (\acc y -> acc ++ [f y]) [] xs -- low efficiency
+
+maximum' :: (Ord a) => [a] -> a
+maximum' = foldr1 (\x acc -> if x > acc then x else acc)
+
+reverse' :: [a] -> [a]
+reverse' = foldl (flip (:)) []
+
+head' :: [a] -> a
+head' = foldl1 (\acc x -> acc)
+
+last' :: [a] -> a
+last' = foldl1 (\acc x -> x) 
+
+lambda_function_ex  = do 
+    print(map (+3) [1,6,10,34])
+    print(map (\x -> x+3) [1,6,10,34])
+    print(sum' [100,200,300])
+    print(elem' 10 [100,200,300])
+    print(elem' 100 [100,200,300])
+    print(map'' (+3) [1,6,10,34])
+    print(reverse' [1,2,3,4,5])
+    print(maximum' [1,2,3,4,5])
+    print(head' [1,2,3,4,5])
+    print(last' [1,2,3,4,5])
+
+    print(scanl (+) 0 [1,2,3,4,5])
+    print(scanr1 (*) [1,2,3,4,5])
+    print(scanl1 (*) [1,2,3,4,5])
+
 ---------- Main Function ----------
 main = do 
     -- curry_ex
-    map_filter_ex
-
+    -- map_filter_ex
+    lambda_function_ex
 
 
