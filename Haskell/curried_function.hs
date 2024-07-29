@@ -138,11 +138,31 @@ lambda_function_ex  = do
     print(scanl (+) 0 [1,2,3,4,5])
     print(scanr1 (*) [1,2,3,4,5])
     print(scanl1 (*) [1,2,3,4,5])
+    print(takeWhile (<1000) (scanl1 (+) (map sqrt [1..])))
+
+---------- Function Application Operator ----------
+
+-- Definition
+-- ($) :: (a -> b) -> a -> b
+-- f $ x = f x
+
+dollar_sign_ex = do 
+    print(sum (map sqrt [1..10]))
+    print(sum $ map sqrt [1..10])
+
+    print(sqrt (3 + 4 + 10))
+    print(sqrt $ 3 + 4 + 10)
+
+    print(sum (filter (>10) (map (*2) [1..10])))
+    print(sum $ filter (>10) $ map (*2) [1..10])
+
+
 
 ---------- Main Function ----------
 main = do 
     -- curry_ex
     -- map_filter_ex
-    lambda_function_ex
+    -- lambda_function_ex
+    dollar_sign_ex
 
 
