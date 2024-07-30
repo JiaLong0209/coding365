@@ -157,12 +157,57 @@ dollar_sign_ex = do
     print(sum $ filter (>10) $ map (*2) [1..10])
 
 
+---------- Function Composition ---------
+
+-- (.) :: (b -> c) -> (a -> b) -> a -> c  
+-- f . g = \x -> f (g x)
+
+
+
+-- Point free style / Pointless style
+
+-- fn x = ceiling (negate (tan (cos (max 50 x))))
+-- fn  = ceiling (negate (tan (cos (max 50)))) -- error
+fn = ceiling . negate . tan . cos . max 50
+
+oddSquareSum :: Integer
+-- Style 1
+-- oddSquareSum = 
+--     let oddSquares = filter odd $ map (^2) [1..]
+--         belowLimit = takeWhile (<10000) oddSquares
+--     in sum belowLimit
+
+-- Style 2
+-- oddSquareSum = sum (takeWhile (<10000) (filter odd (map (^2) [1..])))
+
+-- Style 3
+oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
+
+
+composition_ex  = do 
+    print(map (\x -> negate (abs x)) [5,34,-5])
+    print(map (negate . abs) [5,34,-5])
+
+    print(map (\xs -> negate (sum (tail xs))) [[1..3], [3..6]])
+    print(map (negate.sum.tail) [[1..3], [3..6]])
+
+    print(sum (replicate 5 (max 8.3 10.3)))
+    print((sum . replicate 5 . max 8.3) 10.3)
+    print(sum . replicate 5 . max 8.3 $ 10.3)
+
+    print(replicate 10 (product (map (*3) (zipWith max [0,1,1] [1,0,-123]))))
+    print(replicate 10 . product . map (*3) . zipWith max [0,1,1] $ [1,0,-123])
+
+    print(fn 10)
+    print(oddSquareSum)
 
 ---------- Main Function ----------
 main = do 
     -- curry_ex
     -- map_filter_ex
     -- lambda_function_ex
-    dollar_sign_ex
+    -- dollar_sign_ex
+    composition_ex 
+
 
 
