@@ -5,6 +5,7 @@
 -- import Data.List hiding (sort)
 import qualified Data.List as L
 import Data.List 
+import Geometry
 
 numUni :: (Eq a) => [a] -> Int
 numUni = length . nub
@@ -50,8 +51,18 @@ data_list_ex = do
 
     print(search "app" "Apple, app, bad")
 
+---------- Geometry Module --------
+
+
+geometry_ex = do 
+    print(Sphere.volume 1)
+    print(Sphere.volume 2)
+
+
+
 ---------- Main Function ----------
 main = do 
-    data_list_ex
+    -- data_list_ex
+    geometry_ex
 
 
