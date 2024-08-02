@@ -5,7 +5,7 @@
 -- import Data.List hiding (sort)
 import qualified Data.List as L
 import Data.List 
-import Geometry
+import Data.Char
 
 numUni :: (Eq a) => [a] -> Int
 numUni = length . nub
@@ -51,18 +51,37 @@ data_list_ex = do
 
     print(search "app" "Apple, app, bad")
 
----------- Geometry Module --------
+---------- Data.Char --------
 
+caesar_ciphar_encode :: Int -> String -> String
+caesar_ciphar_encode shift str = map chr $ map (+ shift) $ map ord str
 
-geometry_ex = do 
-    print(Sphere.volume 1)
-    print(Sphere.volume 2)
+caesar_ciphar_decode :: Int -> String -> String
+caesar_ciphar_decode shift str = caesar_ciphar_encode (negate shift) str
 
+data_char_ex = do 
+    print(all isAlphaNum "jaln29")
+    print(all isAlphaNum "Hello, world")
 
+    print(map digitToInt "123453")
+    print(map digitToInt "1F1e33")
+    print(map ord "1F1e33")
+
+    print(caesar_ciphar_encode 10 "Hello,World!")
+    print(caesar_ciphar_encode 14 "Hello,World!")
+    print(caesar_ciphar_encode 18 "Hello,World!")
+
+    print(caesar_ciphar_decode 10 "Hello,World!")
+    print(caesar_ciphar_decode 14 "Hello,World!")
+    print(caesar_ciphar_decode 18 "Hello,World!")
+
+    print(caesar_ciphar_decode 10 $ caesar_ciphar_encode 10 "Hello,World!")
+    print(caesar_ciphar_decode 14 $ caesar_ciphar_encode 14 "Hello,World!")
+    print(caesar_ciphar_decode 18 $ caesar_ciphar_encode 18 "Hello,World!")
 
 ---------- Main Function ----------
 main = do 
     -- data_list_ex
-    geometry_ex
+    data_char_ex
 
 
