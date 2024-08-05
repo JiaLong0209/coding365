@@ -6,6 +6,7 @@
 import qualified Data.List as L
 import Data.List 
 import Data.Char
+import qualified Data.Set as Set
 
 numUni :: (Eq a) => [a] -> Int
 numUni = length . nub
@@ -79,9 +80,32 @@ data_char_ex = do
     print(caesar_ciphar_decode 14 $ caesar_ciphar_encode 14 "Hello,World!")
     print(caesar_ciphar_decode 18 $ caesar_ciphar_encode 18 "Hello,World!")
 
+
+---------- Data.Set --------
+
+t1 =  "Hello, World"
+t2 =  "Hello, Haskell"
+data_set_ex = do 
+    let set1 = Set.fromList t1
+    let set2 = Set.fromList t2
+    print(set1)
+    print(set2)
+    print(Set.intersection set1 set2)
+    print(Set.difference set1 set2)
+    print(Set.union set1 set2)
+    print(Set.singleton set1 )
+    print(Set.member 'H' $ set1)
+    print(Set.member 'b' $ set1)
+
+    print(Set.map (^2)  $ Set.fromList [5,5,3,3,4,4,1])
+    print(Set.filter (odd)  $ Set.fromList [5,5,3,3,4,4,1])
+
+
+
 ---------- Main Function ----------
 main = do 
     -- data_list_ex
-    data_char_ex
+    -- data_char_ex
+    data_set_ex
 
 
