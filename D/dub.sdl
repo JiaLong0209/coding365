@@ -1,0 +1,5 @@
+name "test-proj"
+description "A test project"
+authors "jialong"
+copyright "Copyright © 2024, jialong"
+license "MIT"
