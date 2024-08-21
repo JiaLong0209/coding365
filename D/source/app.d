@@ -1,8 +1,12 @@
 import ex.UFCS;
 import ex.func;
+import std.stdio;
 
-void main() {
-    /*UFCS();*/
-    /*test();*/
-    forloop();
+version (unittest) {} else {
+    void main() {
+        writeln("Hello, D");
+        forloop();
+        /*UFCS();*/
+        /*test();*/
+    }
 }

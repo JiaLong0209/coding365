@@ -3,3 +3,13 @@ description "A test project"
 authors "jialong"
 copyright "Copyright © 2024, jialong"
 license "MIT"
+
+
+configuration "app" { 
+    sourcePaths "source"
+}
+
+
+configuration "test" { 
+    sourcePaths "source" "tests"
+}
