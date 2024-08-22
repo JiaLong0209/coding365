@@ -2,7 +2,7 @@
 module app_tests;
 
 
-import math;
+import mod.math;
 import std.stdio;
 
 unittest {

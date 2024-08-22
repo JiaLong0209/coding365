@@ -4,6 +4,8 @@ authors "jialong"
 copyright "Copyright © 2024, jialong"
 license "MIT"
 targetType "executable"
+targetName "myapp"
+targetPath "bin"
 
 
 configuration "app" { 
@@ -14,3 +16,10 @@ configuration "app" {
 configuration "test" { 
     sourcePaths "source" "tests"
 }
+
+configuration "integration_test" {
+    sourcePaths "tests"
+    mainSourceFile "tests/integration_test.d"
+    versions "IntegrationTest"
+}
+

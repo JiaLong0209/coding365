@@ -1,8 +1,9 @@
-import ex.UFCS;
-import ex.func;
+import mod.UFCS;
+import mod.func;
 import std.stdio;
 
-version (unittest) {} else {
+version (unittest) {} else
+version (IntegrationTest) {} else {
     void main() {
         writeln("Hello, D");
         forloop();
