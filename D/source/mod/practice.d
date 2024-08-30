@@ -1,8 +1,11 @@
 module mod.practice;
 import std.stdio;
 import std.array;
+import std.format;
 import std.conv;
 
+
+// ----------- Enum practice ----------
 
 void enum_ex(){
     enum mode: string{
@@ -15,6 +18,8 @@ void enum_ex(){
     writeln(mode.hard);
 }
 
+
+// ----------- Literals practice ----------
 
 void literal_ex(){
 
@@ -42,8 +47,115 @@ void literal_ex(){
 }
 
 
+// ----------- Functions practice -----------
+
+int x = 10;
+immutable int y = 20;
+int z = 30;
+const int* p;
+
+char[] a = "test a".dup;
+const char[] b = "test b";
+immutable char[] c = "test c";
+
+
+
+pure int purefunc(int i, const char* q, immutable int* s){
+    /*i = x;*/ //error can't access mutable variable in pure function.
+    i = y;
+    debug writefln("Purefunc: i = %d", i); 
+    return i;
+}
+
+int nothrow_add(int a, int b){
+    int result;
+
+    try { 
+        writeln("Adding");
+        result = a + b;
+    } catch(Exception error) {}
+    return result;
+}
+
+ref int ref_greater(ref int a, ref int b){
+    return (a > b) ? a : b;
+}
+
+auto auto_add(int  a, double b){
+    auto result = a+b;
+    return result;
+}
+
+void variadic_args(int x, ...){
+    for(int i = 0; i < _arguments.length; i++){
+        writeln(_arguments[i]);
+    }
+}
+
+inout(char)[] inout_qoute(inout(char)[] str){
+    return '"' ~ str ~'"';
+}
+
+void property_func(){
+    struct Rectangle {
+        double width;
+        double height;
+
+        double area() const @property{
+            return width * height;
+        }
+
+        void area(double newArea) @property{
+            auto multiplier = newArea / area;
+            width *= multiplier;
+        }
+        
+        void info() {
+            writeln("-----------\nArea: %f\nWidth: %f\nHeight: %f\n".format(area, width, height));
+        }
+
+    }
+
+    void test(){
+        auto rect = Rectangle(20, 10);
+        rect.info();
+        rect.area(666.6);
+        rect.info();
+    }
+
+    test();
+
+}
+
+// ----------- Main -----------
+
 void practice_main(){
     /*enum_ex();*/
-    literal_ex();
+    /*literal_ex();*/
+    /*operator_ex();*/
+
+    // ---- Functions practice
+    /*purefunc(x, null, null);*/
+    /*nothrow_add(x, y);*/
+
+    /*writefln("x = %d, z = %d",x, z);*/
+    /*ref_greater(x, z) += 100;*/
+    /*writefln("x = %d, z = %d",x, z);*/
+
+    /*writeln(auto_add(1, 2));*/
+    /*variadic_args(1, 2u, 3L, 4.042);*/
+
+    /*writeln(inout_qoute(a), " ", typeof(inout_qoute(a)).stringof);*/
+    /*writeln(inout_qoute(b), " ", typeof(inout_qoute(b)).stringof);*/
+    /*writeln(inout_qoute(c), " ", typeof(inout_qoute(c)).stringof);*/
+
+    string s = "hello".dup;
+    char[] arr = "hello2".dup;
+    s = "hello3".dup;
+    arr = s.dup;
+
+    property_func();
+    
+
 }
 
