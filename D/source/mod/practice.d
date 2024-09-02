@@ -122,10 +122,35 @@ void property_func(){
         rect.area(666.6);
         rect.info();
     }
-
     test();
-
 }
+
+// ----------- Strings practice -----------
+
+import std.uni;
+import std.string;
+
+void string_ex(){
+
+    char[] s1 = "я тебя люблю".dup;
+    char[] s2 = "World".dup;
+    char[] arr = "hello2".dup;
+    arr = s1.dup;
+
+    writefln("The uppercase of %s: %s", s1, toUpper(s1));
+    writefln("The capitalize of %s: %s", s1, capitalize(s1));
+
+    s1[5..8] = s2[0..3];
+
+    writeln(s1);
+    writeln(s2);
+
+    writeln(std.string.indexOf(s2, "ld"));
+    writeln(std.string.lastIndexOf(s2, "ld"));
+    
+}
+
+
 
 // ----------- Main -----------
 
@@ -149,12 +174,10 @@ void practice_main(){
     /*writeln(inout_qoute(b), " ", typeof(inout_qoute(b)).stringof);*/
     /*writeln(inout_qoute(c), " ", typeof(inout_qoute(c)).stringof);*/
 
-    string s = "hello".dup;
-    char[] arr = "hello2".dup;
-    s = "hello3".dup;
-    arr = s.dup;
 
-    property_func();
+    /*property_func();*/
+
+    string_ex();
     
 
 }
