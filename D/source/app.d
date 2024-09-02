@@ -1,5 +1,7 @@
 import mod;
 import std.stdio;
+import pattern;
+
 
 
 version (unittest) {} else
@@ -9,6 +11,9 @@ version (IntegrationTest) {} else {
         /*forloop();*/
         /*UFCS();*/
         /*test();*/
-        practice_main();
+
+        /*practice_main();*/
+
+        run_design_pattern();
     }
 }
