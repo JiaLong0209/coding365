@@ -11,47 +11,51 @@ import std.stdio;
    coordinate actions across the system.
 */
 
-
 class GameManager {
-    private static GameManager instance;
-    private int level;
-    private int levelUpExp;
-    private int exp;
 
-    private this() {
-        level = 1;
-        exp = 0;
-        levelUpExp = 50;
-        writefln("Game Manager initialized!");
-    }
+    static GameManager instance;
+    int level;
+    int levelUpExp;
+    int exp;
 
-    static GameManager getInstance(){
-        if(instance is null){
-            instance = new GameManager();
+    private: 
+        this() {
+            level = 1;
+            exp = 0;
+            levelUpExp = 50;
+            writefln("Game Manager initialized!");
         }
-        return instance;
-    }
 
-    void addExp(int point){
-        exp += point;
-        while(exp >= levelUpExp){
-            nextLevel();
+        void nextLevel(){
+            level++;
+            calcLevelUpExp();
+            writefln("Level up! Now at level %d, next level up exp: %d",level, levelUpExp);
         }
-        writefln("Exp added: %d, Total: %d, More Exp to Level Up: %d ", point , exp, levelUpExp-exp);
-    }
 
-    void calcLevelUpExp(){
-        levelUpExp = cast(int)(cast(double)levelUpExp * 2);
-    }
 
-    void nextLevel(){
-        level++;
-        calcLevelUpExp();
-        writefln("Level up! Now at level %d, next level up exp: %d",level, levelUpExp);
-    }
+    public: 
+        static GameManager getInstance(){
+            if(instance is null){
+                instance = new GameManager();
+            }
+            return instance;
+        }
 
-    void info(){
-        writefln("Current State - Level: %d, Exp: %d Level Up Exp: %d", level, exp, levelUpExp);
-    }
+        void addExp(int point){
+            exp += point;
+            while(exp >= levelUpExp){
+                nextLevel();
+            }
+            writefln("Exp added: %d, Total: %d, More Exp to Level Up: %d ", point , exp, levelUpExp-exp);
+        }
+
+        void calcLevelUpExp(){
+            levelUpExp = cast(int)(cast(double)levelUpExp * 2);
+        }
+
+        void info(){
+            writefln("Current State - Level: %d, Exp: %d Level Up Exp: %d", level, exp, levelUpExp);
+        }
+
 }
 
