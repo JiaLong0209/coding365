@@ -1,4 +1,4 @@
-module pattern.singleton;
+module pattern.singleton.game_manager;
 
 import std.stdio;
 
