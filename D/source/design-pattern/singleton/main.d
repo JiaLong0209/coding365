@@ -1,7 +1,6 @@
-module pattern.singleton_test;
+module pattern.singleton.test;
 
-import pattern.singleton;
-
+import pattern.singleton.game_manager;
 import std.stdio;
 import std.conv;
 
