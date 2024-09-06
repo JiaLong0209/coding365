@@ -5,15 +5,24 @@ import std.stdio;
 
 
 class Character {
+
     string name;
     int health;
     int strength;
     int agility;
     int intelligence;
-
     Weapon weapon;
     Armor armor;
 
+    this( string name, int health, int strength, int agility, int intelligence, Weapon weapon, Armor armor) {
+        this.name = name;
+        this.health = health;
+        this.strength = strength;
+        this.agility = agility;
+        this.intelligence = intelligence;
+        this.weapon = weapon;
+        this.armor = armor;
+    }
 
     void info(){
         writeln("\n------- ", name, " -----");
