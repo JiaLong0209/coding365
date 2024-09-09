@@ -14,7 +14,7 @@ class Character {
     Weapon weapon;
     Armor armor;
 
-    this( string name, int health, int strength, int agility, int intelligence, Weapon weapon, Armor armor) {
+    this (string name, int health, int strength, int agility, int intelligence, Weapon weapon, Armor armor){
         this.name = name;
         this.health = health;
         this.strength = strength;

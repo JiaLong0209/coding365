@@ -35,7 +35,7 @@ class CharacterBuilder {
     }
 
     Character build(){
-        return new Character( name, health, strength, agility, intelligence, weapon, armor);
+        return new Character(name, health, strength, agility, intelligence, weapon, armor);
     }
 
     CharacterBuilder setHealth(int health){

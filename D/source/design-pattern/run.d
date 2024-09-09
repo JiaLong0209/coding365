@@ -7,7 +7,8 @@ void run_design_pattern(){
 
     /*singleton_main();*/
     /*factory_main();*/
-    builder_main();
+    /*builder_main();*/
+    prototype_main();
 
 }
 
