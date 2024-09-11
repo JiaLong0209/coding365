@@ -8,6 +8,7 @@ public import pattern.prototype;
 
 // Structural
 public import pattern.adapter;
+public import pattern.decorator;
 
 // Behavioral
 
