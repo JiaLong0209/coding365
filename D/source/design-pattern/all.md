@@ -66,12 +66,14 @@
 * Use When: You need to control access to an object or reduce the cost of accessing it (e.g., lazy initialization, access control).
 
 ## Behavioral Patterns:
-Chain of Responsibility
 
 
-### Purpose: Pass a request along a chain of handlers, allowing each handler to either process the request or pass it on.
-Use When: You have multiple objects that can handle a request, but the handler isn't known until runtime.
-Command
+### Chain of Responsibility
+
+* Purpose: Pass a request along a chain of handlers, allowing each handler to either process the request or pass it on.
+* Use When: You have multiple objects that can handle a request, but the handler isn't known until runtime.
+
+### Command
 
 * Purpose: Encapsulate a request as an object, allowing parameterization of clients with queues, requests, and operations.
 * Use When: You need to issue requests to objects without knowing the operation being requested or the receiver.

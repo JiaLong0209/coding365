@@ -11,7 +11,7 @@ public import pattern.adapter;
 public import pattern.decorator;
 
 // Behavioral
-
+public import pattern.observer;
 
 // Main Function
 public import pattern.run;

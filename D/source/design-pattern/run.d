@@ -13,10 +13,12 @@ void run_design_pattern(){
     /*prototype_main();*/
 
     // Structural 
+
     /*adapter_main();*/
-    decorator_main();
+    /*decorator_main();*/
 
     // Behavioral
+    observer_main();
 
 }
 
