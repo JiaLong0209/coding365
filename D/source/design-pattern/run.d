@@ -18,7 +18,8 @@ void run_design_pattern(){
     /*decorator_main();*/
 
     // Behavioral
-    observer_main();
+    /*observer_main();*/
+    command_main();
 
 }
 
