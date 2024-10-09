@@ -1,4 +1,3 @@
-
 local math_utils = {}
 
 function math_utils.add(a, b)
@@ -10,6 +9,3 @@ function math_utils.substract(a, b)
 end
 
 return  math_utils
-
-
-
