@@ -22,9 +22,18 @@ local function run_closure()
     ex1()
 end
 
+local function run_obj()
+    local Person = require("objects.Person")
+    local Employee = require("objects.Employee")
+    Person.test()
+    Employee.test()
+
+end
+
 local function run()
-    run_math()
-    run_closure()
+    -- run_math()
+    -- run_closure()
+    run_obj()
 end
 
 
