@@ -25,8 +25,10 @@ end
 local function run_obj()
     local Person = require("objects.Person")
     local Employee = require("objects.Employee")
+    local Manager = require("objects.Manager")
     Person.test()
     Employee.test()
+    Manager.test()
 
 end
 

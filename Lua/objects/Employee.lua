@@ -18,7 +18,7 @@ function Employee:info()
 end
 
 function Employee.test()
-    local yabe = Employee:new("Yabe", 20, "1", "Manager")
+    local yabe = Employee:new("Yabe", 20, "1", "Employee")
     yabe:info()
 end
 
