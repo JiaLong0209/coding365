@@ -28,4 +28,8 @@ awk '
     }
 '
 
+find ~/Programming/ -name "*.c" -exec wc {} \; | awk '{print $1}' | sum 
+
+find ~/Programming/ -name "*.c" -exec wc {} \; | awk '{print "Line: " $1 "\t" "File: " $4}'
+
 
